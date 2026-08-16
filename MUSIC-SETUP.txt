@@ -1,0 +1,13 @@
+Clover Kingdom Revolution — Music Update
+
+Added three royalty-free tracks under /music/:
+- wonders-of-the-earth.mp3
+- total-war-epic-action.mp3
+- music-promotion.mp3
+
+A floating MUSIC player was added to index.html.
+It does not force autoplay: visitors can open the player and press Play.
+Tracks can be switched, muted, and volume-controlled.
+
+For GitHub Pages, upload the contents of this folder to the repository root
+and keep the /music folder intact.

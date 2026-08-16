@@ -185,7 +185,7 @@ function Badge({
   }, this);
 }
 _c = Badge;
-const LOGO_URL = "./logo.png";
+const LOGO_URL = "https://customer-assets-cm19k8pv.emergentagent.net/job_kingdom-chronicle-2/artifacts/cf5ocwoj_ChatGPT%20Image%20Aug%2016%2C%202026%2C%2003_36_38%20PM.png";
 function Logo() {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
     className: "wordmark",
