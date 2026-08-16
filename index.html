@@ -206,15 +206,12 @@ if(window.self!==window.top){
 <script id="ckr-music-script">
 (function () {
   const tracks = [
-const tracks = [
-  { name: "Wonders of the Earth", src: "./music/wonders-of-the-earth.mp3" },
-  { name: "Total War — Epic Action", src: "./music/total-war-epic-action.mp3" },
-  { name: "Music Promotion", src: "./music/music-promotion.mp3" }
-];
-function initMusicPlayer() {
+    { name: "Wonders of the Earth", src: "./music/wonders-of-the-earth.mp3" },
+    { name: "Total War — Epic Action", src: "./music/total-war-epic-action.mp3" },
+    { name: "Music Promotion", src: "./music/music-promotion.mp3" }
+  ];
   function initMusicPlayer() {
     if (document.getElementById("ckr-music-player")) return;
-
     const player = document.createElement("div");
     player.id = "ckr-music-player";
     player.innerHTML = `
