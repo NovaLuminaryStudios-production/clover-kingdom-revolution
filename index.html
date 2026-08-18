@@ -1211,6 +1211,106 @@
       padding: 22px 18px;
     }
   }
+/* CREDIT CARD INTERACTION */
+
+.ckr-credit-card {
+  cursor: pointer;
+}
+
+.ckr-credit-card:active {
+  transform: translateY(-2px) scale(.99);
+}
+
+/* PROFILE MODAL */
+
+#ckr-profile-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2147482999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#ckr-profile-modal.open {
+  display: flex;
+}
+
+#ckr-profile-box {
+  position: relative;
+  width: min(430px, 100%);
+  padding: 38px 30px;
+  text-align: center;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(35,35,45,.96),
+    rgba(10,10,14,.97)
+  );
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.65),
+    inset 0 1px 0 rgba(255,255,255,.08);
+  transform: translateY(20px) scale(.96);
+  opacity: 0;
+  transition:
+    transform .25s ease,
+    opacity .25s ease;
+}
+
+#ckr-profile-modal.open #ckr-profile-box {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+#ckr-profile-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#ckr-profile-close:hover {
+  background: rgba(255,255,255,.13);
+}
+
+#ckr-profile-role {
+  font-size: 10px;
+  letter-spacing: .2em;
+  opacity: .5;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+#ckr-profile-name {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 7px;
+}
+
+#ckr-profile-user {
+  font-size: 13px;
+  opacity: .45;
+  margin-bottom: 22px;
+}
+
+#ckr-profile-description {
+  font-size: 13px;
+  line-height: 1.7;
+  opacity: .65;
+}
 </style>
 
 <style>
@@ -1449,5 +1549,105 @@
   </div>
 
 </section>
+<div id="ckr-profile-modal">
+  <div id="ckr-profile-box">
+
+    <button id="ckr-profile-close" type="button">×</button>
+
+    <div id="ckr-profile-role"></div>
+    <div id="ckr-profile-name"></div>
+    <div id="ckr-profile-user"></div>
+    <div id="ckr-profile-description"></div>
+
+  </div>
+</div>
+<script>
+(function () {
+
+  const profiles = {
+    "𝔇𝔯𝔞𝔤𝔬𝔫 👑": {
+      role: "Game Owner",
+      user: "@beyonder_2243",
+      description: "Game Owner and one of the people behind Clover Kingdom Revolution."
+    },
+
+    "Vangeance": {
+      role: "Game Owner",
+      user: "@mt.rams",
+      description: "Game Owner of Clover Kingdom Revolution."
+    },
+
+    "zaza⚜️": {
+      role: "Community Manager",
+      user: "@rip_beast3609",
+      description: "Community Manager helping build and manage the Clover Kingdom Revolution community."
+    },
+
+    "OFFICIAL_BAGUETTE": {
+      role: "Lead Developer",
+      user: "@the_rinitoshixsae",
+      description: "Lead Developer responsible for the development of Clover Kingdom Revolution."
+    },
+
+    "Astr4": {
+      role: "Tester",
+      user: "@astr4games",
+      description: "Tester helping find issues and improve the experience."
+    }
+  };
+
+  const modal = document.getElementById("ckr-profile-modal");
+  const close = document.getElementById("ckr-profile-close");
+
+  const role = document.getElementById("ckr-profile-role");
+  const name = document.getElementById("ckr-profile-name");
+  const user = document.getElementById("ckr-profile-user");
+  const description = document.getElementById("ckr-profile-description");
+
+  if (!modal) return;
+
+  document.querySelectorAll(".ckr-credit-card").forEach(card => {
+
+    card.addEventListener("click", function () {
+
+      const nameElement = card.querySelector(".ckr-credit-name");
+
+      if (!nameElement) return;
+
+      const profile = profiles[nameElement.textContent.trim()];
+
+      if (!profile) return;
+
+      role.textContent = profile.role;
+      name.textContent = nameElement.textContent.trim();
+      user.textContent = profile.user;
+      description.textContent = profile.description;
+
+      modal.classList.add("open");
+
+    });
+
+  });
+
+  function closeModal() {
+    modal.classList.remove("open");
+  }
+
+  close.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeModal();
+    }
+  });
+
+})();
+</script>
 </body>
 </html>
