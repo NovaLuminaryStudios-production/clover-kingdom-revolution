@@ -1061,76 +1061,239 @@
     </script>
 <style>
   #ckr-credits {
-    max-width: 900px;
-    margin: 80px auto 40px;
-    padding: 40px 24px;
-    text-align: center;
+    max-width: 1100px;
+    margin: 100px auto 60px;
+    padding: 60px 24px;
     color: #fff;
     font-family: Inter, system-ui, sans-serif;
+    text-align: center;
+  }
+
+  #ckr-credits-header {
+    margin-bottom: 50px;
+  }
+
+  #ckr-credits-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    opacity: .5;
+    margin-bottom: 10px;
   }
 
   #ckr-credits h2 {
-    font-size: 28px;
-    letter-spacing: .14em;
-    margin-bottom: 40px;
+    margin: 0;
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 800;
+    letter-spacing: .08em;
+  }
+
+  #ckr-credits-subtitle {
+    margin: 12px auto 0;
+    max-width: 520px;
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: .55;
   }
 
   .ckr-credit-group {
-    margin-bottom: 32px;
+    margin-bottom: 48px;
   }
 
-  .ckr-credit-group h3 {
-    font-size: 12px;
-    letter-spacing: .15em;
-    opacity: .6;
-    margin-bottom: 14px;
+  .ckr-credit-group-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .ckr-credit-group-title::before,
+  .ckr-credit-group-title::after {
+    content: "";
+    width: 45px;
+    height: 1px;
+    background: rgba(255,255,255,.15);
+  }
+
+  .ckr-credit-group-title h3 {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: .18em;
+    opacity: .55;
+  }
+
+  .ckr-credit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .ckr-credit-grid.single {
+    grid-template-columns: minmax(0, 420px);
+    justify-content: center;
+  }
+
+  .ckr-credit-card {
+    position: relative;
+    padding: 25px 22px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 18px;
+    background: linear-gradient(
+      145deg,
+      rgba(255,255,255,.075),
+      rgba(255,255,255,.025)
+    );
+    box-shadow:
+      0 15px 45px rgba(0,0,0,.20),
+      inset 0 1px 0 rgba(255,255,255,.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition:
+      transform .25s ease,
+      border-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .ckr-credit-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255,255,255,.22);
+    box-shadow:
+      0 22px 55px rgba(0,0,0,.30),
+      inset 0 1px 0 rgba(255,255,255,.09);
+  }
+
+  .ckr-credit-role {
+    font-size: 9px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    opacity: .45;
+    margin-bottom: 9px;
   }
 
   .ckr-credit-name {
-    font-size: 17px;
-    font-weight: 700;
-    margin: 8px 0 2px;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: .01em;
+    margin-bottom: 6px;
   }
 
   .ckr-credit-user {
     font-size: 12px;
+    opacity: .45;
+  }
+
+  .ckr-credit-crown {
+    position: absolute;
+    top: 13px;
+    right: 16px;
+    font-size: 14px;
     opacity: .55;
+  }
+
+  @media (max-width: 650px) {
+    #ckr-credits {
+      margin-top: 70px;
+      padding: 45px 16px;
+    }
+
+    .ckr-credit-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .ckr-credit-grid.single {
+      grid-template-columns: 1fr;
+    }
+
+    .ckr-credit-card {
+      padding: 22px 18px;
+    }
   }
 </style>
 
 <section id="ckr-credits">
-  <h2>CREDITS</h2>
 
-  <div class="ckr-credit-group">
-    <h3>GAME OWNERS</h3>
-
-    <div class="ckr-credit-name">𝔇𝔯𝔞𝔤𝔬𝔫 👑</div>
-    <div class="ckr-credit-user">@beyonder_2243</div>
-
-    <div class="ckr-credit-name">Vangeance</div>
-    <div class="ckr-credit-user">@mt.rams</div>
+  <div id="ckr-credits-header">
+    <div id="ckr-credits-eyebrow">CLOVER KINGDOM REVOLUTION</div>
+    <h2>CREDITS</h2>
+    <div id="ckr-credits-subtitle">
+      The people behind the project.
+    </div>
   </div>
 
   <div class="ckr-credit-group">
-    <h3>COMMUNITY MANAGER</h3>
+    <div class="ckr-credit-group-title">
+      <h3>GAME OWNERS</h3>
+    </div>
 
-    <div class="ckr-credit-name">zaza⚜️</div>
-    <div class="ckr-credit-user">@rip_beast3609</div>
+    <div class="ckr-credit-grid">
+
+      <div class="ckr-credit-card">
+        <div class="ckr-credit-crown">👑</div>
+        <div class="ckr-credit-role">Game Owner</div>
+        <div class="ckr-credit-name">𝔇𝔯𝔞𝔤𝔬𝔫 👑</div>
+        <div class="ckr-credit-user">@beyonder_2243</div>
+      </div>
+
+      <div class="ckr-credit-card">
+        <div class="ckr-credit-role">Game Owner</div>
+        <div class="ckr-credit-name">Vangeance</div>
+        <div class="ckr-credit-user">@mt.rams</div>
+      </div>
+
+    </div>
   </div>
 
   <div class="ckr-credit-group">
-    <h3>LEAD DEVELOPER</h3>
+    <div class="ckr-credit-group-title">
+      <h3>COMMUNITY MANAGER</h3>
+    </div>
 
-    <div class="ckr-credit-name">OFFICIAL_BAGUETTE</div>
-    <div class="ckr-credit-user">@the_rinitoshixsae</div>
+    <div class="ckr-credit-grid single">
+
+      <div class="ckr-credit-card">
+        <div class="ckr-credit-role">Community Manager</div>
+        <div class="ckr-credit-name">zaza⚜️</div>
+        <div class="ckr-credit-user">@rip_beast3609</div>
+      </div>
+
+    </div>
   </div>
 
   <div class="ckr-credit-group">
-    <h3>TESTER</h3>
+    <div class="ckr-credit-group-title">
+      <h3>LEAD DEVELOPER</h3>
+    </div>
 
-    <div class="ckr-credit-name">Astr4</div>
-    <div class="ckr-credit-user">@astr4games</div>
+    <div class="ckr-credit-grid single">
+
+      <div class="ckr-credit-card">
+        <div class="ckr-credit-role">Lead Developer</div>
+        <div class="ckr-credit-name">OFFICIAL_BAGUETTE</div>
+        <div class="ckr-credit-user">@the_rinitoshixsae</div>
+      </div>
+
+    </div>
   </div>
+
+  <div class="ckr-credit-group">
+    <div class="ckr-credit-group-title">
+      <h3>TESTER</h3>
+    </div>
+
+    <div class="ckr-credit-grid single">
+
+      <div class="ckr-credit-card">
+        <div class="ckr-credit-role">Tester</div>
+        <div class="ckr-credit-name">Astr4</div>
+        <div class="ckr-credit-user">@astr4games</div>
+      </div>
+
+    </div>
+  </div>
+
 </section>
 </body>
 </html>
