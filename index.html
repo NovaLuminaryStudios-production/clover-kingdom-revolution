@@ -11,11 +11,7 @@
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
         href="./css2%3Ffamily=Inter:wght@600&amp;display=swap.css"
@@ -63,7 +59,7 @@
 
 
     <!-- =====================================================
-         OPENING CREDITS
+         MOVIE STYLE OPENING CREDITS
          ===================================================== -->
 
     <style>
@@ -73,19 +69,15 @@
             inset: 0;
             z-index: 999998;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
             overflow: hidden;
 
             background:
                 radial-gradient(
                     circle at center,
-                    rgba(45,255,140,.08),
-                    transparent 40%
+                    rgba(45,255,140,.035),
+                    transparent 45%
                 ),
-                #020303;
+                #000;
 
             color: white;
 
@@ -101,8 +93,8 @@
             visibility: visible;
 
             transition:
-                opacity 1.4s ease,
-                visibility 1.4s ease;
+                opacity 1.8s ease,
+                visibility 1.8s ease;
         }
 
 
@@ -113,265 +105,241 @@
         }
 
 
+        /* Subtle cinematic glow */
+
         #ckr-opening-credits::before {
             content: "";
 
             position: absolute;
-            inset: -30%;
+            inset: 0;
 
             background:
                 radial-gradient(
-                    circle at 50% 45%,
-                    rgba(70,255,150,.08),
-                    transparent 35%
+                    ellipse at center,
+                    rgba(255,255,255,.035),
+                    transparent 55%
                 );
 
-            animation:
-                ckrCreditsGlow
-                8s
-                ease-in-out
-                infinite
-                alternate;
+            pointer-events: none;
         }
 
 
-        @keyframes ckrCreditsGlow {
+        /* Actual rolling credits viewport */
 
-            from {
-                transform: scale(1);
-                opacity: .4;
-            }
+        #ckr-credit-viewport {
+            position: absolute;
+            inset: 0;
 
-            to {
-                transform: scale(1.2);
-                opacity: 1;
-            }
+            overflow: hidden;
 
+            display: flex;
+            justify-content: center;
+
+            perspective: 600px;
         }
 
 
-        #ckr-opening-content {
-            position: relative;
-            z-index: 2;
+        /* The thing that actually moves */
 
-            width: min(850px, 88vw);
+        #ckr-credit-roll {
+            position: absolute;
+
+            width: min(700px, 88vw);
+
+            top: 100%;
 
             text-align: center;
-        }
-
-
-        #ckr-opening-small {
-            font-size: 10px;
-            font-weight: 700;
-
-            letter-spacing: .35em;
-
-            opacity: 0;
-
-            margin-bottom: 15px;
 
             animation:
-                ckrCreditFade
-                .9s
-                ease
-                .5s
+                ckrMovieCreditRoll
+                18s
+                linear
                 forwards;
         }
 
 
-        #ckr-opening-title {
+        @keyframes ckrMovieCreditRoll {
+
+            0% {
+                top: 100%;
+                transform: translateY(0);
+            }
+
+            100% {
+                top: -115%;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* Opening production text */
+
+        .ckr-credit-production {
+            font-size: 10px;
+
+            letter-spacing: .45em;
+
+            font-weight: 600;
+
+            opacity: .45;
+
+            margin-bottom: 24px;
+
+            text-transform: uppercase;
+        }
+
+
+        .ckr-credit-main-title {
+
             font-size:
                 clamp(
                     30px,
                     6vw,
-                    60px
+                    58px
                 );
 
             font-weight: 800;
 
-            letter-spacing: .12em;
+            letter-spacing: .16em;
 
-            margin: 0;
+            margin: 0 0 12px;
 
-            opacity: 0;
-
-            transform:
-                translateY(15px);
-
-            animation:
-                ckrCreditFadeUp
-                1s
-                ease
-                1s
-                forwards;
+            text-transform: uppercase;
         }
 
 
-        #ckr-opening-line {
-            width: 70px;
-            height: 1px;
+        .ckr-credit-subtitle {
 
-            margin: 22px auto;
-
-            background:
-                rgba(255,255,255,.3);
-
-            transform:
-                scaleX(0);
-
-            animation:
-                ckrLineReveal
-                .8s
-                ease
-                1.8s
-                forwards;
-        }
-
-
-        #ckr-opening-subtitle {
             font-size: 12px;
 
-            letter-spacing: .18em;
+            letter-spacing: .4em;
 
-            opacity: 0;
+            opacity: .5;
 
-            animation:
-                ckrCreditFade
-                .9s
-                ease
-                2.1s
-                forwards;
+            margin-bottom: 100px;
+
+            text-transform: uppercase;
         }
 
 
-        #ckr-opening-list {
-            display: grid;
+        /* Individual movie credits */
 
-            grid-template-columns:
-                repeat(
-                    2,
-                    minmax(0, 1fr)
+        .ckr-credit-block {
+            margin-bottom: 75px;
+        }
+
+
+        .ckr-credit-role {
+
+            font-size: 9px;
+
+            letter-spacing: .35em;
+
+            text-transform: uppercase;
+
+            opacity: .38;
+
+            margin-bottom: 14px;
+        }
+
+
+        .ckr-credit-name {
+
+            font-size:
+                clamp(
+                    18px,
+                    3vw,
+                    27px
                 );
 
-            gap: 14px;
+            font-weight: 800;
 
-            max-width: 650px;
+            letter-spacing: .08em;
 
-            margin: 38px auto 0;
+            margin-bottom: 7px;
         }
 
 
-        .ckr-opening-person {
-            padding: 17px 20px;
+        .ckr-credit-user {
 
-            border:
-                1px solid
-                rgba(255,255,255,.09);
+            font-size: 10px;
 
-            border-radius: 14px;
+            letter-spacing: .1em;
+
+            opacity: .32;
+        }
+
+
+        /* Separators */
+
+        .ckr-credit-separator {
+
+            width: 35px;
+
+            height: 1px;
 
             background:
-                rgba(255,255,255,.025);
+                rgba(255,255,255,.18);
 
-            backdrop-filter: blur(10px);
-
-            -webkit-backdrop-filter:
-                blur(10px);
-
-            opacity: 0;
-
-            transform:
-                translateY(12px);
+            margin:
+                55px
+                auto;
         }
 
 
-        .ckr-opening-person:nth-child(1) {
-            animation:
-                ckrCreditFadeUp
-                .7s
-                ease
-                2.6s
-                forwards;
+        /* Final title */
+
+        .ckr-credit-final {
+
+            margin-top: 120px;
+
+            margin-bottom: 200px;
         }
 
 
-        .ckr-opening-person:nth-child(2) {
-            animation:
-                ckrCreditFadeUp
-                .7s
-                ease
-                2.8s
-                forwards;
-        }
+        .ckr-credit-final-title {
 
+            font-size:
+                clamp(
+                    20px,
+                    4vw,
+                    35px
+                );
 
-        .ckr-opening-person:nth-child(3) {
-            animation:
-                ckrCreditFadeUp
-                .7s
-                ease
-                3s
-                forwards;
-        }
-
-
-        .ckr-opening-person:nth-child(4) {
-            animation:
-                ckrCreditFadeUp
-                .7s
-                ease
-                3.2s
-                forwards;
-        }
-
-
-        .ckr-opening-person:nth-child(5) {
-            animation:
-                ckrCreditFadeUp
-                .7s
-                ease
-                3.4s
-                forwards;
-        }
-
-
-        .ckr-opening-role {
-            font-size: 8px;
+            font-weight: 800;
 
             letter-spacing: .18em;
 
             text-transform: uppercase;
-
-            opacity: .4;
-
-            margin-bottom: 6px;
         }
 
 
-        .ckr-opening-name {
-            font-size: 15px;
-            font-weight: 800;
-        }
+        .ckr-credit-final-subtitle {
 
+            margin-top: 15px;
 
-        .ckr-opening-user {
             font-size: 10px;
 
-            opacity: .4;
+            letter-spacing: .3em;
 
-            margin-top: 3px;
+            opacity: .4;
         }
 
 
+        /* Skip button */
+
         #ckr-opening-skip {
+
             position: absolute;
 
             right: 24px;
             bottom: 24px;
 
-            z-index: 5;
+            z-index: 10;
 
-            padding: 9px 16px;
+            padding:
+                10px 18px;
 
             border:
                 1px solid
@@ -380,261 +348,51 @@
             border-radius: 999px;
 
             background:
-                rgba(0,0,0,.35);
+                rgba(0,0,0,.55);
 
             color:
-                rgba(255,255,255,.7);
+                rgba(255,255,255,.65);
 
-            font: inherit;
+            font-family: inherit;
 
             font-size: 10px;
 
-            letter-spacing: .15em;
+            letter-spacing: .16em;
 
             cursor: pointer;
 
             backdrop-filter: blur(10px);
+
+            transition:
+                .25s ease;
         }
 
 
         #ckr-opening-skip:hover {
+
             color: white;
+
+            border-color:
+                rgba(70,255,150,.35);
 
             background:
                 rgba(70,255,150,.08);
-
-            border-color:
-                rgba(70,255,150,.3);
-        }
-
-
-        @keyframes ckrCreditFade {
-            to {
-                opacity: .75;
-            }
-        }
-
-
-        @keyframes ckrCreditFadeUp {
-            to {
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-            }
-        }
-
-
-        @keyframes ckrLineReveal {
-            to {
-                transform:
-                    scaleX(1);
-            }
-        }
-
-
-        @media (max-width: 650px) {
-
-            #ckr-opening-list {
-                grid-template-columns: 1fr;
-            }
-
-            #ckr-opening-content {
-                width: 90vw;
-            }
-
-        }
-
-    </style>
-
-
-    <!-- =====================================================
-         MUSIC PLAYER
-         ===================================================== -->
-
-    <style id="ckr-music-style">
-
-        #ckr-music-player {
-            position: fixed;
-
-            right: 18px;
-            bottom: 18px;
-
-            z-index: 2147483000;
-
-            font-family:
-                Inter,
-                system-ui,
-                sans-serif;
-        }
-
-
-        #ckr-music-toggle {
-            border:
-                1px solid
-                rgba(255,255,255,.18);
-
-            background:
-                rgba(10,10,14,.88);
-
-            color: #fff;
-
-            backdrop-filter: blur(14px);
-
-            -webkit-backdrop-filter:
-                blur(14px);
-
-            border-radius: 999px;
-
-            padding: 10px 14px;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 10px 35px
-                rgba(0,0,0,.35);
-
-            font-size: 12px;
-
-            letter-spacing: .08em;
-
-            font-weight: 700;
-
-            transition:
-                background .2s ease,
-                transform .2s ease;
-        }
-
-
-        #ckr-music-toggle:hover {
-            background:
-                rgba(25,25,32,.95);
 
             transform:
                 translateY(-2px);
         }
 
 
-        #ckr-music-panel {
-            display: none;
+        @media (max-width: 650px) {
 
-            width:
-                min(
-                    310px,
-                    calc(100vw - 36px)
-                );
+            #ckr-credit-roll {
+                width: 88vw;
+            }
 
-            margin-bottom: 10px;
+            .ckr-credit-block {
+                margin-bottom: 60px;
+            }
 
-            padding: 14px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            background:
-                rgba(10,10,14,.94);
-
-            color: #fff;
-
-            backdrop-filter: blur(18px);
-
-            -webkit-backdrop-filter:
-                blur(18px);
-
-            border-radius: 16px;
-
-            box-shadow:
-                0 18px 55px
-                rgba(0,0,0,.45);
-        }
-
-
-        #ckr-music-player.open
-        #ckr-music-panel {
-            display: block;
-        }
-
-
-        #ckr-music-title {
-            font-size: 11px;
-
-            letter-spacing: .12em;
-
-            opacity: .65;
-
-            margin-bottom: 5px;
-        }
-
-
-        #ckr-music-track {
-            font-size: 14px;
-
-            font-weight: 700;
-
-            margin-bottom: 12px;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-        }
-
-
-        #ckr-music-controls {
-            display: flex;
-
-            gap: 7px;
-
-            flex-wrap: wrap;
-        }
-
-
-        #ckr-music-controls button {
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            background:
-                rgba(255,255,255,.07);
-
-            color: #fff;
-
-            border-radius: 9px;
-
-            padding: 8px 10px;
-
-            cursor: pointer;
-
-            font-size: 12px;
-        }
-
-
-        #ckr-music-select {
-            width: 100%;
-
-            margin-top: 10px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            background:
-                #111116;
-
-            color: #fff;
-
-            border-radius: 9px;
-
-            padding: 9px;
-        }
-
-
-        #ckr-music-volume {
-            width: 100%;
-
-            margin-top: 10px;
         }
 
     </style>
@@ -647,6 +405,7 @@
     <style id="ckr-intro-style">
 
         #ckr-intro {
+
             position: fixed;
 
             inset: 0;
@@ -672,28 +431,34 @@
             transition:
                 opacity 1.2s ease,
                 visibility 1.2s ease;
+
         }
 
 
         #ckr-intro.active {
+
             opacity: 1;
 
             visibility: visible;
 
             pointer-events: auto;
+
         }
 
 
         #ckr-intro.ckr-intro-hidden {
+
             opacity: 0;
 
             visibility: hidden;
 
             pointer-events: none;
+
         }
 
 
         #ckr-intro::before {
+
             content: "";
 
             position: absolute;
@@ -708,11 +473,9 @@
                 );
 
             animation:
-                ckrIntroAtmosphere
-                8s
-                ease-in-out
-                infinite
-                alternate;
+                ckrIntroAtmosphere 8s
+                ease-in-out infinite alternate;
+
         }
 
 
@@ -732,6 +495,7 @@
 
 
         #ckr-intro-logo {
+
             position: relative;
 
             z-index: 3;
@@ -767,19 +531,23 @@
                 cubic-bezier(.16,1,.3,1)
                 .5s
                 forwards;
+
         }
 
 
         @keyframes ckrLogoReveal {
 
             0% {
+
                 opacity: 0;
 
                 transform:
                     scale(.72);
+
             }
 
             55% {
+
                 opacity: 1;
 
                 transform:
@@ -794,9 +562,11 @@
                         0 0 70px
                         rgba(40,255,130,.25)
                     );
+
             }
 
             100% {
+
                 opacity: 1;
 
                 transform:
@@ -811,12 +581,14 @@
                         0 0 45px
                         rgba(40,255,130,.15)
                     );
+
             }
 
         }
 
 
         #ckr-intro-energy {
+
             position: absolute;
 
             z-index: 2;
@@ -850,36 +622,44 @@
                 ease-out
                 .3s
                 forwards;
+
         }
 
 
         @keyframes ckrEnergyReveal {
 
             0% {
+
                 opacity: 0;
 
                 transform:
                     scale(.5);
+
             }
 
             45% {
+
                 opacity: .9;
 
                 transform:
                     scale(1);
+
             }
 
             100% {
+
                 opacity: .35;
 
                 transform:
                     scale(1.15);
+
             }
 
         }
 
 
         #ckr-intro-welcome {
+
             position: absolute;
 
             z-index: 4;
@@ -914,6 +694,7 @@
                 ease
                 4.5s
                 forwards;
+
         }
 
 
@@ -927,6 +708,7 @@
 
 
         #ckr-intro-skip {
+
             position: absolute;
 
             z-index: 10;
@@ -956,6 +738,219 @@
             text-transform: uppercase;
 
             cursor: pointer;
+
+        }
+
+    </style>
+
+
+    <!-- =====================================================
+         MUSIC PLAYER
+         ===================================================== -->
+
+    <style id="ckr-music-style">
+
+        #ckr-music-player {
+
+            position: fixed;
+
+            right: 18px;
+            bottom: 18px;
+
+            z-index: 2147483000;
+
+            font-family:
+                Inter,
+                system-ui,
+                sans-serif;
+
+        }
+
+
+        #ckr-music-toggle {
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            background:
+                rgba(10,10,14,.88);
+
+            color: #fff;
+
+            backdrop-filter: blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
+
+            border-radius: 999px;
+
+            padding: 10px 14px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 35px
+                rgba(0,0,0,.35);
+
+            font-size: 12px;
+
+            letter-spacing: .08em;
+
+            font-weight: 700;
+
+            transition:
+                background .2s ease,
+                transform .2s ease;
+
+        }
+
+
+        #ckr-music-toggle:hover {
+
+            background:
+                rgba(25,25,32,.95);
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        #ckr-music-panel {
+
+            display: none;
+
+            width:
+                min(
+                    310px,
+                    calc(100vw - 36px)
+                );
+
+            margin-bottom: 10px;
+
+            padding: 14px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            background:
+                rgba(10,10,14,.94);
+
+            color: #fff;
+
+            backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter: blur(18px);
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 18px 55px
+                rgba(0,0,0,.45);
+
+        }
+
+
+        #ckr-music-player.open
+        #ckr-music-panel {
+
+            display: block;
+
+        }
+
+
+        #ckr-music-title {
+
+            font-size: 11px;
+
+            letter-spacing: .12em;
+
+            opacity: .65;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        #ckr-music-track {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+        }
+
+
+        #ckr-music-controls {
+
+            display: flex;
+
+            gap: 7px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        #ckr-music-controls button {
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            background:
+                rgba(255,255,255,.07);
+
+            color: #fff;
+
+            border-radius: 9px;
+
+            padding: 8px 10px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+        }
+
+
+        #ckr-music-select {
+
+            width: 100%;
+
+            margin-top: 10px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            background: #111116;
+
+            color: #fff;
+
+            border-radius: 9px;
+
+            padding: 9px;
+
+        }
+
+
+        #ckr-music-volume {
+
+            width: 100%;
+
+            margin-top: 10px;
+
         }
 
     </style>
@@ -978,113 +973,141 @@
 
 
     <!-- =====================================================
-         OPENING CREDITS
+         MOVIE STYLE OPENING CREDITS
          ===================================================== -->
 
     <div id="ckr-opening-credits">
 
-        <div id="ckr-opening-content">
+        <div id="ckr-credit-viewport">
 
-            <div id="ckr-opening-small">
-                A PRODUCTION OF
-            </div>
-
-            <h1 id="ckr-opening-title">
-                CLOVER KINGDOM
-            </h1>
-
-            <div id="ckr-opening-line"></div>
-
-            <div id="ckr-opening-subtitle">
-                REVOLUTION
-            </div>
+            <div id="ckr-credit-roll">
 
 
-            <div id="ckr-opening-list">
+                <div class="ckr-credit-production">
+                    A PRODUCTION OF
+                </div>
 
-                <div class="ckr-opening-person">
 
-                    <div class="ckr-opening-role">
+                <h1 class="ckr-credit-main-title">
+                    CLOVER KINGDOM
+                </h1>
+
+
+                <div class="ckr-credit-subtitle">
+                    REVOLUTION
+                </div>
+
+
+                <!-- DRAGON -->
+
+                <div class="ckr-credit-block">
+
+                    <div class="ckr-credit-role">
                         Game Owner
                     </div>
 
-                    <div class="ckr-opening-name">
+                    <div class="ckr-credit-name">
                         𝔇𝔯𝔞𝔤𝔬𝔫 👑
                     </div>
 
-                    <div class="ckr-opening-user">
+                    <div class="ckr-credit-user">
                         @beyonder_2243
                     </div>
 
                 </div>
 
 
-                <div class="ckr-opening-person">
+                <!-- VANGEANCE -->
 
-                    <div class="ckr-opening-role">
+                <div class="ckr-credit-block">
+
+                    <div class="ckr-credit-role">
                         Game Owner
                     </div>
 
-                    <div class="ckr-opening-name">
+                    <div class="ckr-credit-name">
                         Vangeance ♛
                     </div>
 
-                    <div class="ckr-opening-user">
+                    <div class="ckr-credit-user">
                         @mt.rams
                     </div>
 
                 </div>
 
 
-                <div class="ckr-opening-person">
+                <!-- ZAZA -->
 
-                    <div class="ckr-opening-role">
+                <div class="ckr-credit-block">
+
+                    <div class="ckr-credit-role">
                         Community Manager
                     </div>
 
-                    <div class="ckr-opening-name">
+                    <div class="ckr-credit-name">
                         zaza ⚜️
                     </div>
 
-                    <div class="ckr-opening-user">
+                    <div class="ckr-credit-user">
                         @rip_beast3609
                     </div>
 
                 </div>
 
 
-                <div class="ckr-opening-person">
+                <!-- BAGUETTE -->
 
-                    <div class="ckr-opening-role">
+                <div class="ckr-credit-block">
+
+                    <div class="ckr-credit-role">
                         Lead Developer
                     </div>
 
-                    <div class="ckr-opening-name">
+                    <div class="ckr-credit-name">
                         OFFICIAL_BAGUETTE ♠️
                     </div>
 
-                    <div class="ckr-opening-user">
+                    <div class="ckr-credit-user">
                         @the_rinitoshixsae
                     </div>
 
                 </div>
 
 
-                <div class="ckr-opening-person">
+                <!-- ASTR4 -->
 
-                    <div class="ckr-opening-role">
+                <div class="ckr-credit-block">
+
+                    <div class="ckr-credit-role">
                         Tester
                     </div>
 
-                    <div class="ckr-opening-name">
+                    <div class="ckr-credit-name">
                         Astr4
                     </div>
 
-                    <div class="ckr-opening-user">
+                    <div class="ckr-credit-user">
                         @astr4games
                     </div>
 
                 </div>
+
+
+                <div class="ckr-credit-separator"></div>
+
+
+                <div class="ckr-credit-final">
+
+                    <div class="ckr-credit-final-title">
+                        CLOVER KINGDOM
+                    </div>
+
+                    <div class="ckr-credit-final-subtitle">
+                        REVOLUTION
+                    </div>
+
+                </div>
+
 
             </div>
 
@@ -1109,15 +1132,18 @@
 
         <div id="ckr-intro-energy"></div>
 
+
         <img
             id="ckr-intro-logo"
             src="./logo.png"
             alt="Clover Kingdom Revolution"
         />
 
+
         <div id="ckr-intro-welcome">
             WELCOME TO CLOVER KINGDOM REVOLUTION
         </div>
+
 
         <button
             id="ckr-intro-skip"
@@ -1137,17 +1163,8 @@
 
     (function () {
 
-        /*
-         * MUSIC FOLDER
-         *
-         * This assumes your music is inside:
-         *
-         * music/
-         *
-         * next to index.html.
-         */
-
-        const BASE_PATH = "./";
+        const BASE_PATH =
+            "/clover-kingdom-revolution/";
 
 
         const tracks = [
@@ -1388,14 +1405,7 @@
                                 "⏸ Pause";
 
                         })
-                        .catch((error) => {
-
-                            console.log(
-                                "Music could not autoplay:",
-                                error
-                            );
-
-                        });
+                        .catch(() => {});
 
                 }
 
@@ -1435,14 +1445,7 @@
                                     "⏸ Pause";
 
                             })
-                            .catch((error) => {
-
-                                console.log(
-                                    "Music playback error:",
-                                    error
-                                );
-
-                            });
+                            .catch(() => {});
 
                     } else {
 
@@ -1665,26 +1668,25 @@
                     );
 
                 },
-                1200
+                1800
             );
 
         }
 
 
         /*
-         * Credits automatically move
-         * to the logo intro.
+         * The rolling credits take
+         * approximately 18 seconds.
          */
 
         setTimeout(
             startLogoIntro,
-            7500
+            18500
         );
 
 
         /*
-         * Clicking SKIP on credits
-         * goes directly to logo.
+         * Skip credits.
          */
 
         if (creditSkip) {
@@ -1710,6 +1712,7 @@
                     intro.classList.add(
                         "ckr-intro-hidden"
                     );
+
 
                     setTimeout(
                         function () {
