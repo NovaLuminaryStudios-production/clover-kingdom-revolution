@@ -48,6 +48,7 @@
             document.head.appendChild(s);
 
             window.tailwind = window.tailwind || {};
+
             tailwind.config = {
                 corePlugins: {
                     preflight: false
@@ -60,17 +61,34 @@
         }
     </script>
 
-    <!-- =========================================
-         MUSIC PLAYER STYLES
-         ========================================= -->
 
-    <style id="ckr-music-style">
+    <!-- =====================================================
+         OPENING CREDITS
+         ===================================================== -->
 
-        #ckr-music-player {
+    <style>
+
+        #ckr-opening-credits {
             position: fixed;
-            right: 18px;
-            bottom: 18px;
-            z-index: 2147483000;
+            inset: 0;
+
+            z-index: 999998;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(45,255,140,.08),
+                    transparent 40%
+                ),
+                #020303;
+
+            color: white;
 
             font-family:
                 Inter,
@@ -79,17 +97,395 @@
                 BlinkMacSystemFont,
                 "Segoe UI",
                 sans-serif;
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transition:
+                opacity 1.4s ease,
+                visibility 1.4s ease;
         }
 
-        #ckr-music-toggle {
-            border: 1px solid rgba(255,255,255,.18);
 
-            background: rgba(10,10,14,.88);
+        #ckr-opening-credits.hidden {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+
+        }
+
+
+        #ckr-opening-credits::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: -30%;
+
+            background:
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(70,255,150,.08),
+                    transparent 35%
+                );
+
+            animation:
+                ckrCreditsGlow 8s ease-in-out infinite alternate;
+
+        }
+
+
+        @keyframes ckrCreditsGlow {
+
+            from {
+                transform: scale(1);
+                opacity: .4;
+            }
+
+            to {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+        }
+
+
+        #ckr-opening-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            width: min(850px, 88vw);
+
+            text-align: center;
+
+        }
+
+
+        #ckr-opening-small {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: .35em;
+
+            opacity: 0;
+
+            margin-bottom: 15px;
+
+            animation:
+                ckrCreditFade .9s ease .5s forwards;
+
+        }
+
+
+        #ckr-opening-title {
+
+            font-size:
+                clamp(
+                    30px,
+                    6vw,
+                    60px
+                );
+
+            font-weight: 800;
+
+            letter-spacing: .12em;
+
+            margin: 0;
+
+            opacity: 0;
+
+            transform: translateY(15px);
+
+            animation:
+                ckrCreditFadeUp 1s ease 1s forwards;
+
+        }
+
+
+        #ckr-opening-line {
+
+            width: 70px;
+
+            height: 1px;
+
+            margin: 22px auto;
+
+            background: rgba(255,255,255,.3);
+
+            transform: scaleX(0);
+
+            animation:
+                ckrLineReveal .8s ease 1.8s forwards;
+
+        }
+
+
+        #ckr-opening-subtitle {
+
+            font-size: 12px;
+
+            letter-spacing: .18em;
+
+            opacity: 0;
+
+            animation:
+                ckrCreditFade .9s ease 2.1s forwards;
+
+        }
+
+
+        #ckr-opening-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0, 1fr)
+                );
+
+            gap: 14px;
+
+            max-width: 650px;
+
+            margin: 38px auto 0;
+
+        }
+
+
+        .ckr-opening-person {
+
+            padding: 17px 20px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.09);
+
+            border-radius: 14px;
+
+            background:
+                rgba(255,255,255,.025);
+
+            backdrop-filter: blur(10px);
+
+            -webkit-backdrop-filter: blur(10px);
+
+            opacity: 0;
+
+            transform: translateY(12px);
+
+        }
+
+
+        .ckr-opening-person:nth-child(1) {
+            animation:
+                ckrCreditFadeUp .7s ease 2.6s forwards;
+        }
+
+        .ckr-opening-person:nth-child(2) {
+            animation:
+                ckrCreditFadeUp .7s ease 2.8s forwards;
+        }
+
+        .ckr-opening-person:nth-child(3) {
+            animation:
+                ckrCreditFadeUp .7s ease 3s forwards;
+        }
+
+        .ckr-opening-person:nth-child(4) {
+            animation:
+                ckrCreditFadeUp .7s ease 3.2s forwards;
+        }
+
+        .ckr-opening-person:nth-child(5) {
+            animation:
+                ckrCreditFadeUp .7s ease 3.4s forwards;
+        }
+
+
+        .ckr-opening-role {
+
+            font-size: 8px;
+
+            letter-spacing: .18em;
+
+            text-transform: uppercase;
+
+            opacity: .4;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .ckr-opening-name {
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+        }
+
+
+        .ckr-opening-user {
+
+            font-size: 10px;
+
+            opacity: .4;
+
+            margin-top: 3px;
+
+        }
+
+
+        #ckr-opening-skip {
+
+            position: absolute;
+
+            right: 24px;
+
+            bottom: 24px;
+
+            z-index: 5;
+
+            padding: 9px 16px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-radius: 999px;
+
+            background:
+                rgba(0,0,0,.35);
+
+            color:
+                rgba(255,255,255,.7);
+
+            font: inherit;
+
+            font-size: 10px;
+
+            letter-spacing: .15em;
+
+            cursor: pointer;
+
+            backdrop-filter: blur(10px);
+
+        }
+
+
+        #ckr-opening-skip:hover {
+
+            color: white;
+
+            background:
+                rgba(70,255,150,.08);
+
+            border-color:
+                rgba(70,255,150,.3);
+
+        }
+
+
+        @keyframes ckrCreditFade {
+
+            to {
+                opacity: .75;
+            }
+
+        }
+
+
+        @keyframes ckrCreditFadeUp {
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        @keyframes ckrLineReveal {
+
+            to {
+                transform: scaleX(1);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            #ckr-opening-list {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            #ckr-opening-content {
+
+                width: 90vw;
+
+            }
+
+        }
+
+    </style>
+
+
+    <!-- =====================================================
+         MUSIC PLAYER
+         ===================================================== -->
+
+    <style id="ckr-music-style">
+
+        #ckr-music-player {
+
+            position: fixed;
+
+            right: 18px;
+            bottom: 18px;
+
+            z-index: 2147483000;
+
+            font-family:
+                Inter,
+                system-ui,
+                sans-serif;
+
+        }
+
+
+        #ckr-music-toggle {
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            background:
+                rgba(10,10,14,.88);
 
             color: #fff;
 
             backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+
+            -webkit-backdrop-filter:
+                blur(14px);
 
             border-radius: 999px;
 
@@ -98,7 +494,8 @@
             cursor: pointer;
 
             box-shadow:
-                0 10px 35px rgba(0,0,0,.35);
+                0 10px 35px
+                rgba(0,0,0,.35);
 
             font-size: 12px;
 
@@ -109,14 +506,23 @@
             transition:
                 background .2s ease,
                 transform .2s ease;
+
         }
+
 
         #ckr-music-toggle:hover {
-            background: rgba(25,25,32,.95);
-            transform: translateY(-2px);
+
+            background:
+                rgba(25,25,32,.95);
+
+            transform:
+                translateY(-2px);
+
         }
 
+
         #ckr-music-panel {
+
             display: none;
 
             width:
@@ -139,21 +545,29 @@
             color: #fff;
 
             backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
 
             border-radius: 16px;
 
             box-shadow:
                 0 18px 55px
                 rgba(0,0,0,.45);
+
         }
+
 
         #ckr-music-player.open
         #ckr-music-panel {
+
             display: block;
+
         }
 
+
         #ckr-music-title {
+
             font-size: 11px;
 
             letter-spacing: .12em;
@@ -161,9 +575,12 @@
             opacity: .65;
 
             margin-bottom: 5px;
+
         }
 
+
         #ckr-music-track {
+
             font-size: 14px;
 
             font-weight: 700;
@@ -175,17 +592,23 @@
             overflow: hidden;
 
             text-overflow: ellipsis;
+
         }
 
+
         #ckr-music-controls {
+
             display: flex;
 
             gap: 7px;
 
             flex-wrap: wrap;
+
         }
 
+
         #ckr-music-controls button {
+
             border:
                 1px solid
                 rgba(255,255,255,.14);
@@ -203,19 +626,11 @@
 
             font-size: 12px;
 
-            transition:
-                background .2s ease,
-                transform .2s ease;
         }
 
-        #ckr-music-controls button:hover {
-            background:
-                rgba(255,255,255,.14);
-
-            transform: translateY(-1px);
-        }
 
         #ckr-music-select {
+
             width: 100%;
 
             margin-top: 10px;
@@ -232,68 +647,81 @@
 
             padding: 9px;
 
-            font-size: 12px;
-
-            outline: none;
         }
 
+
         #ckr-music-volume {
+
             width: 100%;
 
             margin-top: 10px;
-        }
-
-        @media (max-width: 600px) {
-
-            #ckr-music-player {
-                right: 10px;
-                bottom: 10px;
-            }
 
         }
 
     </style>
 
 
-    <!-- =========================================
-         INTRO STYLES
-         ========================================= -->
+    <!-- =====================================================
+         LOGO INTRO
+         ===================================================== -->
 
     <style id="ckr-intro-style">
 
         #ckr-intro {
+
             position: fixed;
+
             inset: 0;
 
-            z-index: 999999;
+            z-index: 999997;
 
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             overflow: hidden;
 
             background: #020303;
 
-            opacity: 1;
-            visibility: visible;
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
 
             transition:
                 opacity 1.2s ease,
                 visibility 1.2s ease;
+
         }
+
+
+        #ckr-intro.active {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            pointer-events: auto;
+
+        }
+
 
         #ckr-intro.ckr-intro-hidden {
+
             opacity: 0;
+
             visibility: hidden;
+
             pointer-events: none;
+
         }
 
 
-        /* Atmospheric background */
-
         #ckr-intro::before {
+
             content: "";
 
             position: absolute;
@@ -303,20 +731,16 @@
             background:
                 radial-gradient(
                     circle at center,
-                    rgba(65, 255, 150, 0.12),
+                    rgba(65,255,150,.12),
                     transparent 35%
-                ),
-                radial-gradient(
-                    circle at 50% 70%,
-                    rgba(20, 120, 70, 0.10),
-                    transparent 45%
                 );
 
             animation:
-                ckrIntroAtmosphere
-                8s ease-in-out
-                infinite alternate;
+                ckrIntroAtmosphere 8s
+                ease-in-out infinite alternate;
+
         }
+
 
         @keyframes ckrIntroAtmosphere {
 
@@ -333,90 +757,8 @@
         }
 
 
-        /* =========================================
-           INTRO CREDITS
-           ========================================= */
-
-        #ckr-intro-credits {
-            position: absolute;
-
-            z-index: 5;
-
-            top: 14%;
-
-            left: 0;
-            right: 0;
-
-            text-align: center;
-
-            color: #fff;
-
-            opacity: 0;
-
-            transform:
-                translateY(15px);
-
-            animation:
-                ckrIntroCreditsReveal
-                2s ease
-                .8s forwards;
-        }
-
-        .ckr-intro-credit-label {
-            font-size: 10px;
-
-            letter-spacing: .35em;
-
-            font-weight: 700;
-
-            opacity: .45;
-
-            margin-bottom: 12px;
-        }
-
-        .ckr-intro-credit-names {
-            font-size:
-                clamp(
-                    13px,
-                    1.8vw,
-                    18px
-                );
-
-            font-weight: 600;
-
-            letter-spacing: .04em;
-
-            opacity: .85;
-
-            text-shadow:
-                0 0 18px
-                rgba(70,255,150,.15);
-        }
-
-        @keyframes ckrIntroCreditsReveal {
-
-            0% {
-                opacity: 0;
-
-                transform:
-                    translateY(15px);
-            }
-
-            100% {
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-            }
-
-        }
-
-
-        /* =========================================
-           LOGO
-           ========================================= */
-
         #ckr-intro-logo {
+
             position: relative;
 
             z-index: 3;
@@ -439,41 +781,36 @@
             filter:
                 drop-shadow(
                     0 0 0
-                    rgba(70, 255, 150, 0)
+                    rgba(70,255,150,0)
                 )
                 drop-shadow(
                     0 0 30px
-                    rgba(40, 255, 130, 0)
+                    rgba(40,255,130,0)
                 );
 
             animation:
                 ckrLogoReveal
                 4s
                 cubic-bezier(.16,1,.3,1)
-                2.5s
+                .5s
                 forwards;
+
         }
+
 
         @keyframes ckrLogoReveal {
 
             0% {
+
                 opacity: 0;
 
                 transform:
                     scale(.72);
 
-                filter:
-                    drop-shadow(
-                        0 0 0
-                        rgba(70, 255, 150, 0)
-                    )
-                    drop-shadow(
-                        0 0 30px
-                        rgba(40, 255, 130, 0)
-                    );
             }
 
             55% {
+
                 opacity: 1;
 
                 transform:
@@ -482,15 +819,17 @@
                 filter:
                     drop-shadow(
                         0 0 20px
-                        rgba(70, 255, 150, .25)
+                        rgba(70,255,150,.25)
                     )
                     drop-shadow(
                         0 0 70px
-                        rgba(40, 255, 130, .25)
+                        rgba(40,255,130,.25)
                     );
+
             }
 
             100% {
+
                 opacity: 1;
 
                 transform:
@@ -499,22 +838,20 @@
                 filter:
                     drop-shadow(
                         0 0 15px
-                        rgba(70, 255, 150, .18)
+                        rgba(70,255,150,.18)
                     )
                     drop-shadow(
                         0 0 45px
-                        rgba(40, 255, 130, .15)
+                        rgba(40,255,130,.15)
                     );
+
             }
 
         }
 
 
-        /* =========================================
-           GREEN ENERGY
-           ========================================= */
-
         #ckr-intro-energy {
+
             position: absolute;
 
             z-index: 2;
@@ -532,8 +869,8 @@
             background:
                 radial-gradient(
                     circle,
-                    rgba(65, 255, 150, .18) 0%,
-                    rgba(30, 180, 100, .08) 25%,
+                    rgba(65,255,150,.18),
+                    rgba(30,180,100,.08) 25%,
                     transparent 68%
                 );
 
@@ -546,43 +883,46 @@
                 ckrEnergyReveal
                 5s
                 ease-out
-                2s
+                .3s
                 forwards;
 
-            pointer-events: none;
         }
+
 
         @keyframes ckrEnergyReveal {
 
             0% {
+
                 opacity: 0;
 
                 transform:
                     scale(.5);
+
             }
 
             45% {
+
                 opacity: .9;
 
                 transform:
                     scale(1);
+
             }
 
             100% {
+
                 opacity: .35;
 
                 transform:
                     scale(1.15);
+
             }
 
         }
 
 
-        /* =========================================
-           WELCOME TEXT
-           ========================================= */
-
         #ckr-intro-welcome {
+
             position: absolute;
 
             z-index: 4;
@@ -595,8 +935,6 @@
             text-align: center;
 
             color: #fff;
-
-            font-family: inherit;
 
             font-size:
                 clamp(
@@ -613,43 +951,38 @@
 
             opacity: 0;
 
-            transform:
-                translateY(15px);
-
             animation:
                 ckrWelcomeReveal
                 2s
                 ease
-                9.5s
+                4.5s
                 forwards;
+
         }
+
 
         @keyframes ckrWelcomeReveal {
 
             to {
+
                 opacity: .85;
 
-                transform:
-                    translateY(0);
             }
 
         }
 
 
-        /* =========================================
-           SKIP BUTTON
-           ========================================= */
-
         #ckr-intro-skip {
+
             position: absolute;
 
             z-index: 10;
 
             right: 24px;
+
             bottom: 24px;
 
-            padding:
-                10px 18px;
+            padding: 10px 18px;
 
             border:
                 1px solid
@@ -663,8 +996,6 @@
             color:
                 rgba(255,255,255,.75);
 
-            font: inherit;
-
             font-size: 11px;
 
             letter-spacing: .15em;
@@ -672,58 +1003,6 @@
             text-transform: uppercase;
 
             cursor: pointer;
-
-            backdrop-filter:
-                blur(10px);
-
-            transition:
-                background .2s ease,
-                color .2s ease,
-                border-color .2s ease;
-        }
-
-        #ckr-intro-skip:hover {
-
-            background:
-                rgba(70,255,150,.10);
-
-            border-color:
-                rgba(70,255,150,.35);
-
-            color: #fff;
-        }
-
-
-        @media (max-width: 600px) {
-
-            #ckr-intro-logo {
-                width: 82vw;
-            }
-
-            #ckr-intro-welcome {
-                bottom: 15%;
-
-                font-size: 12px;
-
-                letter-spacing: .35em;
-            }
-
-            #ckr-intro-skip {
-                right: 15px;
-
-                bottom: 15px;
-            }
-
-            #ckr-intro-credits {
-                top: 10%;
-
-                padding:
-                    0 20px;
-            }
-
-            .ckr-intro-credit-names {
-                line-height: 1.8;
-            }
 
         }
 
@@ -739,38 +1018,144 @@
     </noscript>
 
 
+    <!-- =====================================================
+         MAIN WEBSITE
+         ===================================================== -->
+
     <div id="root"></div>
 
 
-    <!-- =========================================
-         CLOVER KINGDOM REVOLUTION INTRO
-         ========================================= -->
+    <!-- =====================================================
+         OPENING CREDITS
+         ===================================================== -->
 
-    <div id="ckr-intro">
+    <div id="ckr-opening-credits">
 
-        <div id="ckr-intro-credits">
+        <div id="ckr-opening-content">
 
-            <div class="ckr-intro-credit-label">
-                A GAME BY
+            <div id="ckr-opening-small">
+                A PRODUCTION OF
             </div>
 
-            <div class="ckr-intro-credit-names">
-                𝔇𝔯𝔞𝔤𝔬𝔫 👑
-                •
-                Vangeance ♛
-                •
-                zaza ⚜️
-                •
-                OFFICIAL_BAGUETTE ♠️
-                •
-                Astr4 🔮
+            <h1 id="ckr-opening-title">
+                CLOVER KINGDOM
+            </h1>
+
+            <div id="ckr-opening-line"></div>
+
+            <div id="ckr-opening-subtitle">
+                REVOLUTION
+            </div>
+
+
+            <div id="ckr-opening-list">
+
+                <div class="ckr-opening-person">
+
+                    <div class="ckr-opening-role">
+                        Game Owner
+                    </div>
+
+                    <div class="ckr-opening-name">
+                        𝔇𝔯𝔞𝔤𝔬𝔫 👑
+                    </div>
+
+                    <div class="ckr-opening-user">
+                        @beyonder_2243
+                    </div>
+
+                </div>
+
+
+                <div class="ckr-opening-person">
+
+                    <div class="ckr-opening-role">
+                        Game Owner
+                    </div>
+
+                    <div class="ckr-opening-name">
+                        Vangeance ♛
+                    </div>
+
+                    <div class="ckr-opening-user">
+                        @mt.rams
+                    </div>
+
+                </div>
+
+
+                <div class="ckr-opening-person">
+
+                    <div class="ckr-opening-role">
+                        Community Manager
+                    </div>
+
+                    <div class="ckr-opening-name">
+                        zaza ⚜️
+                    </div>
+
+                    <div class="ckr-opening-user">
+                        @rip_beast3609
+                    </div>
+
+                </div>
+
+
+                <div class="ckr-opening-person">
+
+                    <div class="ckr-opening-role">
+                        Lead Developer
+                    </div>
+
+                    <div class="ckr-opening-name">
+                        OFFICIAL_BAGUETTE ♠️
+                    </div>
+
+                    <div class="ckr-opening-user">
+                        @the_rinitoshixsae
+                    </div>
+
+                </div>
+
+
+                <div class="ckr-opening-person">
+
+                    <div class="ckr-opening-role">
+                        Tester
+                    </div>
+
+                    <div class="ckr-opening-name">
+                        Astr4
+                    </div>
+
+                    <div class="ckr-opening-user">
+                        @astr4games
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
 
-        <div id="ckr-intro-energy"></div>
+        <button
+            id="ckr-opening-skip"
+            type="button"
+        >
+            SKIP
+        </button>
 
+    </div>
+
+
+    <!-- =====================================================
+         LOGO INTRO
+         ===================================================== -->
+
+    <div id="ckr-intro">
+
+        <div id="ckr-intro-energy"></div>
 
         <img
             id="ckr-intro-logo"
@@ -778,11 +1163,9 @@
             alt="Clover Kingdom Revolution"
         />
 
-
         <div id="ckr-intro-welcome">
             WELCOME TO CLOVER KINGDOM REVOLUTION
         </div>
-
 
         <button
             id="ckr-intro-skip"
@@ -794,9 +1177,587 @@
     </div>
 
 
-    <!-- =========================================
+    <!-- =====================================================
+         MUSIC PLAYER
+         ===================================================== -->
+
+    <script>
+
+    (function () {
+
+        const BASE_PATH =
+            "/clover-kingdom-revolution/";
+
+
+        const tracks = [
+
+            {
+                name:
+                    "Wonders of the Earth",
+
+                src:
+                    BASE_PATH +
+                    "music/wonders-of-the-earth.mp3"
+            },
+
+
+            {
+                name:
+                    "Total War — Epic Action",
+
+                src:
+                    BASE_PATH +
+                    "music/total-war-epic-action.mp3"
+            },
+
+
+            {
+                name:
+                    "Music Promotion",
+
+                src:
+                    BASE_PATH +
+                    "music/music-promotion.mp3"
+            },
+
+
+            {
+                name:
+                    "Epic",
+
+                src:
+                    BASE_PATH +
+                    "music/kornevmusic-epic-478847.mp3"
+            }
+
+        ];
+
+
+        function initMusicPlayer() {
+
+            if (
+                document.getElementById(
+                    "ckr-music-player"
+                )
+            ) return;
+
+
+            const player =
+                document.createElement("div");
+
+
+            player.id =
+                "ckr-music-player";
+
+
+            player.innerHTML = `
+
+                <div id="ckr-music-panel">
+
+                    <div id="ckr-music-title">
+                        CLOVER KINGDOM REVOLUTION • MUSIC
+                    </div>
+
+                    <div id="ckr-music-track">
+                        Wonders of the Earth
+                    </div>
+
+                    <div id="ckr-music-controls">
+
+                        <button id="ckr-prev">
+                            ⏮
+                        </button>
+
+                        <button id="ckr-play">
+                            ▶ Play
+                        </button>
+
+                        <button id="ckr-next">
+                            ⏭
+                        </button>
+
+                        <button id="ckr-mute">
+                            🔊
+                        </button>
+
+                    </div>
+
+
+                    <select id="ckr-music-select">
+
+                        ${tracks.map(
+                            (track,index) =>
+                            `<option value="${index}">
+                                ${track.name}
+                            </option>`
+                        ).join("")}
+
+                    </select>
+
+
+                    <input
+                        id="ckr-music-volume"
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="0.35"
+                    />
+
+                </div>
+
+
+                <button
+                    id="ckr-music-toggle"
+                    aria-expanded="false"
+                >
+                    ♫ MUSIC
+                </button>
+
+            `;
+
+
+            document.body.appendChild(player);
+
+
+            const audio =
+                new Audio();
+
+
+            audio.preload =
+                "auto";
+
+            audio.volume =
+                .35;
+
+
+            let current =
+                0;
+
+
+            const toggle =
+                player.querySelector(
+                    "#ckr-music-toggle"
+                );
+
+
+            const play =
+                player.querySelector(
+                    "#ckr-play"
+                );
+
+
+            const prev =
+                player.querySelector(
+                    "#ckr-prev"
+                );
+
+
+            const next =
+                player.querySelector(
+                    "#ckr-next"
+                );
+
+
+            const mute =
+                player.querySelector(
+                    "#ckr-mute"
+                );
+
+
+            const select =
+                player.querySelector(
+                    "#ckr-music-select"
+                );
+
+
+            const volume =
+                player.querySelector(
+                    "#ckr-music-volume"
+                );
+
+
+            const title =
+                player.querySelector(
+                    "#ckr-music-track"
+                );
+
+
+            function loadTrack(
+                index,
+                autoplay = false
+            ) {
+
+                current =
+                    (
+                        index +
+                        tracks.length
+                    ) %
+                    tracks.length;
+
+
+                audio.pause();
+
+
+                audio.src =
+                    tracks[current].src;
+
+
+                audio.load();
+
+
+                title.textContent =
+                    tracks[current].name;
+
+
+                select.value =
+                    String(current);
+
+
+                play.textContent =
+                    "▶ Play";
+
+
+                if (autoplay) {
+
+                    audio.play()
+                        .then(() => {
+
+                            play.textContent =
+                                "⏸ Pause";
+
+                        })
+                        .catch(() => {});
+
+                }
+
+            }
+
+
+            toggle.addEventListener(
+                "click",
+                () => {
+
+                    const open =
+                        player.classList.toggle(
+                            "open"
+                        );
+
+                    toggle.setAttribute(
+                        "aria-expanded",
+                        String(open)
+                    );
+
+                }
+            );
+
+
+            play.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        audio.paused
+                    ) {
+
+                        audio.play()
+                            .then(() => {
+
+                                play.textContent =
+                                    "⏸ Pause";
+
+                            })
+                            .catch(() => {});
+
+                    } else {
+
+                        audio.pause();
+
+                        play.textContent =
+                            "▶ Play";
+
+                    }
+
+                }
+            );
+
+
+            prev.addEventListener(
+                "click",
+                () => {
+
+                    loadTrack(
+                        current - 1,
+                        true
+                    );
+
+                }
+            );
+
+
+            next.addEventListener(
+                "click",
+                () => {
+
+                    loadTrack(
+                        current + 1,
+                        true
+                    );
+
+                }
+            );
+
+
+            select.addEventListener(
+                "change",
+                event => {
+
+                    loadTrack(
+                        Number(
+                            event.target.value
+                        ),
+                        true
+                    );
+
+                }
+            );
+
+
+            mute.addEventListener(
+                "click",
+                () => {
+
+                    audio.muted =
+                        !audio.muted;
+
+                    mute.textContent =
+                        audio.muted
+                            ? "🔇"
+                            : "🔊";
+
+                }
+            );
+
+
+            volume.addEventListener(
+                "input",
+                event => {
+
+                    audio.volume =
+                        Number(
+                            event.target.value
+                        );
+
+                    if (
+                        audio.volume > 0
+                    ) {
+
+                        audio.muted =
+                            false;
+
+                        mute.textContent =
+                            "🔊";
+
+                    }
+
+                }
+            );
+
+
+            audio.addEventListener(
+                "ended",
+                () => {
+
+                    loadTrack(
+                        current + 1,
+                        true
+                    );
+
+                }
+            );
+
+
+            loadTrack(
+                0,
+                false
+            );
+
+        }
+
+
+        if (
+            document.readyState ===
+            "loading"
+        ) {
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                initMusicPlayer
+            );
+
+        } else {
+
+            initMusicPlayer();
+
+        }
+
+    })();
+
+    </script>
+
+
+    <!-- =====================================================
+         INTRO SEQUENCE CONTROLLER
+         ===================================================== -->
+
+    <script>
+
+    (function () {
+
+        const credits =
+            document.getElementById(
+                "ckr-opening-credits"
+            );
+
+
+        const intro =
+            document.getElementById(
+                "ckr-intro"
+            );
+
+
+        const creditSkip =
+            document.getElementById(
+                "ckr-opening-skip"
+            );
+
+
+        const introSkip =
+            document.getElementById(
+                "ckr-intro-skip"
+            );
+
+
+        if (
+            !credits ||
+            !intro
+        ) return;
+
+
+        let finished =
+            false;
+
+
+        function startLogoIntro() {
+
+            if (finished) return;
+
+            finished = true;
+
+
+            credits.classList.add(
+                "hidden"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    intro.classList.add(
+                        "active"
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            intro.classList.add(
+                                "ckr-intro-hidden"
+                            );
+
+                        },
+                        7500
+                    );
+
+
+                    setTimeout(
+                        function () {
+
+                            intro.remove();
+
+                        },
+                        8800
+                    );
+
+                },
+                1200
+            );
+
+        }
+
+
+        /*
+         * Credits automatically move
+         * to the logo intro.
+         */
+
+        setTimeout(
+            startLogoIntro,
+            7500
+        );
+
+
+        /*
+         * Clicking SKIP on credits
+         * goes directly to logo.
+         */
+
+        if (creditSkip) {
+
+            creditSkip.addEventListener(
+                "click",
+                startLogoIntro
+            );
+
+        }
+
+
+        /*
+         * Skip logo intro.
+         */
+
+        if (introSkip) {
+
+            introSkip.addEventListener(
+                "click",
+                function () {
+
+                    intro.classList.add(
+                        "ckr-intro-hidden"
+                    );
+
+                    setTimeout(
+                        function () {
+
+                            intro.remove();
+
+                        },
+                        1300
+                    );
+
+                }
+            );
+
+        }
+
+    })();
+
+    </script>
+
+
+    <!-- =====================================================
          POSTHOG
-         ========================================= -->
+         ===================================================== -->
 
     <script>
 
@@ -805,9 +1766,7 @@
             var o, n, p, r;
 
             e.__SV ||
-
                 ((window.posthog = e),
-
                 (e._i = []),
 
                 (e.init = function (i, s, a) {
@@ -843,10 +1802,13 @@
                     ).type =
                         "text/javascript";
 
+
                     p.crossOrigin =
                         "anonymous";
 
-                    p.async = !0;
+
+                    p.async = true;
+
 
                     p.src =
                         s.api_host.replace(
@@ -873,48 +1835,24 @@
                     for (
 
                         void 0 !== a
-                            ? (u = e[a] = [])
-                            : (a = "posthog"),
+                            ? (
+                                u = e[a] = []
+                            )
+                            : (
+                                a = "posthog"
+                            ),
 
                         u.people =
                             u.people || [],
-
-                        u.toString =
-                            function (t) {
-
-                                var e =
-                                    "posthog";
-
-                                "posthog" !== a &&
-                                    (e += "." + a);
-
-                                t ||
-                                    (e += " (stub)");
-
-                                return e;
-
-                            },
-
-                        u.people.toString =
-                            function () {
-
-                                return u.toString(1) +
-                                    ".people (stub)";
-
-                            },
 
                         o =
                             "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric"
                                 .split(" "),
 
                         n = 0;
-
                         n < o.length;
-
                         n++
-
                     )
-
                         g(u, o[n]);
 
 
@@ -944,1471 +1882,11 @@
                     recordCrossOriginIframes: true,
                     capturePerformance: false
                 }
+
             }
         );
 
     </script>
-
-
-    <!-- =========================================
-         CLOVER KINGDOM MUSIC PLAYER
-         ========================================= -->
-
-    <script id="ckr-music-script">
-
-    (function () {
-
-        const BASE_PATH =
-            "/clover-kingdom-revolution/";
-
-
-        const tracks = [
-
-            {
-                name:
-                    "Wonders of the Earth",
-
-                src:
-                    BASE_PATH +
-                    "music/wonders-of-the-earth.mp3"
-            },
-
-            {
-                name:
-                    "Total War — Epic Action",
-
-                src:
-                    BASE_PATH +
-                    "music/total-war-epic-action.mp3"
-            },
-
-            {
-                name:
-                    "Music Promotion",
-
-                src:
-                    BASE_PATH +
-                    "music/music-promotion.mp3"
-            },
-
-            {
-                name:
-                    "Epic",
-
-                src:
-                    BASE_PATH +
-                    "music/kornevmusic-epic-478847.mp3"
-            }
-
-        ];
-
-
-        function initMusicPlayer() {
-
-            if (
-                document.getElementById(
-                    "ckr-music-player"
-                )
-            ) {
-                return;
-            }
-
-
-            const player =
-                document.createElement(
-                    "div"
-                );
-
-            player.id =
-                "ckr-music-player";
-
-
-            player.innerHTML = `
-
-                <div
-                    id="ckr-music-panel"
-                    aria-label="Website music player"
-                >
-
-                    <div id="ckr-music-title">
-                        CLOVER KINGDOM REVOLUTION • MUSIC
-                    </div>
-
-                    <div id="ckr-music-track">
-                        Wonders of the Earth
-                    </div>
-
-                    <div id="ckr-music-controls">
-
-                        <button
-                            type="button"
-                            id="ckr-prev"
-                            aria-label="Previous track"
-                        >
-                            ⏮
-                        </button>
-
-                        <button
-                            type="button"
-                            id="ckr-play"
-                            aria-label="Play music"
-                        >
-                            ▶ Play
-                        </button>
-
-                        <button
-                            type="button"
-                            id="ckr-next"
-                            aria-label="Next track"
-                        >
-                            ⏭
-                        </button>
-
-                        <button
-                            type="button"
-                            id="ckr-mute"
-                            aria-label="Mute music"
-                        >
-                            🔊
-                        </button>
-
-                    </div>
-
-
-                    <select
-                        id="ckr-music-select"
-                        aria-label="Choose music"
-                    >
-
-                        ${tracks.map(
-                            (track, index) =>
-
-                                `<option value="${index}">
-                                    ${track.name}
-                                </option>`
-
-                        ).join("")}
-
-                    </select>
-
-
-                    <input
-                        id="ckr-music-volume"
-                        type="range"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value="0.35"
-                        aria-label="Music volume"
-                    />
-
-                </div>
-
-
-                <button
-                    type="button"
-                    id="ckr-music-toggle"
-                    aria-expanded="false"
-                >
-                    ♫ MUSIC
-                </button>
-
-            `;
-
-
-            document.body.appendChild(
-                player
-            );
-
-
-            const audio =
-                new Audio();
-
-            audio.preload =
-                "auto";
-
-            audio.loop =
-                false;
-
-            audio.volume =
-                0.35;
-
-
-            let current =
-                0;
-
-
-            const toggle =
-                player.querySelector(
-                    "#ckr-music-toggle"
-                );
-
-            const play =
-                player.querySelector(
-                    "#ckr-play"
-                );
-
-            const prev =
-                player.querySelector(
-                    "#ckr-prev"
-                );
-
-            const next =
-                player.querySelector(
-                    "#ckr-next"
-                );
-
-            const mute =
-                player.querySelector(
-                    "#ckr-mute"
-                );
-
-            const select =
-                player.querySelector(
-                    "#ckr-music-select"
-                );
-
-            const volume =
-                player.querySelector(
-                    "#ckr-music-volume"
-                );
-
-            const title =
-                player.querySelector(
-                    "#ckr-music-track"
-                );
-
-
-            function loadTrack(
-                index,
-                autoplay = false
-            ) {
-
-                current =
-                    (
-                        index +
-                        tracks.length
-                    ) %
-                    tracks.length;
-
-
-                const track =
-                    tracks[current];
-
-
-                audio.pause();
-
-
-                audio.src =
-                    track.src;
-
-
-                audio.load();
-
-
-                title.textContent =
-                    track.name;
-
-
-                select.value =
-                    String(current);
-
-
-                play.textContent =
-                    "▶ Play";
-
-
-                console.log(
-                    "Clover Kingdom Revolution music:",
-                    track.src
-                );
-
-
-                if (autoplay) {
-
-                    playMusic();
-
-                }
-
-            }
-
-
-            function playMusic() {
-
-                audio
-                    .play()
-                    .then(function () {
-
-                        play.textContent =
-                            "⏸ Pause";
-
-                    })
-                    .catch(function (error) {
-
-                        play.textContent =
-                            "▶ Play";
-
-                        console.error(
-                            "Clover Kingdom Revolution music failed:",
-                            error
-                        );
-
-                        console.error(
-                            "Attempted music URL:",
-                            audio.src
-                        );
-
-                    });
-
-            }
-
-
-            toggle.addEventListener(
-                "click",
-                function () {
-
-                    const open =
-                        player.classList.toggle(
-                            "open"
-                        );
-
-                    toggle.setAttribute(
-                        "aria-expanded",
-                        String(open)
-                    );
-
-                }
-            );
-
-
-            play.addEventListener(
-                "click",
-                function () {
-
-                    if (audio.paused) {
-
-                        playMusic();
-
-                    } else {
-
-                        audio.pause();
-
-                        play.textContent =
-                            "▶ Play";
-
-                    }
-
-                }
-            );
-
-
-            prev.addEventListener(
-                "click",
-                function () {
-
-                    loadTrack(
-                        current - 1,
-                        true
-                    );
-
-                }
-            );
-
-
-            next.addEventListener(
-                "click",
-                function () {
-
-                    loadTrack(
-                        current + 1,
-                        true
-                    );
-
-                }
-            );
-
-
-            select.addEventListener(
-                "change",
-                function (event) {
-
-                    loadTrack(
-                        Number(
-                            event.target.value
-                        ),
-                        true
-                    );
-
-                }
-            );
-
-
-            mute.addEventListener(
-                "click",
-                function () {
-
-                    audio.muted =
-                        !audio.muted;
-
-
-                    mute.textContent =
-                        audio.muted
-                            ? "🔇"
-                            : "🔊";
-
-                }
-            );
-
-
-            volume.addEventListener(
-                "input",
-                function (event) {
-
-                    audio.volume =
-                        Number(
-                            event.target.value
-                        );
-
-
-                    if (
-                        audio.volume > 0 &&
-                        audio.muted
-                    ) {
-
-                        audio.muted =
-                            false;
-
-                        mute.textContent =
-                            "🔊";
-
-                    }
-
-                }
-            );
-
-
-            audio.addEventListener(
-                "ended",
-                function () {
-
-                    loadTrack(
-                        current + 1,
-                        true
-                    );
-
-                }
-            );
-
-
-            audio.addEventListener(
-                "error",
-                function () {
-
-                    console.error(
-                        "Clover Kingdom Revolution music file could not be loaded."
-                    );
-
-                    console.error(
-                        "Music URL:",
-                        audio.src
-                    );
-
-                    play.textContent =
-                        "▶ Play";
-
-                }
-            );
-
-
-            loadTrack(
-                0,
-                false
-            );
-
-        }
-
-
-        if (
-            document.readyState ===
-            "loading"
-        ) {
-
-            document.addEventListener(
-                "DOMContentLoaded",
-                initMusicPlayer
-            );
-
-        } else {
-
-            initMusicPlayer();
-
-        }
-
-    })();
-
-    </script>
-
-
-    <!-- =========================================
-         CLOVER KINGDOM CREDITS
-         ========================================= -->
-
-    <style>
-
-        #ckr-credits {
-            max-width: 1100px;
-
-            margin:
-                100px auto 60px;
-
-            padding:
-                60px 24px;
-
-            color: #fff;
-
-            font-family:
-                Inter,
-                system-ui,
-                sans-serif;
-
-            text-align: center;
-        }
-
-
-        #ckr-credits-header {
-            margin-bottom: 50px;
-        }
-
-
-        #ckr-credits-eyebrow {
-            font-size: 11px;
-
-            font-weight: 700;
-
-            letter-spacing: .22em;
-
-            opacity: .5;
-
-            margin-bottom: 10px;
-        }
-
-
-        #ckr-credits h2 {
-            margin: 0;
-
-            font-size:
-                clamp(
-                    30px,
-                    5vw,
-                    48px
-                );
-
-            font-weight: 800;
-
-            letter-spacing: .08em;
-        }
-
-
-        #ckr-credits-subtitle {
-            margin:
-                12px auto 0;
-
-            max-width: 520px;
-
-            font-size: 13px;
-
-            line-height: 1.6;
-
-            opacity: .55;
-        }
-
-
-        .ckr-credit-group {
-            margin-bottom: 48px;
-        }
-
-
-        .ckr-credit-group-title {
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 14px;
-
-            margin-bottom: 20px;
-        }
-
-
-        .ckr-credit-group-title::before,
-        .ckr-credit-group-title::after {
-            content: "";
-
-            width: 45px;
-
-            height: 1px;
-
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    .15
-                );
-        }
-
-
-        .ckr-credit-group-title h3 {
-            margin: 0;
-
-            font-size: 11px;
-
-            letter-spacing: .18em;
-
-            opacity: .55;
-        }
-
-
-        .ckr-credit-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(
-                    2,
-                    minmax(0,1fr)
-                );
-
-            gap: 16px;
-
-            max-width: 850px;
-
-            margin: 0 auto;
-        }
-
-
-        .ckr-credit-grid.single {
-            grid-template-columns:
-                minmax(0,420px);
-
-            justify-content: center;
-        }
-
-
-        .ckr-credit-card {
-            position: relative;
-
-            padding:
-                25px 22px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.10);
-
-            border-radius: 18px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.075),
-                    rgba(255,255,255,.025)
-                );
-
-            box-shadow:
-                0 15px 45px
-                rgba(0,0,0,.20),
-
-                inset 0 1px 0
-                rgba(255,255,255,.06);
-
-            backdrop-filter:
-                blur(12px);
-
-            -webkit-backdrop-filter:
-                blur(12px);
-
-            transition:
-                transform .25s ease,
-                border-color .25s ease,
-                box-shadow .25s ease;
-
-            cursor: pointer;
-        }
-
-
-        .ckr-credit-card:hover {
-            transform:
-                translateY(-5px);
-
-            border-color:
-                rgba(255,255,255,.22);
-
-            box-shadow:
-                0 22px 55px
-                rgba(0,0,0,.30),
-
-                inset 0 1px 0
-                rgba(255,255,255,.09);
-        }
-
-
-        .ckr-credit-card:active {
-            transform:
-                translateY(-2px)
-                scale(.99);
-        }
-
-
-        .ckr-credit-role {
-            font-size: 9px;
-
-            letter-spacing: .18em;
-
-            text-transform: uppercase;
-
-            opacity: .45;
-
-            margin-bottom: 9px;
-        }
-
-
-        .ckr-credit-name {
-            font-size: 19px;
-
-            font-weight: 800;
-
-            letter-spacing: .01em;
-
-            margin-bottom: 6px;
-        }
-
-
-        .ckr-credit-user {
-            font-size: 12px;
-
-            opacity: .45;
-        }
-
-
-        .ckr-credit-crown {
-            position: absolute;
-
-            top: 13px;
-
-            right: 16px;
-
-            font-size: 14px;
-
-            opacity: .55;
-        }
-
-
-        /* PROFILE MODAL */
-
-        #ckr-profile-modal {
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 2147482999;
-
-            display: none;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 20px;
-
-            background:
-                rgba(0,0,0,.72);
-
-            backdrop-filter:
-                blur(12px);
-
-            -webkit-backdrop-filter:
-                blur(12px);
-        }
-
-
-        #ckr-profile-modal.open {
-            display: flex;
-        }
-
-
-        #ckr-profile-box {
-            position: relative;
-
-            width:
-                min(
-                    430px,
-                    100%
-                );
-
-            padding:
-                38px 30px;
-
-            text-align: center;
-
-            color: #fff;
-
-            border:
-                1px solid
-                rgba(255,255,255,.14);
-
-            border-radius: 24px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(35,35,45,.96),
-                    rgba(10,10,14,.97)
-                );
-
-            box-shadow:
-                0 30px 100px
-                rgba(0,0,0,.65),
-
-                inset 0 1px 0
-                rgba(255,255,255,.08);
-
-            transform:
-                translateY(20px)
-                scale(.96);
-
-            opacity: 0;
-
-            transition:
-                transform .25s ease,
-                opacity .25s ease;
-        }
-
-
-        #ckr-profile-modal.open
-        #ckr-profile-box {
-            transform:
-                translateY(0)
-                scale(1);
-
-            opacity: 1;
-        }
-
-
-        #ckr-profile-close {
-            position: absolute;
-
-            top: 14px;
-
-            right: 16px;
-
-            width: 32px;
-
-            height: 32px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.12);
-
-            border-radius: 50%;
-
-            background:
-                rgba(255,255,255,.06);
-
-            color: #fff;
-
-            cursor: pointer;
-
-            font-size: 16px;
-        }
-
-
-        #ckr-profile-close:hover {
-            background:
-                rgba(255,255,255,.13);
-        }
-
-
-        #ckr-profile-role {
-            font-size: 10px;
-
-            letter-spacing: .2em;
-
-            opacity: .5;
-
-            margin-bottom: 10px;
-
-            text-transform: uppercase;
-        }
-
-
-        #ckr-profile-name {
-            font-size: 28px;
-
-            font-weight: 800;
-
-            margin-bottom: 7px;
-        }
-
-
-        #ckr-profile-user {
-            font-size: 13px;
-
-            opacity: .45;
-
-            margin-bottom: 22px;
-        }
-
-
-        #ckr-profile-description {
-            font-size: 13px;
-
-            line-height: 1.7;
-
-            opacity: .65;
-        }
-
-
-        @media (max-width: 650px) {
-
-            #ckr-credits {
-                margin-top: 70px;
-
-                padding:
-                    45px 16px;
-            }
-
-            .ckr-credit-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .ckr-credit-grid.single {
-                grid-template-columns: 1fr;
-            }
-
-            .ckr-credit-card {
-                padding:
-                    22px 18px;
-            }
-
-        }
-
-    </style>
-
-
-    <section id="ckr-credits">
-
-        <div id="ckr-credits-header">
-
-            <div id="ckr-credits-eyebrow">
-                CLOVER KINGDOM REVOLUTION
-            </div>
-
-            <h2>
-                CREDITS
-            </h2>
-
-            <div id="ckr-credits-subtitle">
-                The people behind the project.
-            </div>
-
-        </div>
-
-
-        <!-- GAME OWNERS -->
-
-        <div class="ckr-credit-group">
-
-            <div class="ckr-credit-group-title">
-                <h3>
-                    GAME OWNERS
-                </h3>
-            </div>
-
-
-            <div class="ckr-credit-grid">
-
-                <div class="ckr-credit-card">
-
-                    <div class="ckr-credit-crown">
-                        👑
-                    </div>
-
-                    <div class="ckr-credit-role">
-                        Game Owner
-                    </div>
-
-                    <div class="ckr-credit-name">
-                        𝔇𝔯𝔞𝔤𝔬𝔫 👑
-                    </div>
-
-                    <div class="ckr-credit-user">
-                        @beyonder_2243
-                    </div>
-
-                </div>
-
-
-                <div class="ckr-credit-card">
-
-                    <div class="ckr-credit-role">
-                        Game Owner
-                    </div>
-
-                    <div class="ckr-credit-name">
-                        Vangeance ♛
-                    </div>
-
-                    <div class="ckr-credit-user">
-                        @mt.rams
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- COMMUNITY MANAGER -->
-
-        <div class="ckr-credit-group">
-
-            <div class="ckr-credit-group-title">
-
-                <h3>
-                    COMMUNITY MANAGER
-                </h3>
-
-            </div>
-
-
-            <div class="ckr-credit-grid single">
-
-                <div class="ckr-credit-card">
-
-                    <div class="ckr-credit-role">
-                        Community Manager
-                    </div>
-
-                    <div class="ckr-credit-name">
-                        zaza⚜️
-                    </div>
-
-                    <div class="ckr-credit-user">
-                        @rip_beast3609
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- LEAD DEVELOPER -->
-
-        <div class="ckr-credit-group">
-
-            <div class="ckr-credit-group-title">
-
-                <h3>
-                    LEAD DEVELOPER
-                </h3>
-
-            </div>
-
-
-            <div class="ckr-credit-grid single">
-
-                <div class="ckr-credit-card">
-
-                    <div class="ckr-credit-role">
-                        Lead Developer
-                    </div>
-
-                    <div class="ckr-credit-name">
-                        OFFICIAL_BAGUETTE ♠️
-                    </div>
-
-                    <div class="ckr-credit-user">
-                        @the_rinitoshixsae
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- TESTER -->
-
-        <div class="ckr-credit-group">
-
-            <div class="ckr-credit-group-title">
-
-                <h3>
-                    TESTER
-                </h3>
-
-            </div>
-
-
-            <div class="ckr-credit-grid single">
-
-                <div class="ckr-credit-card">
-
-                    <div class="ckr-credit-role">
-                        Tester
-                    </div>
-
-                    <div class="ckr-credit-name">
-                        Astr4 🔮
-                    </div>
-
-                    <div class="ckr-credit-user">
-                        @astr4games
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROFILE MODAL -->
-
-    <div id="ckr-profile-modal">
-
-        <div id="ckr-profile-box">
-
-            <button
-                id="ckr-profile-close"
-                type="button"
-            >
-                ×
-            </button>
-
-
-            <div id="ckr-profile-role"></div>
-
-            <div id="ckr-profile-name"></div>
-
-            <div id="ckr-profile-user"></div>
-
-            <div id="ckr-profile-description"></div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =========================================
-         PROFILE SCRIPT
-         ========================================= -->
-
-    <script>
-
-    (function () {
-
-        const profiles = {
-
-            "𝔇𝔯𝔞𝔤𝔬𝔫 👑": {
-
-                role:
-                    "Game Owner",
-
-                user:
-                    "@beyonder_2243",
-
-                description:
-                    "Game Owner and one of the people behind Clover Kingdom Revolution."
-
-            },
-
-
-            "Vangeance ♛": {
-
-                role:
-                    "Game Owner",
-
-                user:
-                    "@mt.rams",
-
-                description:
-                    "Game Owner of Clover Kingdom Revolution."
-
-            },
-
-
-            "zaza⚜️": {
-
-                role:
-                    "Community Manager",
-
-                user:
-                    "@rip_beast3609",
-
-                description:
-                    "Community Manager helping build and manage the Clover Kingdom Revolution community."
-
-            },
-
-
-            "OFFICIAL_BAGUETTE ♠️": {
-
-                role:
-                    "Lead Developer",
-
-                user:
-                    "@the_rinitoshixsae",
-
-                description:
-                    "Lead Developer responsible for the development of Clover Kingdom Revolution."
-
-            },
-
-
-            "Astr4 🔮": {
-
-                role:
-                    "Tester",
-
-                user:
-                    "@astr4games",
-
-                description:
-                    "Tester helping find issues and improve the experience."
-
-            }
-
-        };
-
-
-        const modal =
-            document.getElementById(
-                "ckr-profile-modal"
-            );
-
-
-        const close =
-            document.getElementById(
-                "ckr-profile-close"
-            );
-
-
-        const role =
-            document.getElementById(
-                "ckr-profile-role"
-            );
-
-
-        const name =
-            document.getElementById(
-                "ckr-profile-name"
-            );
-
-
-        const user =
-            document.getElementById(
-                "ckr-profile-user"
-            );
-
-
-        const description =
-            document.getElementById(
-                "ckr-profile-description"
-            );
-
-
-        if (!modal) return;
-
-
-        document
-            .querySelectorAll(
-                ".ckr-credit-card"
-            )
-            .forEach(
-                card => {
-
-                    card.addEventListener(
-                        "click",
-                        function () {
-
-                            const nameElement =
-                                card.querySelector(
-                                    ".ckr-credit-name"
-                                );
-
-
-                            if (!nameElement)
-                                return;
-
-
-                            const profile =
-                                profiles[
-                                    nameElement
-                                        .textContent
-                                        .trim()
-                                ];
-
-
-                            if (!profile)
-                                return;
-
-
-                            role.textContent =
-                                profile.role;
-
-
-                            name.textContent =
-                                nameElement
-                                    .textContent
-                                    .trim();
-
-
-                            user.textContent =
-                                profile.user;
-
-
-                            description.textContent =
-                                profile.description;
-
-
-                            modal.classList.add(
-                                "open"
-                            );
-
-                        }
-                    );
-
-                }
-            );
-
-
-        function closeModal() {
-
-            modal.classList.remove(
-                "open"
-            );
-
-        }
-
-
-        close.addEventListener(
-            "click",
-            closeModal
-        );
-
-
-        modal.addEventListener(
-            "click",
-            function (event) {
-
-                if (
-                    event.target === modal
-                ) {
-
-                    closeModal();
-
-                }
-
-            }
-        );
-
-
-        document.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key === "Escape"
-                ) {
-
-                    closeModal();
-
-                }
-
-            }
-        );
-
-    })();
-
-    </script>
-
-
-    <!-- =========================================
-         INTRO SCRIPT
-         ========================================= -->
-
-    <script>
-
-    (function () {
-
-        const intro =
-            document.getElementById(
-                "ckr-intro"
-            );
-
-
-        const skip =
-            document.getElementById(
-                "ckr-intro-skip"
-            );
-
-
-        if (!intro) return;
-
-
-        function closeIntro() {
-
-            intro.classList.add(
-                "ckr-intro-hidden"
-            );
-
-
-            setTimeout(
-                function () {
-
-                    intro.remove();
-
-                },
-                1300
-            );
-
-        }
-
-
-        setTimeout(
-            function () {
-
-                closeIntro();
-
-            },
-            13000
-        );
-
-
-        if (skip) {
-
-            skip.addEventListener(
-                "click",
-                function () {
-
-                    closeIntro();
-
-                }
-            );
-
-        }
-
-    })();
-
-    </script>
-
 
 </body>
 </html>
