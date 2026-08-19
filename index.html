@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
     <meta
         name="description"
         content="Clover Kingdom Revolution"
@@ -59,9 +60,9 @@
         }
     </script>
 
-    <!-- =========================
+    <!-- =========================================
          MUSIC PLAYER STYLES
-         ========================= -->
+         ========================================= -->
 
     <style id="ckr-music-style">
 
@@ -252,228 +253,484 @@
         }
 
     </style>
-<style id="ckr-intro-style">
-/* =========================================
-   CLOVER KINGDOM REVOLUTION — INTRO
-   ========================================= */
-
-#ckr-intro {
-    position: fixed;
-    inset: 0;
-    z-index: 999999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: #020303;
-    opacity: 1;
-    visibility: visible;
-    transition:
-        opacity 1.2s ease,
-        visibility 1.2s ease;
-}
-
-#ckr-intro.ckr-intro-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
 
 
-/* Atmospheric background */
+    <!-- =========================================
+         INTRO STYLES
+         ========================================= -->
 
-#ckr-intro::before {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(65, 255, 150, 0.12),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 50% 70%,
-            rgba(20, 120, 70, 0.10),
-            transparent 45%
-        );
-    animation: ckrIntroAtmosphere 8s ease-in-out infinite alternate;
-}
+    <style id="ckr-intro-style">
 
-@keyframes ckrIntroAtmosphere {
-    from {
-        transform: scale(1);
-        opacity: .55;
-    }
+        #ckr-intro {
+            position: fixed;
+            inset: 0;
 
-    to {
-        transform: scale(1.15);
-        opacity: 1;
-    }
-}
+            z-index: 999999;
 
+            display: flex;
 
-/* Logo */
+            align-items: center;
+            justify-content: center;
 
-#ckr-intro-logo {
-    position: relative;
-    z-index: 3;
-    width: min(520px, 72vw);
-    max-height: 65vh;
-    object-fit: contain;
-    opacity: 0;
-    transform: scale(.72);
-    filter:
-        drop-shadow(0 0 0 rgba(70, 255, 150, 0))
-        drop-shadow(0 0 30px rgba(40, 255, 130, 0));
-    animation: ckrLogoReveal 4s cubic-bezier(.16,1,.3,1) 2.5s forwards;
-}
+            overflow: hidden;
 
-@keyframes ckrLogoReveal {
-    0% {
-        opacity: 0;
-        transform: scale(.72);
-        filter:
-            drop-shadow(0 0 0 rgba(70, 255, 150, 0))
-            drop-shadow(0 0 30px rgba(40, 255, 130, 0));
-    }
+            background: #020303;
 
-    55% {
-        opacity: 1;
-        transform: scale(1.04);
-        filter:
-            drop-shadow(0 0 20px rgba(70, 255, 150, .25))
-            drop-shadow(0 0 70px rgba(40, 255, 130, .25));
-    }
+            opacity: 1;
+            visibility: visible;
 
-    100% {
-        opacity: 1;
-        transform: scale(1);
-        filter:
-            drop-shadow(0 0 15px rgba(70, 255, 150, .18))
-            drop-shadow(0 0 45px rgba(40, 255, 130, .15));
-    }
-}
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
+        }
+
+        #ckr-intro.ckr-intro-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
 
-/* Green energy glow */
+        /* Atmospheric background */
 
-#ckr-intro-energy {
-    position: absolute;
-    z-index: 2;
-    width: min(650px, 90vw);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background:
-        radial-gradient(
-            circle,
-            rgba(65, 255, 150, .18) 0%,
-            rgba(30, 180, 100, .08) 25%,
-            transparent 68%
-        );
-    opacity: 0;
-    transform: scale(.5);
-    animation: ckrEnergyReveal 5s ease-out 2s forwards;
-    pointer-events: none;
-}
+        #ckr-intro::before {
+            content: "";
 
-@keyframes ckrEnergyReveal {
-    0% {
-        opacity: 0;
-        transform: scale(.5);
-    }
+            position: absolute;
 
-    45% {
-        opacity: .9;
-        transform: scale(1);
-    }
+            inset: -20%;
 
-    100% {
-        opacity: .35;
-        transform: scale(1.15);
-    }
-}
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(65, 255, 150, 0.12),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 50% 70%,
+                    rgba(20, 120, 70, 0.10),
+                    transparent 45%
+                );
 
+            animation:
+                ckrIntroAtmosphere
+                8s ease-in-out
+                infinite alternate;
+        }
 
-/* Welcome text */
+        @keyframes ckrIntroAtmosphere {
 
-#ckr-intro-welcome {
-    position: absolute;
-    z-index: 4;
-    bottom: 13%;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: #fff;
-    font-family: inherit;
-    font-size: clamp(14px, 2vw, 22px);
-    font-weight: 500;
-    letter-spacing: .5em;
-    text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(15px);
-    animation: ckrWelcomeReveal 2s ease 9.5s forwards;
-}
+            from {
+                transform: scale(1);
+                opacity: .55;
+            }
 
-@keyframes ckrWelcomeReveal {
-    to {
-        opacity: .85;
-        transform: translateY(0);
-    }
-}
+            to {
+                transform: scale(1.15);
+                opacity: 1;
+            }
+
+        }
 
 
-/* Skip button */
+        /* =========================================
+           INTRO CREDITS
+           ========================================= */
 
-#ckr-intro-skip {
-    position: absolute;
-    z-index: 10;
-    right: 24px;
-    bottom: 24px;
-    padding: 10px 18px;
-    border: 1px solid rgba(255,255,255,.18);
-    border-radius: 999px;
-    background: rgba(0,0,0,.45);
-    color: rgba(255,255,255,.75);
-    font: inherit;
-    font-size: 11px;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition:
-        background .2s ease,
-        color .2s ease,
-        border-color .2s ease;
-}
+        #ckr-intro-credits {
+            position: absolute;
 
-#ckr-intro-skip:hover {
-    background: rgba(70,255,150,.10);
-    border-color: rgba(70,255,150,.35);
-    color: #fff;
-}
+            z-index: 5;
+
+            top: 14%;
+
+            left: 0;
+            right: 0;
+
+            text-align: center;
+
+            color: #fff;
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+            animation:
+                ckrIntroCreditsReveal
+                2s ease
+                .8s forwards;
+        }
+
+        .ckr-intro-credit-label {
+            font-size: 10px;
+
+            letter-spacing: .35em;
+
+            font-weight: 700;
+
+            opacity: .45;
+
+            margin-bottom: 12px;
+        }
+
+        .ckr-intro-credit-names {
+            font-size:
+                clamp(
+                    13px,
+                    1.8vw,
+                    18px
+                );
+
+            font-weight: 600;
+
+            letter-spacing: .04em;
+
+            opacity: .85;
+
+            text-shadow:
+                0 0 18px
+                rgba(70,255,150,.15);
+        }
+
+        @keyframes ckrIntroCreditsReveal {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    translateY(15px);
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
 
 
-@media (max-width: 600px) {
+        /* =========================================
+           LOGO
+           ========================================= */
 
-    #ckr-intro-logo {
-        width: 82vw;
-    }
+        #ckr-intro-logo {
+            position: relative;
 
-    #ckr-intro-welcome {
-        bottom: 15%;
-        font-size: 12px;
-        letter-spacing: .35em;
-    }
+            z-index: 3;
 
-    #ckr-intro-skip {
-        right: 15px;
-        bottom: 15px;
-    }
+            width:
+                min(
+                    520px,
+                    72vw
+                );
 
-}
-</style>
+            max-height: 65vh;
+
+            object-fit: contain;
+
+            opacity: 0;
+
+            transform:
+                scale(.72);
+
+            filter:
+                drop-shadow(
+                    0 0 0
+                    rgba(70, 255, 150, 0)
+                )
+                drop-shadow(
+                    0 0 30px
+                    rgba(40, 255, 130, 0)
+                );
+
+            animation:
+                ckrLogoReveal
+                4s
+                cubic-bezier(.16,1,.3,1)
+                2.5s
+                forwards;
+        }
+
+        @keyframes ckrLogoReveal {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    scale(.72);
+
+                filter:
+                    drop-shadow(
+                        0 0 0
+                        rgba(70, 255, 150, 0)
+                    )
+                    drop-shadow(
+                        0 0 30px
+                        rgba(40, 255, 130, 0)
+                    );
+            }
+
+            55% {
+                opacity: 1;
+
+                transform:
+                    scale(1.04);
+
+                filter:
+                    drop-shadow(
+                        0 0 20px
+                        rgba(70, 255, 150, .25)
+                    )
+                    drop-shadow(
+                        0 0 70px
+                        rgba(40, 255, 130, .25)
+                    );
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    scale(1);
+
+                filter:
+                    drop-shadow(
+                        0 0 15px
+                        rgba(70, 255, 150, .18)
+                    )
+                    drop-shadow(
+                        0 0 45px
+                        rgba(40, 255, 130, .15)
+                    );
+            }
+
+        }
+
+
+        /* =========================================
+           GREEN ENERGY
+           ========================================= */
+
+        #ckr-intro-energy {
+            position: absolute;
+
+            z-index: 2;
+
+            width:
+                min(
+                    650px,
+                    90vw
+                );
+
+            aspect-ratio: 1;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(65, 255, 150, .18) 0%,
+                    rgba(30, 180, 100, .08) 25%,
+                    transparent 68%
+                );
+
+            opacity: 0;
+
+            transform:
+                scale(.5);
+
+            animation:
+                ckrEnergyReveal
+                5s
+                ease-out
+                2s
+                forwards;
+
+            pointer-events: none;
+        }
+
+        @keyframes ckrEnergyReveal {
+
+            0% {
+                opacity: 0;
+
+                transform:
+                    scale(.5);
+            }
+
+            45% {
+                opacity: .9;
+
+                transform:
+                    scale(1);
+            }
+
+            100% {
+                opacity: .35;
+
+                transform:
+                    scale(1.15);
+            }
+
+        }
+
+
+        /* =========================================
+           WELCOME TEXT
+           ========================================= */
+
+        #ckr-intro-welcome {
+            position: absolute;
+
+            z-index: 4;
+
+            bottom: 13%;
+
+            left: 0;
+            right: 0;
+
+            text-align: center;
+
+            color: #fff;
+
+            font-family: inherit;
+
+            font-size:
+                clamp(
+                    14px,
+                    2vw,
+                    22px
+                );
+
+            font-weight: 500;
+
+            letter-spacing: .5em;
+
+            text-transform: uppercase;
+
+            opacity: 0;
+
+            transform:
+                translateY(15px);
+
+            animation:
+                ckrWelcomeReveal
+                2s
+                ease
+                9.5s
+                forwards;
+        }
+
+        @keyframes ckrWelcomeReveal {
+
+            to {
+                opacity: .85;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
+
+        /* =========================================
+           SKIP BUTTON
+           ========================================= */
+
+        #ckr-intro-skip {
+            position: absolute;
+
+            z-index: 10;
+
+            right: 24px;
+            bottom: 24px;
+
+            padding:
+                10px 18px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            border-radius: 999px;
+
+            background:
+                rgba(0,0,0,.45);
+
+            color:
+                rgba(255,255,255,.75);
+
+            font: inherit;
+
+            font-size: 11px;
+
+            letter-spacing: .15em;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            backdrop-filter:
+                blur(10px);
+
+            transition:
+                background .2s ease,
+                color .2s ease,
+                border-color .2s ease;
+        }
+
+        #ckr-intro-skip:hover {
+
+            background:
+                rgba(70,255,150,.10);
+
+            border-color:
+                rgba(70,255,150,.35);
+
+            color: #fff;
+        }
+
+
+        @media (max-width: 600px) {
+
+            #ckr-intro-logo {
+                width: 82vw;
+            }
+
+            #ckr-intro-welcome {
+                bottom: 15%;
+
+                font-size: 12px;
+
+                letter-spacing: .35em;
+            }
+
+            #ckr-intro-skip {
+                right: 15px;
+
+                bottom: 15px;
+            }
+
+            #ckr-intro-credits {
+                top: 10%;
+
+                padding:
+                    0 20px;
+            }
+
+            .ckr-intro-credit-names {
+                line-height: 1.8;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
@@ -481,39 +738,76 @@
         You need to enable JavaScript to run this app.
     </noscript>
 
+
     <div id="root"></div>
-<!-- CLOVER KINGDOM REVOLUTION INTRO -->
 
-<div id="ckr-intro">
 
-    <div id="ckr-intro-energy"></div>
+    <!-- =========================================
+         CLOVER KINGDOM REVOLUTION INTRO
+         ========================================= -->
 
-    <img
-        id="ckr-intro-logo"
-        src="./logo.png"
-        alt="Clover Kingdom Revolution"
-    />
+    <div id="ckr-intro">
 
-    <div id="ckr-intro-welcome">
-        WELCOME TO CLOVER KINGDOM REVOLUTION
+        <div id="ckr-intro-credits">
+
+            <div class="ckr-intro-credit-label">
+                A GAME BY
+            </div>
+
+            <div class="ckr-intro-credit-names">
+                𝔇𝔯𝔞𝔤𝔬𝔫 👑
+                •
+                Vangeance ♛
+                •
+                zaza ⚜️
+                •
+                OFFICIAL_BAGUETTE ♠️
+                •
+                Astr4 🔮
+            </div>
+
+        </div>
+
+
+        <div id="ckr-intro-energy"></div>
+
+
+        <img
+            id="ckr-intro-logo"
+            src="./logo.png"
+            alt="Clover Kingdom Revolution"
+        />
+
+
+        <div id="ckr-intro-welcome">
+            WELCOME TO CLOVER KINGDOM REVOLUTION
+        </div>
+
+
+        <button
+            id="ckr-intro-skip"
+            type="button"
+        >
+            SKIP INTRO
+        </button>
+
     </div>
 
-    <button id="ckr-intro-skip" type="button">
-        SKIP INTRO
-    </button>
 
-</div>
-
-    <!-- =========================
+    <!-- =========================================
          POSTHOG
-         ========================= -->
+         ========================================= -->
 
     <script>
+
         !(function (t, e) {
+
             var o, n, p, r;
 
             e.__SV ||
+
                 ((window.posthog = e),
+
                 (e._i = []),
 
                 (e.init = function (i, s, a) {
@@ -540,13 +834,17 @@
                             );
 
                         };
+
                     }
+
 
                     (
                         (p = t.createElement("script"))
-                    ).type = "text/javascript";
+                    ).type =
+                        "text/javascript";
 
-                    p.crossOrigin = "anonymous";
+                    p.crossOrigin =
+                        "anonymous";
 
                     p.async = !0;
 
@@ -556,6 +854,7 @@
                             "-assets.i.posthog.com"
                         ) +
                         "/static/array.js";
+
 
                     (
                         r =
@@ -567,9 +866,12 @@
                         r
                     );
 
+
                     var u = e;
 
+
                     for (
+
                         void 0 !== a
                             ? (u = e[a] = [])
                             : (a = "posthog"),
@@ -577,33 +879,44 @@
                         u.people =
                             u.people || [],
 
-                        u.toString = function (t) {
+                        u.toString =
+                            function (t) {
 
-                            var e = "posthog";
+                                var e =
+                                    "posthog";
 
-                            "posthog" !== a &&
-                                (e += "." + a);
+                                "posthog" !== a &&
+                                    (e += "." + a);
 
-                            t ||
-                                (e += " (stub)");
+                                t ||
+                                    (e += " (stub)");
 
-                            return e;
-                        },
+                                return e;
 
-                        u.people.toString = function () {
-                            return u.toString(1) +
-                                ".people (stub)";
-                        },
+                            },
+
+                        u.people.toString =
+                            function () {
+
+                                return u.toString(1) +
+                                    ".people (stub)";
+
+                            },
 
                         o =
                             "init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric"
                                 .split(" "),
 
                         n = 0;
+
                         n < o.length;
+
                         n++
+
                     )
+
                         g(u, o[n]);
+
 
                     e._i.push([
                         i,
@@ -616,6 +929,7 @@
                 (e.__SV = 1));
 
         })(document, window.posthog || []);
+
 
         posthog.init(
             "phc_DbsPb39SRc8z3EiQ6Dhj6ikv4H4rTKcht9d4sZSesceP",
@@ -632,68 +946,62 @@
                 }
             }
         );
+
     </script>
 
 
-    <!-- =========================
+    <!-- =========================================
          CLOVER KINGDOM MUSIC PLAYER
-         ========================= -->
+         ========================================= -->
 
     <script id="ckr-music-script">
 
     (function () {
 
-        /*
-         * GitHub Pages repository base path.
-         *
-         * Repository:
-         * clover-kingdom-revolution
-         */
-
         const BASE_PATH =
             "/clover-kingdom-revolution/";
 
 
-        /*
-         * MUSIC TRACKS
-         */
+        const tracks = [
 
-       const tracks = [
+            {
+                name:
+                    "Wonders of the Earth",
 
-    {
-        name: "Wonders of the Earth",
-        src:
-            BASE_PATH +
-            "music/wonders-of-the-earth.mp3"
-    },
+                src:
+                    BASE_PATH +
+                    "music/wonders-of-the-earth.mp3"
+            },
 
-    {
-        name: "Total War — Epic Action",
-        src:
-            BASE_PATH +
-            "music/total-war-epic-action.mp3"
-    },
+            {
+                name:
+                    "Total War — Epic Action",
 
-    {
-        name: "Music Promotion",
-        src:
-            BASE_PATH +
-            "music/music-promotion.mp3"
-    },
+                src:
+                    BASE_PATH +
+                    "music/total-war-epic-action.mp3"
+            },
 
-    {
-        name: "Epic",
-        src:
-            BASE_PATH +
-            "music/kornevmusic-epic-478847.mp3"
-    }
+            {
+                name:
+                    "Music Promotion",
 
-];
+                src:
+                    BASE_PATH +
+                    "music/music-promotion.mp3"
+            },
 
+            {
+                name:
+                    "Epic",
 
-        /*
-         * INITIALIZE PLAYER
-         */
+                src:
+                    BASE_PATH +
+                    "music/kornevmusic-epic-478847.mp3"
+            }
+
+        ];
+
 
         function initMusicPlayer() {
 
@@ -706,12 +1014,10 @@
             }
 
 
-            /*
-             * PLAYER HTML
-             */
-
             const player =
-                document.createElement("div");
+                document.createElement(
+                    "div"
+                );
 
             player.id =
                 "ckr-music-player";
@@ -728,11 +1034,9 @@
                         CLOVER KINGDOM REVOLUTION • MUSIC
                     </div>
 
-
                     <div id="ckr-music-track">
                         Wonders of the Earth
                     </div>
-
 
                     <div id="ckr-music-controls">
 
@@ -744,7 +1048,6 @@
                             ⏮
                         </button>
 
-
                         <button
                             type="button"
                             id="ckr-play"
@@ -753,7 +1056,6 @@
                             ▶ Play
                         </button>
 
-
                         <button
                             type="button"
                             id="ckr-next"
@@ -761,7 +1063,6 @@
                         >
                             ⏭
                         </button>
-
 
                         <button
                             type="button"
@@ -785,6 +1086,7 @@
                                 `<option value="${index}">
                                     ${track.name}
                                 </option>`
+
                         ).join("")}
 
                     </select>
@@ -814,12 +1116,10 @@
             `;
 
 
-            document.body.appendChild(player);
+            document.body.appendChild(
+                player
+            );
 
-
-            /*
-             * AUDIO ELEMENT
-             */
 
             const audio =
                 new Audio();
@@ -834,17 +1134,9 @@
                 0.35;
 
 
-            /*
-             * CURRENT TRACK
-             */
-
             let current =
                 0;
 
-
-            /*
-             * GET CONTROLS
-             */
 
             const toggle =
                 player.querySelector(
@@ -886,10 +1178,6 @@
                     "#ckr-music-track"
                 );
 
-
-            /*
-             * LOAD TRACK
-             */
 
             function loadTrack(
                 index,
@@ -945,10 +1233,6 @@
             }
 
 
-            /*
-             * PLAY MUSIC
-             */
-
             function playMusic() {
 
                 audio
@@ -957,11 +1241,6 @@
 
                         play.textContent =
                             "⏸ Pause";
-
-                        console.log(
-                            "Now playing:",
-                            tracks[current].name
-                        );
 
                     })
                     .catch(function (error) {
@@ -984,10 +1263,6 @@
             }
 
 
-            /*
-             * OPEN / CLOSE PLAYER
-             */
-
             toggle.addEventListener(
                 "click",
                 function () {
@@ -1005,10 +1280,6 @@
                 }
             );
 
-
-            /*
-             * PLAY / PAUSE
-             */
 
             play.addEventListener(
                 "click",
@@ -1031,10 +1302,6 @@
             );
 
 
-            /*
-             * PREVIOUS
-             */
-
             prev.addEventListener(
                 "click",
                 function () {
@@ -1048,10 +1315,6 @@
             );
 
 
-            /*
-             * NEXT
-             */
-
             next.addEventListener(
                 "click",
                 function () {
@@ -1064,10 +1327,6 @@
                 }
             );
 
-
-            /*
-             * SELECT TRACK
-             */
 
             select.addEventListener(
                 "change",
@@ -1083,10 +1342,6 @@
                 }
             );
 
-
-            /*
-             * MUTE
-             */
 
             mute.addEventListener(
                 "click",
@@ -1104,10 +1359,6 @@
                 }
             );
 
-
-            /*
-             * VOLUME
-             */
 
             volume.addEventListener(
                 "input",
@@ -1136,10 +1387,6 @@
             );
 
 
-            /*
-             * AUTOMATICALLY PLAY NEXT TRACK
-             */
-
             audio.addEventListener(
                 "ended",
                 function () {
@@ -1152,10 +1399,6 @@
                 }
             );
 
-
-            /*
-             * AUDIO ERROR HANDLER
-             */
 
             audio.addEventListener(
                 "error",
@@ -1177,10 +1420,6 @@
             );
 
 
-            /*
-             * INITIAL TRACK
-             */
-
             loadTrack(
                 0,
                 false
@@ -1188,10 +1427,6 @@
 
         }
 
-
-        /*
-         * WAIT FOR PAGE
-         */
 
         if (
             document.readyState ===
@@ -1214,801 +1449,966 @@
     </script>
 
 
-    <!-- =========================
-         CLOUDFLARE
-         ========================= -->
+    <!-- =========================================
+         CLOVER KINGDOM CREDITS
+         ========================================= -->
 
-    <script>
-    (function () {
+    <style>
 
-        function c() {
+        #ckr-credits {
+            max-width: 1100px;
 
-            var b =
-                a.contentDocument ||
-                (
-                    a.contentWindow &&
-                    a.contentWindow.document
+            margin:
+                100px auto 60px;
+
+            padding:
+                60px 24px;
+
+            color: #fff;
+
+            font-family:
+                Inter,
+                system-ui,
+                sans-serif;
+
+            text-align: center;
+        }
+
+
+        #ckr-credits-header {
+            margin-bottom: 50px;
+        }
+
+
+        #ckr-credits-eyebrow {
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: .22em;
+
+            opacity: .5;
+
+            margin-bottom: 10px;
+        }
+
+
+        #ckr-credits h2 {
+            margin: 0;
+
+            font-size:
+                clamp(
+                    30px,
+                    5vw,
+                    48px
                 );
 
-            if (b) {
+            font-weight: 800;
 
-                var d =
-                    b.createElement("script");
+            letter-spacing: .08em;
+        }
 
-                d.innerHTML =
-                    "window.__CF$cv$params={r:'a2c09d75fdff35c3',t:'MTc4Njg4NTE1NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
 
-                b.getElementsByTagName(
-                    "head"
-                )[0].appendChild(d);
+        #ckr-credits-subtitle {
+            margin:
+                12px auto 0;
 
+            max-width: 520px;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            opacity: .55;
+        }
+
+
+        .ckr-credit-group {
+            margin-bottom: 48px;
+        }
+
+
+        .ckr-credit-group-title {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .ckr-credit-group-title::before,
+        .ckr-credit-group-title::after {
+            content: "";
+
+            width: 45px;
+
+            height: 1px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .15
+                );
+        }
+
+
+        .ckr-credit-group-title h3 {
+            margin: 0;
+
+            font-size: 11px;
+
+            letter-spacing: .18em;
+
+            opacity: .55;
+        }
+
+
+        .ckr-credit-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(0,1fr)
+                );
+
+            gap: 16px;
+
+            max-width: 850px;
+
+            margin: 0 auto;
+        }
+
+
+        .ckr-credit-grid.single {
+            grid-template-columns:
+                minmax(0,420px);
+
+            justify-content: center;
+        }
+
+
+        .ckr-credit-card {
+            position: relative;
+
+            padding:
+                25px 22px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.075),
+                    rgba(255,255,255,.025)
+                );
+
+            box-shadow:
+                0 15px 45px
+                rgba(0,0,0,.20),
+
+                inset 0 1px 0
+                rgba(255,255,255,.06);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+
+            transition:
+                transform .25s ease,
+                border-color .25s ease,
+                box-shadow .25s ease;
+
+            cursor: pointer;
+        }
+
+
+        .ckr-credit-card:hover {
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(255,255,255,.22);
+
+            box-shadow:
+                0 22px 55px
+                rgba(0,0,0,.30),
+
+                inset 0 1px 0
+                rgba(255,255,255,.09);
+        }
+
+
+        .ckr-credit-card:active {
+            transform:
+                translateY(-2px)
+                scale(.99);
+        }
+
+
+        .ckr-credit-role {
+            font-size: 9px;
+
+            letter-spacing: .18em;
+
+            text-transform: uppercase;
+
+            opacity: .45;
+
+            margin-bottom: 9px;
+        }
+
+
+        .ckr-credit-name {
+            font-size: 19px;
+
+            font-weight: 800;
+
+            letter-spacing: .01em;
+
+            margin-bottom: 6px;
+        }
+
+
+        .ckr-credit-user {
+            font-size: 12px;
+
+            opacity: .45;
+        }
+
+
+        .ckr-credit-crown {
+            position: absolute;
+
+            top: 13px;
+
+            right: 16px;
+
+            font-size: 14px;
+
+            opacity: .55;
+        }
+
+
+        /* PROFILE MODAL */
+
+        #ckr-profile-modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2147482999;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(0,0,0,.72);
+
+            backdrop-filter:
+                blur(12px);
+
+            -webkit-backdrop-filter:
+                blur(12px);
+        }
+
+
+        #ckr-profile-modal.open {
+            display: flex;
+        }
+
+
+        #ckr-profile-box {
+            position: relative;
+
+            width:
+                min(
+                    430px,
+                    100%
+                );
+
+            padding:
+                38px 30px;
+
+            text-align: center;
+
+            color: #fff;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(35,35,45,.96),
+                    rgba(10,10,14,.97)
+                );
+
+            box-shadow:
+                0 30px 100px
+                rgba(0,0,0,.65),
+
+                inset 0 1px 0
+                rgba(255,255,255,.08);
+
+            transform:
+                translateY(20px)
+                scale(.96);
+
+            opacity: 0;
+
+            transition:
+                transform .25s ease,
+                opacity .25s ease;
+        }
+
+
+        #ckr-profile-modal.open
+        #ckr-profile-box {
+            transform:
+                translateY(0)
+                scale(1);
+
+            opacity: 1;
+        }
+
+
+        #ckr-profile-close {
+            position: absolute;
+
+            top: 14px;
+
+            right: 16px;
+
+            width: 32px;
+
+            height: 32px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.06);
+
+            color: #fff;
+
+            cursor: pointer;
+
+            font-size: 16px;
+        }
+
+
+        #ckr-profile-close:hover {
+            background:
+                rgba(255,255,255,.13);
+        }
+
+
+        #ckr-profile-role {
+            font-size: 10px;
+
+            letter-spacing: .2em;
+
+            opacity: .5;
+
+            margin-bottom: 10px;
+
+            text-transform: uppercase;
+        }
+
+
+        #ckr-profile-name {
+            font-size: 28px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+        }
+
+
+        #ckr-profile-user {
+            font-size: 13px;
+
+            opacity: .45;
+
+            margin-bottom: 22px;
+        }
+
+
+        #ckr-profile-description {
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            opacity: .65;
+        }
+
+
+        @media (max-width: 650px) {
+
+            #ckr-credits {
+                margin-top: 70px;
+
+                padding:
+                    45px 16px;
+            }
+
+            .ckr-credit-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ckr-credit-grid.single {
+                grid-template-columns: 1fr;
+            }
+
+            .ckr-credit-card {
+                padding:
+                    22px 18px;
             }
 
         }
 
-        if (document.body) {
-
-            var a =
-                document.createElement("iframe");
-
-            a.height = 1;
-            a.width = 1;
-
-            a.style.position =
-                "absolute";
-
-            a.style.top = 0;
-            a.style.left = 0;
-
-            a.style.border = "none";
-
-            a.style.visibility =
-                "hidden";
-
-            document.body.appendChild(a);
+    </style>
 
 
-            if (
-                "loading" !==
-                document.readyState
-            ) {
+    <section id="ckr-credits">
 
-                c();
+        <div id="ckr-credits-header">
 
-            } else {
+            <div id="ckr-credits-eyebrow">
+                CLOVER KINGDOM REVOLUTION
+            </div>
 
-                var e =
-                    document.onreadystatechange ||
-                    function () {};
+            <h2>
+                CREDITS
+            </h2>
 
-                document.onreadystatechange =
-                    function (b) {
+            <div id="ckr-credits-subtitle">
+                The people behind the project.
+            </div>
 
-                        e(b);
+        </div>
 
-                        if (
-                            "loading" !==
-                            document.readyState
-                        ) {
 
-                            document.onreadystatechange =
-                                e;
+        <!-- GAME OWNERS -->
 
-                            c();
+        <div class="ckr-credit-group">
+
+            <div class="ckr-credit-group-title">
+                <h3>
+                    GAME OWNERS
+                </h3>
+            </div>
+
+
+            <div class="ckr-credit-grid">
+
+                <div class="ckr-credit-card">
+
+                    <div class="ckr-credit-crown">
+                        👑
+                    </div>
+
+                    <div class="ckr-credit-role">
+                        Game Owner
+                    </div>
+
+                    <div class="ckr-credit-name">
+                        𝔇𝔯𝔞𝔤𝔬𝔫 👑
+                    </div>
+
+                    <div class="ckr-credit-user">
+                        @beyonder_2243
+                    </div>
+
+                </div>
+
+
+                <div class="ckr-credit-card">
+
+                    <div class="ckr-credit-role">
+                        Game Owner
+                    </div>
+
+                    <div class="ckr-credit-name">
+                        Vangeance ♛
+                    </div>
+
+                    <div class="ckr-credit-user">
+                        @mt.rams
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMMUNITY MANAGER -->
+
+        <div class="ckr-credit-group">
+
+            <div class="ckr-credit-group-title">
+
+                <h3>
+                    COMMUNITY MANAGER
+                </h3>
+
+            </div>
+
+
+            <div class="ckr-credit-grid single">
+
+                <div class="ckr-credit-card">
+
+                    <div class="ckr-credit-role">
+                        Community Manager
+                    </div>
+
+                    <div class="ckr-credit-name">
+                        zaza⚜️
+                    </div>
+
+                    <div class="ckr-credit-user">
+                        @rip_beast3609
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- LEAD DEVELOPER -->
+
+        <div class="ckr-credit-group">
+
+            <div class="ckr-credit-group-title">
+
+                <h3>
+                    LEAD DEVELOPER
+                </h3>
+
+            </div>
+
+
+            <div class="ckr-credit-grid single">
+
+                <div class="ckr-credit-card">
+
+                    <div class="ckr-credit-role">
+                        Lead Developer
+                    </div>
+
+                    <div class="ckr-credit-name">
+                        OFFICIAL_BAGUETTE ♠️
+                    </div>
+
+                    <div class="ckr-credit-user">
+                        @the_rinitoshixsae
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TESTER -->
+
+        <div class="ckr-credit-group">
+
+            <div class="ckr-credit-group-title">
+
+                <h3>
+                    TESTER
+                </h3>
+
+            </div>
+
+
+            <div class="ckr-credit-grid single">
+
+                <div class="ckr-credit-card">
+
+                    <div class="ckr-credit-role">
+                        Tester
+                    </div>
+
+                    <div class="ckr-credit-name">
+                        Astr4 🔮
+                    </div>
+
+                    <div class="ckr-credit-user">
+                        @astr4games
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROFILE MODAL -->
+
+    <div id="ckr-profile-modal">
+
+        <div id="ckr-profile-box">
+
+            <button
+                id="ckr-profile-close"
+                type="button"
+            >
+                ×
+            </button>
+
+
+            <div id="ckr-profile-role"></div>
+
+            <div id="ckr-profile-name"></div>
+
+            <div id="ckr-profile-user"></div>
+
+            <div id="ckr-profile-description"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         PROFILE SCRIPT
+         ========================================= -->
+
+    <script>
+
+    (function () {
+
+        const profiles = {
+
+            "𝔇𝔯𝔞𝔤𝔬𝔫 👑": {
+
+                role:
+                    "Game Owner",
+
+                user:
+                    "@beyonder_2243",
+
+                description:
+                    "Game Owner and one of the people behind Clover Kingdom Revolution."
+
+            },
+
+
+            "Vangeance ♛": {
+
+                role:
+                    "Game Owner",
+
+                user:
+                    "@mt.rams",
+
+                description:
+                    "Game Owner of Clover Kingdom Revolution."
+
+            },
+
+
+            "zaza⚜️": {
+
+                role:
+                    "Community Manager",
+
+                user:
+                    "@rip_beast3609",
+
+                description:
+                    "Community Manager helping build and manage the Clover Kingdom Revolution community."
+
+            },
+
+
+            "OFFICIAL_BAGUETTE ♠️": {
+
+                role:
+                    "Lead Developer",
+
+                user:
+                    "@the_rinitoshixsae",
+
+                description:
+                    "Lead Developer responsible for the development of Clover Kingdom Revolution."
+
+            },
+
+
+            "Astr4 🔮": {
+
+                role:
+                    "Tester",
+
+                user:
+                    "@astr4games",
+
+                description:
+                    "Tester helping find issues and improve the experience."
+
+            }
+
+        };
+
+
+        const modal =
+            document.getElementById(
+                "ckr-profile-modal"
+            );
+
+
+        const close =
+            document.getElementById(
+                "ckr-profile-close"
+            );
+
+
+        const role =
+            document.getElementById(
+                "ckr-profile-role"
+            );
+
+
+        const name =
+            document.getElementById(
+                "ckr-profile-name"
+            );
+
+
+        const user =
+            document.getElementById(
+                "ckr-profile-user"
+            );
+
+
+        const description =
+            document.getElementById(
+                "ckr-profile-description"
+            );
+
+
+        if (!modal) return;
+
+
+        document
+            .querySelectorAll(
+                ".ckr-credit-card"
+            )
+            .forEach(
+                card => {
+
+                    card.addEventListener(
+                        "click",
+                        function () {
+
+                            const nameElement =
+                                card.querySelector(
+                                    ".ckr-credit-name"
+                                );
+
+
+                            if (!nameElement)
+                                return;
+
+
+                            const profile =
+                                profiles[
+                                    nameElement
+                                        .textContent
+                                        .trim()
+                                ];
+
+
+                            if (!profile)
+                                return;
+
+
+                            role.textContent =
+                                profile.role;
+
+
+                            name.textContent =
+                                nameElement
+                                    .textContent
+                                    .trim();
+
+
+                            user.textContent =
+                                profile.user;
+
+
+                            description.textContent =
+                                profile.description;
+
+
+                            modal.classList.add(
+                                "open"
+                            );
 
                         }
+                    );
 
-                    };
+                }
+            );
 
-            }
+
+        function closeModal() {
+
+            modal.classList.remove(
+                "open"
+            );
 
         }
 
-    })();
-    </script>
-<style>
-  #ckr-credits {
-    max-width: 1100px;
-    margin: 100px auto 60px;
-    padding: 60px 24px;
-    color: #fff;
-    font-family: Inter, system-ui, sans-serif;
-    text-align: center;
-  }
 
-  #ckr-credits-header {
-    margin-bottom: 50px;
-  }
-
-  #ckr-credits-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .22em;
-    opacity: .5;
-    margin-bottom: 10px;
-  }
-
-  #ckr-credits h2 {
-    margin: 0;
-    font-size: clamp(30px, 5vw, 48px);
-    font-weight: 800;
-    letter-spacing: .08em;
-  }
-
-  #ckr-credits-subtitle {
-    margin: 12px auto 0;
-    max-width: 520px;
-    font-size: 13px;
-    line-height: 1.6;
-    opacity: .55;
-  }
-
-  .ckr-credit-group {
-    margin-bottom: 48px;
-  }
-
-  .ckr-credit-group-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 20px;
-  }
-
-  .ckr-credit-group-title::before,
-  .ckr-credit-group-title::after {
-    content: "";
-    width: 45px;
-    height: 1px;
-    background: rgba(255,255,255,.15);
-  }
-
-  .ckr-credit-group-title h3 {
-    margin: 0;
-    font-size: 11px;
-    letter-spacing: .18em;
-    opacity: .55;
-  }
-
-  .ckr-credit-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    max-width: 850px;
-    margin: 0 auto;
-  }
-
-  .ckr-credit-grid.single {
-    grid-template-columns: minmax(0, 420px);
-    justify-content: center;
-  }
-
-  .ckr-credit-card {
-    position: relative;
-    padding: 25px 22px;
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 18px;
-    background: linear-gradient(
-      145deg,
-      rgba(255,255,255,.075),
-      rgba(255,255,255,.025)
-    );
-    box-shadow:
-      0 15px 45px rgba(0,0,0,.20),
-      inset 0 1px 0 rgba(255,255,255,.06);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition:
-      transform .25s ease,
-      border-color .25s ease,
-      box-shadow .25s ease;
-  }
-
-  .ckr-credit-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255,255,255,.22);
-    box-shadow:
-      0 22px 55px rgba(0,0,0,.30),
-      inset 0 1px 0 rgba(255,255,255,.09);
-  }
-
-  .ckr-credit-role {
-    font-size: 9px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    opacity: .45;
-    margin-bottom: 9px;
-  }
-
-  .ckr-credit-name {
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: .01em;
-    margin-bottom: 6px;
-  }
-
-  .ckr-credit-user {
-    font-size: 12px;
-    opacity: .45;
-  }
-
-  .ckr-credit-crown {
-    position: absolute;
-    top: 13px;
-    right: 16px;
-    font-size: 14px;
-    opacity: .55;
-  }
-
-  @media (max-width: 650px) {
-    #ckr-credits {
-      margin-top: 70px;
-      padding: 45px 16px;
-    }
-
-    .ckr-credit-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .ckr-credit-grid.single {
-      grid-template-columns: 1fr;
-    }
-
-    .ckr-credit-card {
-      padding: 22px 18px;
-    }
-  }
-/* CREDIT CARD INTERACTION */
-
-.ckr-credit-card {
-  cursor: pointer;
-}
-
-.ckr-credit-card:active {
-  transform: translateY(-2px) scale(.99);
-}
-
-/* PROFILE MODAL */
-
-#ckr-profile-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 2147482999;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  background: rgba(0,0,0,.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-#ckr-profile-modal.open {
-  display: flex;
-}
-
-#ckr-profile-box {
-  position: relative;
-  width: min(430px, 100%);
-  padding: 38px 30px;
-  text-align: center;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.14);
-  border-radius: 24px;
-  background: linear-gradient(
-    145deg,
-    rgba(35,35,45,.96),
-    rgba(10,10,14,.97)
-  );
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.65),
-    inset 0 1px 0 rgba(255,255,255,.08);
-  transform: translateY(20px) scale(.96);
-  opacity: 0;
-  transition:
-    transform .25s ease,
-    opacity .25s ease;
-}
-
-#ckr-profile-modal.open #ckr-profile-box {
-  transform: translateY(0) scale(1);
-  opacity: 1;
-}
-
-#ckr-profile-close {
-  position: absolute;
-  top: 14px;
-  right: 16px;
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 50%;
-  background: rgba(255,255,255,.06);
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-#ckr-profile-close:hover {
-  background: rgba(255,255,255,.13);
-}
-
-#ckr-profile-role {
-  font-size: 10px;
-  letter-spacing: .2em;
-  opacity: .5;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-#ckr-profile-name {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 7px;
-}
-
-#ckr-profile-user {
-  font-size: 13px;
-  opacity: .45;
-  margin-bottom: 22px;
-}
-
-#ckr-profile-description {
-  font-size: 13px;
-  line-height: 1.7;
-  opacity: .65;
-}
-</style>
-
-<style>
-  #ckr-credits {
-    max-width: 1100px;
-    margin: 100px auto 60px;
-    padding: 60px 24px;
-    color: #fff;
-    font-family: Inter, system-ui, sans-serif;
-    text-align: center;
-  }
-
-  #ckr-credits-header {
-    margin-bottom: 50px;
-  }
-
-  #ckr-credits-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .22em;
-    opacity: .5;
-    margin-bottom: 10px;
-  }
-
-  #ckr-credits h2 {
-    margin: 0;
-    font-size: clamp(30px, 5vw, 48px);
-    font-weight: 800;
-    letter-spacing: .08em;
-  }
-
-  #ckr-credits-subtitle {
-    margin: 12px auto 0;
-    max-width: 520px;
-    font-size: 13px;
-    line-height: 1.6;
-    opacity: .55;
-  }
-
-  .ckr-credit-group {
-    margin-bottom: 48px;
-  }
-
-  .ckr-credit-group-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 20px;
-  }
-
-  .ckr-credit-group-title::before,
-  .ckr-credit-group-title::after {
-    content: "";
-    width: 45px;
-    height: 1px;
-    background: rgba(255,255,255,.15);
-  }
-
-  .ckr-credit-group-title h3 {
-    margin: 0;
-    font-size: 11px;
-    letter-spacing: .18em;
-    opacity: .55;
-  }
-
-  .ckr-credit-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    max-width: 850px;
-    margin: 0 auto;
-  }
-
-  .ckr-credit-grid.single {
-    grid-template-columns: minmax(0, 420px);
-    justify-content: center;
-  }
-
-  .ckr-credit-card {
-    position: relative;
-    padding: 25px 22px;
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 18px;
-    background: linear-gradient(
-      145deg,
-      rgba(255,255,255,.075),
-      rgba(255,255,255,.025)
-    );
-    box-shadow:
-      0 15px 45px rgba(0,0,0,.20),
-      inset 0 1px 0 rgba(255,255,255,.06);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition:
-      transform .25s ease,
-      border-color .25s ease,
-      box-shadow .25s ease;
-  }
-
-  .ckr-credit-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255,255,255,.22);
-    box-shadow:
-      0 22px 55px rgba(0,0,0,.30),
-      inset 0 1px 0 rgba(255,255,255,.09);
-  }
-
-  .ckr-credit-role {
-    font-size: 9px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    opacity: .45;
-    margin-bottom: 9px;
-  }
-
-  .ckr-credit-name {
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: .01em;
-    margin-bottom: 6px;
-  }
-
-  .ckr-credit-user {
-    font-size: 12px;
-    opacity: .45;
-  }
-
-  .ckr-credit-crown {
-    position: absolute;
-    top: 13px;
-    right: 16px;
-    font-size: 14px;
-    opacity: .55;
-  }
-
-  @media (max-width: 650px) {
-    #ckr-credits {
-      margin-top: 70px;
-      padding: 45px 16px;
-    }
-
-    .ckr-credit-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .ckr-credit-grid.single {
-      grid-template-columns: 1fr;
-    }
-
-    .ckr-credit-card {
-      padding: 22px 18px;
-    }
-  }
-</style>
-
-<section id="ckr-credits">
-
-  <div id="ckr-credits-header">
-    <div id="ckr-credits-eyebrow">CLOVER KINGDOM REVOLUTION</div>
-    <h2>CREDITS</h2>
-    <div id="ckr-credits-subtitle">
-      The people behind the project.
-    </div>
-  </div>
-
-  <div class="ckr-credit-group">
-    <div class="ckr-credit-group-title">
-      <h3>GAME OWNERS</h3>
-    </div>
-
-    <div class="ckr-credit-grid">
-
-      <div class="ckr-credit-card">
-        <div class="ckr-credit-crown">👑</div>
-        <div class="ckr-credit-role">Game Owner</div>
-        <div class="ckr-credit-name">𝔇𝔯𝔞𝔤𝔬𝔫 👑</div>
-        <div class="ckr-credit-user">@beyonder_2243</div>
-      </div>
-
-      <div class="ckr-credit-card">
-        <div class="ckr-credit-role">Game Owner</div>
-        <div class="ckr-credit-name">Vangeance</div>
-        <div class="ckr-credit-user">@mt.rams</div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="ckr-credit-group">
-    <div class="ckr-credit-group-title">
-      <h3>COMMUNITY MANAGER</h3>
-    </div>
-
-    <div class="ckr-credit-grid single">
-
-      <div class="ckr-credit-card">
-        <div class="ckr-credit-role">Community Manager</div>
-        <div class="ckr-credit-name">zaza⚜️</div>
-        <div class="ckr-credit-user">@rip_beast3609</div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="ckr-credit-group">
-    <div class="ckr-credit-group-title">
-      <h3>LEAD DEVELOPER</h3>
-    </div>
-
-    <div class="ckr-credit-grid single">
-
-      <div class="ckr-credit-card">
-        <div class="ckr-credit-role">Lead Developer</div>
-        <div class="ckr-credit-name">OFFICIAL_BAGUETTE</div>
-        <div class="ckr-credit-user">@the_rinitoshixsae</div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="ckr-credit-group">
-    <div class="ckr-credit-group-title">
-      <h3>TESTER</h3>
-    </div>
-
-    <div class="ckr-credit-grid single">
-
-      <div class="ckr-credit-card">
-        <div class="ckr-credit-role">Tester</div>
-        <div class="ckr-credit-name">Astr4</div>
-        <div class="ckr-credit-user">@astr4games</div>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-<div id="ckr-profile-modal">
-  <div id="ckr-profile-box">
-
-    <button id="ckr-profile-close" type="button">×</button>
-
-    <div id="ckr-profile-role"></div>
-    <div id="ckr-profile-name"></div>
-    <div id="ckr-profile-user"></div>
-    <div id="ckr-profile-description"></div>
-
-  </div>
-</div>
-<script>
-(function () {
-
-  const profiles = {
-    "𝔇𝔯𝔞𝔤𝔬𝔫 👑": {
-      role: "Game Owner",
-      user: "@beyonder_2243",
-      description: "Game Owner and one of the people behind Clover Kingdom Revolution."
-    },
-
-    "Vangeance": {
-      role: "Game Owner",
-      user: "@mt.rams",
-      description: "Game Owner of Clover Kingdom Revolution."
-    },
-
-    "zaza⚜️": {
-      role: "Community Manager",
-      user: "@rip_beast3609",
-      description: "Community Manager helping build and manage the Clover Kingdom Revolution community."
-    },
-
-    "OFFICIAL_BAGUETTE": {
-      role: "Lead Developer",
-      user: "@the_rinitoshixsae",
-      description: "Lead Developer responsible for the development of Clover Kingdom Revolution."
-    },
-
-    "Astr4": {
-      role: "Tester",
-      user: "@astr4games",
-      description: "Tester helping find issues and improve the experience."
-    }
-  };
-
-  const modal = document.getElementById("ckr-profile-modal");
-  const close = document.getElementById("ckr-profile-close");
-
-  const role = document.getElementById("ckr-profile-role");
-  const name = document.getElementById("ckr-profile-name");
-  const user = document.getElementById("ckr-profile-user");
-  const description = document.getElementById("ckr-profile-description");
-
-  if (!modal) return;
-
-  document.querySelectorAll(".ckr-credit-card").forEach(card => {
-
-    card.addEventListener("click", function () {
-
-      const nameElement = card.querySelector(".ckr-credit-name");
-
-      if (!nameElement) return;
-
-      const profile = profiles[nameElement.textContent.trim()];
-
-      if (!profile) return;
-
-      role.textContent = profile.role;
-      name.textContent = nameElement.textContent.trim();
-      user.textContent = profile.user;
-      description.textContent = profile.description;
-
-      modal.classList.add("open");
-
-    });
-
-  });
-
-  function closeModal() {
-    modal.classList.remove("open");
-  }
-
-  close.addEventListener("click", closeModal);
-
-  modal.addEventListener("click", function (event) {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  });
-
-})();
-</script>
-<script>
-(function () {
-
-    const intro = document.getElementById("ckr-intro");
-    const skip = document.getElementById("ckr-intro-skip");
-
-    if (!intro) return;
-
-    /*
-     * INTRO MUSIC
-     */
-
-    const introMusic = new Audio(
-        "/clover-kingdom-revolution/music/kornevmusic-epic-478847.mp3"
-    );
-
-    introMusic.volume = 0.35;
-    introMusic.preload = "auto";
-
-
-    /*
-     * START INTRO MUSIC
-     */
-
-    function startIntroMusic() {
-
-        introMusic.play().catch(function () {
-
-            console.log(
-                "Intro music is waiting for user interaction."
-            );
-
-        });
-
-    }
-
-
-    /*
-     * CLOSE INTRO
-     */
-
-    function closeIntro() {
-
-        intro.classList.add("ckr-intro-hidden");
-
-        introMusic.pause();
-        introMusic.currentTime = 0;
-
-        setTimeout(function () {
-
-            intro.remove();
-
-        }, 1300);
-
-    }
-
-
-    /*
-     * TRY TO START MUSIC
-     */
-
-    startIntroMusic();
-
-
-    /*
-     * USER INTERACTION
-     */
-
-    document.addEventListener(
-        "click",
-        function startAfterClick() {
-
-            startIntroMusic();
-
-            document.removeEventListener(
-                "click",
-                startAfterClick
-            );
-
-        },
-        { once: true }
-    );
-
-
-    /*
-     * AUTOMATICALLY FINISH INTRO
-     */
-
-    setTimeout(function () {
-
-        closeIntro();
-
-    }, 13000);
-
-
-    /*
-     * SKIP BUTTON
-     */
-
-    if (skip) {
-
-        skip.addEventListener(
+        close.addEventListener(
             "click",
-            function () {
+            closeModal
+        );
 
-                closeIntro();
+
+        modal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    closeModal();
+
+                }
 
             }
         );
 
-    }
 
-})();
-</script>
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+    })();
+
+    </script>
+
+
+    <!-- =========================================
+         INTRO SCRIPT
+         ========================================= -->
+
+    <script>
+
+    (function () {
+
+        const intro =
+            document.getElementById(
+                "ckr-intro"
+            );
+
+
+        const skip =
+            document.getElementById(
+                "ckr-intro-skip"
+            );
+
+
+        if (!intro) return;
+
+
+        function closeIntro() {
+
+            intro.classList.add(
+                "ckr-intro-hidden"
+            );
+
+
+            setTimeout(
+                function () {
+
+                    intro.remove();
+
+                },
+                1300
+            );
+
+        }
+
+
+        setTimeout(
+            function () {
+
+                closeIntro();
+
+            },
+            13000
+        );
+
+
+        if (skip) {
+
+            skip.addEventListener(
+                "click",
+                function () {
+
+                    closeIntro();
+
+                }
+            );
+
+        }
+
+    })();
+
+    </script>
+
+
 </body>
 </html>
