@@ -1896,5 +1896,35 @@
 
 })();
 </script>
+<script>
+(function () {
+
+    const intro = document.getElementById("ckr-intro");
+    const skip = document.getElementById("ckr-intro-skip");
+
+    if (!intro) return;
+
+    function closeIntro() {
+        intro.classList.add("ckr-intro-hidden");
+
+        setTimeout(function () {
+            intro.remove();
+        }, 1300);
+    }
+
+    // Automatically finish the intro
+    setTimeout(function () {
+        closeIntro();
+    }, 13000);
+
+    // Skip button
+    if (skip) {
+        skip.addEventListener("click", function () {
+            closeIntro();
+        });
+    }
+
+})();
+</script>
 </body>
 </html>
