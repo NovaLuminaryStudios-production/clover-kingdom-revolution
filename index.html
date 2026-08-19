@@ -1904,24 +1904,108 @@
 
     if (!intro) return;
 
-    function closeIntro() {
-        intro.classList.add("ckr-intro-hidden");
+    /*
+     * INTRO MUSIC
+     */
 
-        setTimeout(function () {
-            intro.remove();
-        }, 1300);
+    const introMusic = new Audio(
+        "/clover-kingdom-revolution/music/kornevmusic-epic-478847.mp3"
+    );
+
+    introMusic.volume = 0.35;
+    introMusic.preload = "auto";
+
+
+    /*
+     * START INTRO MUSIC
+     */
+
+    function startIntroMusic() {
+
+        introMusic.play().catch(function () {
+
+            console.log(
+                "Intro music is waiting for user interaction."
+            );
+
+        });
+
     }
 
-    // Automatically finish the intro
+
+    /*
+     * CLOSE INTRO
+     */
+
+    function closeIntro() {
+
+        intro.classList.add("ckr-intro-hidden");
+
+        introMusic.pause();
+        introMusic.currentTime = 0;
+
+        setTimeout(function () {
+
+            intro.remove();
+
+        }, 1300);
+
+    }
+
+
+    /*
+     * TRY TO START MUSIC
+     */
+
+    startIntroMusic();
+
+
+    /*
+     * USER INTERACTION
+     */
+
+    document.addEventListener(
+        "click",
+        function startAfterClick() {
+
+            startIntroMusic();
+
+            document.removeEventListener(
+                "click",
+                startAfterClick
+            );
+
+        },
+        { once: true }
+    );
+
+
+    /*
+     * AUTOMATICALLY FINISH INTRO
+     */
+
     setTimeout(function () {
+
         closeIntro();
+
     }, 13000);
 
-    // Skip button
+
+    /*
+     * SKIP BUTTON
+     */
+
     if (skip) {
-        skip.addEventListener("click", function () {
-            closeIntro();
-        });
+
+        skip.addEventListener(
+            "click",
+            function () {
+
+                closeIntro();
+
+            }
+        );
+
     }
 
 })();
