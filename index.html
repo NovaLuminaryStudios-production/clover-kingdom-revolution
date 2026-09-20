@@ -930,7 +930,7 @@
     // A Discord incoming webhook is intentionally NOT embedded here.
     // GitHub Pages exposes all frontend JavaScript to visitors. Put your rotated
     // webhook behind a serverless/backend proxy, or replace this with your form service endpoint.
-    const WEBHOOK_URL = 'PASTE_ROTATED_DISCORD_WEBHOOK_URL_HERE';
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/1551115689107128351/CLN0a56lT8-RC4iAjoUNXl1KLKgChyRSqHMz_20sQgsJcDl8Z20aoU8yfBN3IzwDIhNl';
 
     form.addEventListener('submit', async function(e){
       e.preventDefault();
@@ -950,7 +950,7 @@
         return;
       }
 
-      if(artUrl && !/^https?:\\/\\//i.test(artUrl)){
+      if(artUrl && !/^https?:\/\//i.test(artUrl)){
         status.className='form-status error';
         status.textContent='The art URL must begin with http:// or https://.';
         return;
