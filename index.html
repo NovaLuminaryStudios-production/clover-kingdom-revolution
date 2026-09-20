@@ -456,6 +456,98 @@
     #splash *{animation-duration:.01s !important; animation-delay:0s !important;}
   }
 
+
+
+  /* ---------- COMMUNITY HUB ---------- */
+  .community-hub{
+    background:linear-gradient(180deg, var(--void-2), var(--void));
+    border-top:1px solid var(--line);
+  }
+  .community-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:28px;
+    margin-bottom:90px;
+  }
+  .community-panel{
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));
+    border:1px solid var(--line);
+    padding:32px;
+    position:relative;
+    overflow:hidden;
+  }
+  .community-panel::before{
+    content:"";
+    position:absolute; inset:0 0 auto 0; height:2px;
+    background:linear-gradient(90deg,transparent,var(--emerald),transparent);
+    opacity:.8;
+  }
+  .community-panel h3{font-size:22px;color:var(--parchment);margin-bottom:8px;}
+  .community-panel > p{color:var(--parchment-dim);font-size:16px;margin:0 0 24px;}
+  .community-form{display:grid;gap:14px;}
+  .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .field{display:grid;gap:6px;}
+  .field.full{grid-column:1/-1;}
+  .field label{
+    font-family:'Cinzel',serif;font-size:10px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--emerald-bright);
+  }
+  .input,.textarea,.select{
+    width:100%;border:1px solid rgba(201,162,39,.16);background:#080d09;
+    color:var(--parchment);font:16px 'EB Garamond',serif;padding:12px 13px;
+    border-radius:2px;outline:none;transition:border-color .2s,box-shadow .2s;
+  }
+  .textarea{min-height:125px;resize:vertical;}
+  .input:focus,.textarea:focus,.select:focus{
+    border-color:var(--emerald-bright);box-shadow:0 0 0 2px rgba(79,216,138,.08);
+  }
+  .select{appearance:auto;}
+  .submit-btn{
+    border:1px solid var(--emerald-bright);background:linear-gradient(180deg,#2a8a58,#17553a);
+    color:#eafff0;font:12px 'Cinzel',serif;letter-spacing:.16em;text-transform:uppercase;
+    padding:14px 18px;cursor:pointer;transition:transform .2s,box-shadow .2s,opacity .2s;
+  }
+  .submit-btn:hover{transform:translateY(-2px);box-shadow:0 0 24px rgba(79,216,138,.25);}
+  .submit-btn:disabled{opacity:.55;cursor:wait;transform:none;}
+  .form-status{min-height:22px;font-size:14px;color:var(--muted);}
+  .form-status.success{color:var(--emerald-bright);}
+  .form-status.error{color:var(--blood-bright);}
+  .grimoire-grid{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-bottom:34px;
+  }
+  .grimoire-card{
+    background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);
+    overflow:hidden;transition:transform .3s,border-color .3s;
+  }
+  .grimoire-card:hover{transform:translateY(-5px);border-color:var(--gold);}
+  .grimoire-art{
+    height:205px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+    background:radial-gradient(circle at 50% 40%,rgba(79,216,138,.17),transparent 55%),#070b08;
+  }
+  .grimoire-art::before{
+    content:"";width:105px;height:145px;border:2px solid var(--gold);border-radius:5px 9px 9px 5px;
+    background:linear-gradient(135deg,#17291f,#080c09);box-shadow:-9px 0 0 rgba(201,162,39,.12),0 0 30px rgba(79,216,138,.18);
+    transform:perspective(400px) rotateY(-12deg);position:absolute;
+  }
+  .grimoire-art::after{
+    content:"✦";position:absolute;color:var(--gold-bright);font-size:42px;text-shadow:0 0 18px rgba(79,216,138,.45);
+  }
+  .grimoire-art.has-image::before{display:none;}
+  .grimoire-art img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:2;}
+  .grimoire-body{padding:22px;}
+  .grimoire-body h3{font-family:'Cinzel Decorative',serif;color:var(--parchment);font-size:18px;margin-bottom:5px;}
+  .grimoire-attribute{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--emerald-bright);}
+  .grimoire-body p{color:var(--parchment-dim);font-size:15px;line-height:1.55;margin:13px 0 0;}
+  .community-note{color:var(--muted);font-size:13px;text-align:center;margin:12px auto 0;max-width:700px;}
+  .community-anchor{scroll-margin-top:90px;}
+  .required{color:var(--blood-bright);}
+  @media(max-width:820px){
+    .community-grid,.grimoire-grid{grid-template-columns:1fr;}
+    .field-grid{grid-template-columns:1fr;}
+    .field.full{grid-column:auto;}
+    .community-panel{padding:24px;}
+  }
+
   /* ---------- TEAM / CREDITS ---------- */
   .team{border-top:1px solid var(--line);}
   .team-grid{
@@ -529,6 +621,9 @@
     <a href="#lords">Demon Lords</a>
     <a href="#escanor">Escanor</a>
     <a href="#abyssm">The Abyssm</a>
+    <a href="#grimoires">Grimoires</a>
+    <a href="#suggestions">Suggestions</a>
+    <a href="#feedback">Feedback</a>
     <a href="https://discord.gg/U8FnqhsaT" target="_blank" rel="noopener">Discord</a>
   </div>
 </nav>
@@ -687,6 +782,136 @@
     <div class="abyssm-copy reveal">
       <p>Devil-touched mages who abandoned the old wards for forbidden power, the Abyssm have spent years hunting fragments of the ritual that bound Asmodeus. <strong>Every fragment they recover widens the crack.</strong> Humanity's mages hold the line where the first Luminary once stood alone &mdash; this time, they don't intend to fall the same way.</p>
     </div>
+  </div>
+</section>
+
+
+<section class="community-hub community-anchor" id="community">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The kingdom's community archive</span>
+      <h2>Community Hub</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="community-grid">
+      <div class="community-panel community-anchor reveal" id="suggestions">
+        <span class="eyebrow">Shape the revolution</span>
+        <h3>Suggestions</h3>
+        <p>Have an idea for the game, magic system, world, or website? Send it straight to the development community.</p>
+        <form class="community-form" id="suggestion-form">
+          <div class="field-grid">
+            <div class="field">
+              <label for="suggestion-name">Name / Discord</label>
+              <input class="input" id="suggestion-name" maxlength="80" placeholder="Optional">
+            </div>
+            <div class="field">
+              <label for="suggestion-category">Category</label>
+              <select class="select" id="suggestion-category">
+                <option>Gameplay</option><option>Magic</option><option>Grimoires</option><option>World</option><option>UI / Website</option><option>Other</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label for="suggestion-title">Suggestion title <span class="required">*</span></label>
+              <input class="input" id="suggestion-title" maxlength="100" required placeholder="Give your idea a clear title">
+            </div>
+            <div class="field full">
+              <label for="suggestion-details">Details <span class="required">*</span></label>
+              <textarea class="textarea" id="suggestion-details" maxlength="2000" required placeholder="Explain your idea..."></textarea>
+            </div>
+          </div>
+          <button class="submit-btn" type="submit">Send Suggestion</button>
+          <div class="form-status" id="suggestion-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <div class="community-panel community-anchor reveal" id="feedback">
+        <span class="eyebrow">Speak your mind</span>
+        <h3>Feedback</h3>
+        <p>Tell the team what is working, what needs attention, or what could make Clover Kingdom Revolution better.</p>
+        <form class="community-form" id="feedback-form">
+          <div class="field-grid">
+            <div class="field">
+              <label for="feedback-name">Name / Discord</label>
+              <input class="input" id="feedback-name" maxlength="80" placeholder="Optional">
+            </div>
+            <div class="field">
+              <label for="feedback-type">Feedback type</label>
+              <select class="select" id="feedback-type">
+                <option>General</option><option>Bug</option><option>Balance</option><option>Art</option><option>Website</option><option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="feedback-rating">Rating</label>
+              <select class="select" id="feedback-rating">
+                <option value="5">★★★★★ — Excellent</option><option value="4">★★★★☆ — Good</option><option value="3">★★★☆☆ — Okay</option><option value="2">★★☆☆☆ — Needs work</option><option value="1">★☆☆☆☆ — Poor</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="feedback-title">Subject</label>
+              <input class="input" id="feedback-title" maxlength="100" placeholder="Optional subject">
+            </div>
+            <div class="field full">
+              <label for="feedback-message">Message <span class="required">*</span></label>
+              <textarea class="textarea" id="feedback-message" maxlength="2000" required placeholder="Write your feedback..."></textarea>
+            </div>
+          </div>
+          <button class="submit-btn" type="submit">Send Feedback</button>
+          <div class="form-status" id="feedback-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="section-head reveal" id="grimoires">
+      <span class="eyebrow">The grimoire archive</span>
+      <h2>New Grimoires</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="grimoire-grid reveal" id="grimoire-grid">
+      <article class="grimoire-card">
+        <div class="grimoire-art"><span aria-hidden="true"></span></div>
+        <div class="grimoire-body"><h3>Verdant Eclipse</h3><span class="grimoire-attribute">Nature / Shadow</span><p>A forbidden grimoire said to grow stronger beneath moonlight.</p></div>
+      </article>
+      <article class="grimoire-card">
+        <div class="grimoire-art"><span aria-hidden="true"></span></div>
+        <div class="grimoire-body"><h3>Crimson Dominion</h3><span class="grimoire-attribute">Fire / Blood</span><p>A brutal tome built around destructive flame magic and overwhelming force.</p></div>
+      </article>
+      <article class="grimoire-card">
+        <div class="grimoire-art"><span aria-hidden="true"></span></div>
+        <div class="grimoire-body"><h3>Astral Crown</h3><span class="grimoire-attribute">Light / Arcane</span><p>A rare grimoire containing celestial sigils whose origins remain unknown.</p></div>
+      </article>
+    </div>
+
+    <div class="community-panel reveal">
+      <span class="eyebrow">Add to the archive</span>
+      <h3>Submit a New Grimoire</h3>
+      <p>Share a grimoire concept and its artwork with the team.</p>
+      <form class="community-form" id="grimoire-form">
+        <div class="field-grid">
+          <div class="field">
+            <label for="grimoire-name">Grimoire name <span class="required">*</span></label>
+            <input class="input" id="grimoire-name" maxlength="80" required placeholder="e.g. Emerald Fang">
+          </div>
+          <div class="field">
+            <label for="grimoire-attribute">Attribute <span class="required">*</span></label>
+            <input class="input" id="grimoire-attribute" maxlength="80" required placeholder="e.g. Nature / Wind">
+          </div>
+          <div class="field full">
+            <label for="grimoire-art-url">Artwork URL</label>
+            <input class="input" id="grimoire-art-url" maxlength="500" placeholder="https://...">
+          </div>
+          <div class="field full">
+            <label for="grimoire-description">Description <span class="required">*</span></label>
+            <textarea class="textarea" id="grimoire-description" maxlength="1200" required placeholder="Describe the grimoire..."></textarea>
+          </div>
+        </div>
+        <button class="submit-btn" type="submit">Submit Grimoire</button>
+        <div class="form-status" id="grimoire-status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <p class="community-note">Submissions are sent to the Clover Kingdom Revolution Discord webhook. Artwork is submitted as a URL; the website does not upload image files.</p>
   </div>
 </section>
 
@@ -889,6 +1114,158 @@
   }, {threshold:0.4});
   const sealWrap = document.querySelector('.seal-wrap');
   if(sealWrap) crackObserver.observe(sealWrap);
+
+  // ---- Community submissions -> Discord webhook ----
+  (function(){
+    // WARNING: a Discord webhook used directly in a GitHub Pages site is public.
+    // Anyone can inspect the deployed JavaScript and reuse it. Rotate the webhook
+    // if it is ever abused, and never use a webhook with sensitive permissions.
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/1551115689107128351/CLN0a56lT8-RC4iAjoUNXl1KLKgChyRSqHMz_20sQgsJcDl8Z20aoU8yfBN3IzwDIhNl';
+
+    function setStatus(el, message, type){
+      el.textContent = message;
+      el.className = 'form-status ' + (type || '');
+    }
+
+    async function sendToDiscord(payload, statusEl, button){
+      button.disabled = true;
+      setStatus(statusEl, 'Sending to the kingdom...', '');
+      try{
+        const response = await fetch(WEBHOOK_URL + '?wait=true', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(payload)
+        });
+        if(!response.ok) throw new Error('Discord returned ' + response.status);
+        setStatus(statusEl, '✓ Sent successfully. The team has received it.', 'success');
+        return true;
+      }catch(error){
+        console.error('CKR Discord webhook error:', error);
+        setStatus(statusEl, 'Could not send it right now. Please try again.', 'error');
+        return false;
+      }finally{
+        button.disabled = false;
+      }
+    }
+
+    const suggestionForm = document.getElementById('suggestion-form');
+    if(suggestionForm){
+      suggestionForm.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const button = suggestionForm.querySelector('button[type="submit"]');
+        const status = document.getElementById('suggestion-status');
+        const name = document.getElementById('suggestion-name').value.trim() || 'Anonymous';
+        const category = document.getElementById('suggestion-category').value;
+        const title = document.getElementById('suggestion-title').value.trim();
+        const details = document.getElementById('suggestion-details').value.trim();
+        if(!title || !details) return;
+        const ok = await sendToDiscord({
+          username:'CKR Community Hub',
+          embeds:[{
+            title:'💡 New Suggestion',
+            color:5163146,
+            fields:[
+              {name:'Title',value:title.slice(0,1024),inline:false},
+              {name:'Category',value:category,inline:true},
+              {name:'Submitted by',value:name.slice(0,1024),inline:true},
+              {name:'Details',value:details.slice(0,4096),inline:false}
+            ],
+            footer:{text:'Clover Kingdom Revolution • Suggestions'}
+          }]
+        },status,button);
+        if(ok) suggestionForm.reset();
+      });
+    }
+
+    const feedbackForm = document.getElementById('feedback-form');
+    if(feedbackForm){
+      feedbackForm.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const button = feedbackForm.querySelector('button[type="submit"]');
+        const status = document.getElementById('feedback-status');
+        const name = document.getElementById('feedback-name').value.trim() || 'Anonymous';
+        const type = document.getElementById('feedback-type').value;
+        const rating = document.getElementById('feedback-rating').value;
+        const title = document.getElementById('feedback-title').value.trim() || 'General feedback';
+        const message = document.getElementById('feedback-message').value.trim();
+        if(!message) return;
+        const ok = await sendToDiscord({
+          username:'CKR Community Hub',
+          embeds:[{
+            title:'📝 New Feedback',
+            color:13126604,
+            fields:[
+              {name:'Subject',value:title.slice(0,1024),inline:false},
+              {name:'Type',value:type,inline:true},
+              {name:'Rating',value:rating + '/5',inline:true},
+              {name:'Submitted by',value:name.slice(0,1024),inline:true},
+              {name:'Message',value:message.slice(0,4096),inline:false}
+            ],
+            footer:{text:'Clover Kingdom Revolution • Feedback'}
+          }]
+        },status,button);
+        if(ok) feedbackForm.reset();
+      });
+    }
+
+    const grimoireForm = document.getElementById('grimoire-form');
+    if(grimoireForm){
+      grimoireForm.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const button = grimoireForm.querySelector('button[type="submit"]');
+        const status = document.getElementById('grimoire-status');
+        const name = document.getElementById('grimoire-name').value.trim();
+        const attribute = document.getElementById('grimoire-attribute').value.trim();
+        const artUrl = document.getElementById('grimoire-art-url').value.trim();
+        const description = document.getElementById('grimoire-description').value.trim();
+        if(!name || !attribute || !description) return;
+
+        const validArt = /^https?:\/\//i.test(artUrl) ? artUrl : 'No artwork URL provided';
+        const ok = await sendToDiscord({
+          username:'CKR Community Hub',
+          embeds:[{
+            title:'📖 New Grimoire Submission',
+            color:13289511,
+            fields:[
+              {name:'Grimoire',value:name.slice(0,1024),inline:false},
+              {name:'Attribute',value:attribute.slice(0,1024),inline:true},
+              {name:'Artwork',value:validArt.slice(0,1024),inline:false},
+              {name:'Description',value:description.slice(0,4096),inline:false}
+            ],
+            footer:{text:'Clover Kingdom Revolution • Grimoire Archive'}
+          }]
+        },status,button);
+
+        if(ok){
+          const grid = document.getElementById('grimoire-grid');
+          const card = document.createElement('article');
+          card.className = 'grimoire-card';
+          const art = document.createElement('div');
+          art.className = 'grimoire-art';
+          if(/^https?:\/\//i.test(artUrl)){
+            const img = document.createElement('img');
+            img.src = artUrl;
+            img.alt = name + ' artwork';
+            img.referrerPolicy = 'no-referrer';
+            img.addEventListener('error', function(){
+              img.remove();
+              art.classList.remove('has-image');
+            });
+            art.classList.add('has-image');
+            art.appendChild(img);
+          }
+          const body = document.createElement('div');
+          body.className = 'grimoire-body';
+          const h = document.createElement('h3'); h.textContent = name;
+          const a = document.createElement('span'); a.className='grimoire-attribute'; a.textContent=attribute;
+          const p = document.createElement('p'); p.textContent=description;
+          body.append(h,a,p); card.append(art,body); grid.appendChild(card);
+          grimoireForm.reset();
+        }
+      });
+    }
+  })();
+
 </script>
 
 </body>
