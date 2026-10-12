@@ -87,7 +87,7 @@
   }
   .hero img{
     position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    object-position:50% 22%;
+    object-position: 50% 22%;
     opacity:0.88;
   }
   .hero::after{
@@ -104,7 +104,7 @@
     font-size:clamp(40px, 7vw, 84px);
     line-height:1.05;
     color:var(--parchment);
-    text-shadow:0 0 28px rgba(79,216,138,0.35), 0 4px 18px rgba(0,0,0,0.8);
+    text-shadow: 0 0 28px rgba(79,216,138,0.35), 0 4px 18px rgba(0,0,0,0.8);
   }
   .hero h1 span{
     display:block; color:var(--emerald-bright);
@@ -141,7 +141,7 @@
     background:var(--emerald-bright); border-radius:2px; transform:translateX(-50%);
     animation:scrollpulse 1.8s infinite;
   }
-  @keyframes scrollpulse{0%{opacity:1;top:6px;}70%{opacity:0;}100%{opacity:0;top:16px;}}
+  @keyframes scrollpulse{ 0%{opacity:1; top:6px;} 70%{opacity:0;} 100%{opacity:0; top:16px;} }
 
   /* ---------- SECTION GENERAL ---------- */
   section{padding:130px 0; position:relative;}
@@ -151,7 +151,7 @@
   .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
-  /* ---------- TIMELINE ---------- */
+  /* ---------- TIMELINE (the shattering) ---------- */
   .timeline{position:relative; margin-top:20px;}
   .timeline::before{
     content:""; position:absolute; left:50%; top:0; bottom:0; width:1px;
@@ -203,7 +203,7 @@
   .lord-card h3{font-size:24px; font-family:'Cinzel Decorative', serif; color:var(--parchment); margin-bottom:14px;}
   .lord-card p{color:var(--parchment-dim); font-size:16.5px; margin:0;}
 
-  /* ---------- LUMINARIES ---------- */
+  /* ---------- ESCANOR / LUMINARIES ---------- */
   .split{
     display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;
   }
@@ -220,7 +220,7 @@
   .blade-frame svg{width:70%; height:auto;}
   .blade-glow{filter:drop-shadow(0 0 10px rgba(79,216,138,0.55));}
 
-  /* ---------- THE ABYSSM ---------- */
+  /* ---------- THE ABYSSM (signature: cracking seal) ---------- */
   .abyssm{
     background:radial-gradient(ellipse at center, rgba(92,21,32,0.16), var(--void) 70%);
     border-top:1px solid rgba(92,21,32,0.4);
@@ -238,6 +238,8 @@
     max-width:680px; margin:0 auto; text-align:center; color:var(--parchment-dim); font-size:18.5px;
   }
   .abyssm-copy strong{color:var(--blood-bright); font-weight:600; font-style:normal;}
+
+
 
   /* ---------- GRIMOIRE ARCHIVE / SUGGESTIONS ---------- */
   .grimoires-section{
@@ -296,70 +298,936 @@
   .form-field{display:flex; flex-direction:column; gap:8px;}
   .form-field.full{grid-column:1/-1;}
   .form-field label{
-    font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.16em;
-    text-transform:uppercase; color:var(--gold-bright);
+    color:var(--emerald-bright); font-family:'Cinzel',serif; font-size:11px;
+    letter-spacing:0.16em; text-transform:uppercase;
   }
   .form-field input,.form-field select,.form-field textarea{
-    width:100%; background:#070b08; color:var(--parchment);
-    border:1px solid rgba(201,162,39,0.22); padding:13px 14px;
-    font:16px 'EB Garamond',serif; outline:none; border-radius:0;
-  }
-  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{
-    border-color:var(--emerald-bright);
+    width:100%; box-sizing:border-box; border:1px solid rgba(201,162,39,0.18);
+    background:#080c09; color:var(--parchment); padding:13px 14px;
+    font:16px 'EB Garamond',serif; outline:none; transition:border-color .2s, box-shadow .2s;
   }
   .form-field textarea{min-height:130px; resize:vertical;}
-  .form-status{font-size:15px; color:var(--emerald-bright); min-height:24px;}
+  .form-field input:focus,.form-field select:focus,.form-field textarea:focus{
+    border-color:rgba(79,216,138,0.55); box-shadow:0 0 0 3px rgba(79,216,138,0.07);
+  }
+  .form-field input::placeholder,.form-field textarea::placeholder{color:#59665f;}
+  .submit-grimoire{
+    justify-self:start; border:1px solid var(--gold); background:transparent; color:var(--gold-bright);
+    padding:13px 24px; cursor:pointer; font:12px 'Cinzel',serif; letter-spacing:0.18em;
+    text-transform:uppercase; transition:background .2s,color .2s,border-color .2s;
+  }
+  .submit-grimoire:hover{background:var(--gold); color:var(--void);}
+  .submit-grimoire:disabled{opacity:.55; cursor:wait;}
+  .form-status{min-height:22px; font-size:15px; color:var(--muted);}
+  .form-status.success{color:var(--emerald-bright);}
   .form-status.error{color:var(--blood-bright);}
-  .community-forms{
-    display:grid; grid-template-columns:1fr 1fr; gap:28px; margin-top:60px;
+  .review-note{
+    margin-top:18px; padding:14px 16px; border-left:2px solid var(--gold);
+    color:var(--muted); background:rgba(201,162,39,0.035); font-size:14px;
   }
-  .community-panel{
-    padding:30px; border:1px solid var(--line);
-    background:linear-gradient(145deg, rgba(17,26,20,0.96), rgba(9,13,10,0.96));
-  }
-  .community-panel h3{
-    font-family:'Cinzel Decorative',serif; color:var(--parchment);
-    font-size:24px; margin-bottom:8px;
-  }
-  .community-panel > p{color:var(--parchment-dim); margin-bottom:24px;}
-  .community-form{display:grid; gap:16px;}
-  .community-form .btn{cursor:pointer; width:100%;}
-  .community-form button:disabled{opacity:.55; cursor:wait;}
 
-  /* ---------- FOOTER ---------- */
+  /* ---------- FOOTER / FINAL CTA ---------- */
   footer{
-    padding:55px 24px; text-align:center;
-    border-top:1px solid var(--line); background:#030403;
+    text-align:center; padding:110px 0 60px;
+    border-top:1px solid var(--line);
   }
-  footer p{color:var(--muted); font-size:14px; margin:6px 0;}
-  footer .footer-title{font-family:'Cinzel Decorative',serif; color:var(--gold-bright); letter-spacing:.2em;}
+  footer h2{font-size:clamp(28px,4vw,44px); font-family:'Cinzel Decorative', serif; color:var(--parchment);}
+  footer .divider{margin:24px auto 34px;}
+  footer .fine{color:var(--muted); font-size:14px; margin-top:60px; font-family:'Cinzel', serif; letter-spacing:0.08em;}
 
-  /* ---------- RESPONSIVE ---------- */
-  @media(max-width:800px){
-    nav{padding:15px 20px;}
-    nav .links{gap:12px;}
-    nav .links a{font-size:10px; letter-spacing:.08em;}
-    .wrap{padding:0 20px;}
-    section{padding:90px 0;}
-    .lords{grid-template-columns:1fr;}
-    .split{grid-template-columns:1fr; gap:35px;}
-    .timeline::before{left:8px;}
-    .t-row,.t-row.reverse{flex-direction:row; padding-left:28px;}
-    .t-side,.t-empty{width:100%;}
-    .t-row .t-side:first-child,.t-row.reverse .t-side:first-child{text-align:left;}
-    .t-empty{display:none;}
-    .t-mark{left:8px;}
-    .community-forms{grid-template-columns:1fr;}
-    .form-grid{grid-template-columns:1fr;}
-    .suggestion-panel{padding:24px;}
-    .community-panel{padding:24px;}
-    .hero-content{padding:0 20px 70px;}
+  /* ---------- INTRO SPLASH (cinematic) ---------- */
+  #splash{
+    position:fixed; inset:0; z-index:200;
+    background:#000;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    overflow:hidden;
+    transition:opacity 1s ease, visibility 1s ease;
   }
-  @media(max-width:480px){
-    nav{align-items:flex-start; gap:12px; flex-direction:column;}
-    nav .links{flex-wrap:wrap;}
-    .hero h1{font-size:38px;}
-    .btn{padding:13px 20px; font-size:11px;}
+  #splash.hide{opacity:0; visibility:hidden; pointer-events:none;}
+  #splash.hide-cut{opacity:1 !important;}
+
+  .splash-bg{
+    position:absolute; inset:-4%; z-index:0;
+    background:radial-gradient(ellipse at 50% 45%, #0a1410 0%, #050705 55%, #000 100%);
+    animation:bg-zoom 17s ease-out forwards;
+    transform-origin:50% 50%;
+  }
+  @keyframes bg-zoom{ from{transform:scale(1);} to{transform:scale(1.12);} }
+
+  .letterbox{
+    position:absolute; left:0; right:0; z-index:5; background:#000;
+    height:0; animation:letterbox-in .8s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  .letterbox.top{top:0;}
+  .letterbox.bottom{bottom:0;}
+  @keyframes letterbox-in{ to{height:9%;} }
+  #splash.hide-cut .letterbox{transition:none;}
+
+  .grain{
+    position:absolute; inset:-50%; z-index:4; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
+    background-image:radial-gradient(rgba(255,255,255,0.9) 0.6px, transparent 0.6px);
+    background-size:3px 3px;
+    animation:grain-shift .4s steps(4) infinite;
+  }
+  @keyframes grain-shift{
+    0%{transform:translate(0,0);} 25%{transform:translate(-1%,1%);}
+    50%{transform:translate(1%,-1%);} 75%{transform:translate(-1%,-1%);} 100%{transform:translate(0,0);}
+  }
+
+  .flare{
+    position:absolute; inset:0; z-index:6; pointer-events:none;
+    background:radial-gradient(circle at 50% 55%, rgba(79,216,138,0.55), rgba(79,216,138,0) 60%);
+    opacity:0;
+  }
+  .flare.f1{animation:flare-pulse 1.1s ease forwards; animation-delay:13.25s;}
+  .flare.f2{
+    background:radial-gradient(circle at 50% 45%, rgba(232,199,102,0.5), rgba(232,199,102,0) 55%);
+    animation:flare-pulse 1.3s ease forwards; animation-delay:13.75s;
+  }
+  @keyframes flare-pulse{
+    0%{opacity:0;} 30%{opacity:1;} 100%{opacity:0;}
+  }
+
+  .cut-flash{
+    position:absolute; inset:0; z-index:7; background:#000; opacity:0; pointer-events:none;
+    animation:cut-flash 1.1s ease forwards; animation-delay:16.55s;
+  }
+  @keyframes cut-flash{ 0%{opacity:0;} 55%{opacity:1;} 100%{opacity:1;} }
+
+  .embers{position:absolute; inset:0; pointer-events:none; z-index:1;}
+  .ember{
+    position:absolute; bottom:-10px; width:3px; height:3px; border-radius:50%;
+    background:var(--emerald-bright); box-shadow:0 0 6px 1px rgba(79,216,138,0.7);
+    opacity:0; animation:ember-rise linear infinite;
+  }
+  @keyframes ember-rise{
+    0%{opacity:0; transform:translateY(0) translateX(0);}
+    8%{opacity:0.9;}
+    90%{opacity:0.3;}
+    100%{opacity:0; transform:translateY(-92vh) translateX(var(--drift,20px));}
+  }
+
+  .splash-vignette{
+    position:absolute; inset:0; z-index:2; box-shadow:inset 0 0 160px 60px #000;
+    opacity:0; animation:vig-in 2s ease forwards; animation-delay:.2s;
+  }
+  @keyframes vig-in{ to{opacity:1;} }
+
+  .splash-studio{
+    position:relative; z-index:8;
+    font-family:'Cinzel', serif; font-size:12px; letter-spacing:0.5em; text-transform:uppercase;
+    color:var(--parchment-dim); text-align:center;
+    opacity:0; transform:translateY(6px);
+    animation:studio-in 2.2s ease forwards;
+    animation-delay:.4s;
+  }
+  @keyframes studio-in{
+    0%{opacity:0; transform:translateY(6px);}
+    26%{opacity:1; transform:translateY(0);}
+    70%{opacity:1;}
+    100%{opacity:0;}
+  }
+
+  .credits-stage{
+    position:relative; z-index:8;
+    width:min(86vw, 360px); height:78px;
+    opacity:0;
+    animation:stage-fade .4s ease forwards;
+    animation-delay:2.4s;
+  }
+  @keyframes stage-fade{ to{opacity:1;} }
+  .credit-item{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    opacity:0;
+    animation-name:credit-cycle; animation-timing-function:ease; animation-fill-mode:forwards;
+  }
+  @keyframes credit-cycle{
+    0%{opacity:0; transform:translateY(10px) scale(0.97);}
+    12%{opacity:1; transform:translateY(0) scale(1);}
+    80%{opacity:1; transform:translateY(0) scale(1);}
+    100%{opacity:0; transform:translateY(-8px) scale(0.98);}
+  }
+  .credit-item .role{
+    font-family:'Cinzel', serif; font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--emerald-bright); margin-bottom:9px;
+  }
+  .credit-item .who{
+    font-family:'Cinzel Decorative', serif; font-size:24px; color:var(--parchment);
+    text-shadow:0 0 16px rgba(79,216,138,0.35);
+  }
+  .credit-item .handle{
+    font-size:14px; color:var(--muted); margin-top:5px; font-family:'EB Garamond', serif;
+  }
+
+  .splash-crest{
+    position:relative; z-index:8; width:150px; height:150px; margin:26px 0 8px;
+    opacity:0;
+    animation:crest-in .9s ease forwards;
+    animation-delay:10.95s;
+  }
+  @keyframes crest-in{
+    0%{opacity:0; transform:scale(0.82);}
+    100%{opacity:1; transform:scale(1);}
+  }
+  .splash-crest svg{width:100%; height:100%;}
+  .crest-ring{
+    fill:none; stroke:var(--emerald-dim); stroke-width:1.2;
+  }
+  .crest-line{
+    fill:none; stroke:var(--emerald-bright); stroke-width:2.4; stroke-linecap:round;
+    stroke-dasharray:340; stroke-dashoffset:340;
+    filter:drop-shadow(0 0 6px rgba(79,216,138,0.65));
+    animation:crest-draw 2.1s cubic-bezier(.4,.1,.2,1) forwards;
+    animation-delay:11.15s;
+  }
+  .crest-gem{
+    fill:var(--gold); opacity:0;
+    animation:gem-in .6s ease forwards; animation-delay:13.25s;
+    filter:drop-shadow(0 0 8px rgba(232,199,102,0.8));
+  }
+  @keyframes crest-draw{ to{stroke-dashoffset:0;} }
+  @keyframes gem-in{ to{opacity:1;} }
+
+  .splash-title{
+    position:relative; z-index:8; text-align:center;
+    opacity:0;
+    animation:title-in 1.6s ease forwards;
+    animation-delay:13.75s;
+  }
+  @keyframes title-in{
+    0%{opacity:0; transform:translateY(14px);}
+    100%{opacity:1; transform:translateY(0);}
+  }
+  .splash-title h1{
+    font-family:'Cinzel Decorative', serif;
+    font-size:clamp(30px,6.4vw,58px);
+    color:var(--parchment);
+    letter-spacing:0.5em;
+    text-shadow:0 0 30px rgba(79,216,138,0.55), 0 2px 20px rgba(0,0,0,0.9);
+    animation:tracking-in 1.8s cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay:13.75s;
+  }
+  @keyframes tracking-in{
+    0%{letter-spacing:0.5em; opacity:0;}
+    40%{opacity:1;}
+    100%{letter-spacing:0.04em; opacity:1;}
+  }
+  .splash-title h1 span{
+    display:block; color:var(--emerald-bright);
+    font-size:0.42em; letter-spacing:0.5em; margin-top:12px;
+    animation:tracking-in 1.8s cubic-bezier(.2,.7,.2,1) forwards;
+    animation-delay:14.05s;
+  }
+  .splash-divider{
+    position:relative; z-index:8; height:2px; width:0;
+    margin:26px auto 0;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation:divider-grow 1s ease forwards; animation-delay:15.85s;
+  }
+  @keyframes divider-grow{ to{width:120px;} }
+
+  .skip-btn{
+    position:relative; z-index:8;
+    margin-top:48px; background:transparent; border:1px solid var(--line);
+    color:var(--parchment-dim); font-family:'Cinzel', serif; font-size:12px;
+    letter-spacing:0.2em; text-transform:uppercase; padding:13px 30px; cursor:pointer;
+    transition:border-color .25s, color .25s;
+    opacity:0; animation:skip-in 1s ease forwards; animation-delay:1.2s;
+  }
+  @keyframes skip-in{ to{opacity:1;} }
+  .skip-btn:hover{border-color:var(--gold); color:var(--gold-bright);}
+  .skip-btn:focus-visible{outline:1px solid var(--gold-bright); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    #splash *{animation-duration:.01s !important; animation-delay:0s !important;}
+  }
+
+  /* ---------- TEAM / CREDITS ---------- */
+  .team{border-top:1px solid var(--line);}
+  .team-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:24px;
+  }
+  .team-card{
+    text-align:center; padding:28px 16px;
+    background:var(--panel); border:1px solid var(--line);
+  }
+  .team-card .role{
+    display:block; font-family:'Cinzel', serif; font-size:11px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--emerald-bright); margin-bottom:10px;
+  }
+  .team-card .who{color:var(--parchment); font-size:19px; font-weight:600;}
+  .team-card .handle{display:block; color:var(--muted); font-size:14px; margin-top:4px;}
+
+  @media (max-width:820px){
+    .lords{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr; gap:36px;}
+    .t-row, .t-row.reverse{flex-direction:column; align-items:flex-start; text-align:left;}
+    .t-row .t-side:first-child, .t-row.reverse .t-side:first-child{text-align:left;}
+    .t-side, .t-empty{width:100%;}
+    .timeline::before{left:6px;}
+    .t-mark{left:6px;}
+    .t-side{padding-left:26px !important;}
+    nav .links{display:none;}
+    .form-grid{grid-template-columns:1fr;}
+    .form-field.full{grid-column:auto;}
+    .suggestion-panel{padding:24px 18px;}
   }
 </style>
 </head>
+<body>
+<audio id="introMusic" src="music/intro.mp3" preload="auto" autoplay playsinline></audio>
+<audio id="websiteMusic" src="music/website.mp3" preload="auto" loop playsinline></audio>
+
+<div id="splash" role="dialog" aria-label="Intro">
+  <div class="splash-bg"></div>
+  <div class="letterbox top"></div>
+  <div class="letterbox bottom"></div>
+  <div class="splash-vignette"></div>
+  <div class="embers" id="embers"></div>
+  <div class="grain"></div>
+  <div class="flare f1"></div>
+  <div class="flare f2"></div>
+  <div class="cut-flash"></div>
+
+  <span class="splash-studio">A production of Nova Luminary Studios</span>
+
+  <div class="credits-stage" id="credits-stage"></div>
+
+  <div class="splash-crest">
+    <svg viewBox="0 0 150 150">
+      <circle class="crest-ring" cx="75" cy="75" r="68"/>
+      <path class="crest-line" d="M75,20 C50,20 40,42 40,60 C40,80 55,90 75,102 C95,90 110,80 110,60 C110,42 100,20 75,20 Z"/>
+      <path class="crest-line" d="M75,102 L75,132" style="animation-delay:3.4s; stroke-dasharray:40; stroke-dashoffset:40;"/>
+      <circle class="crest-gem" cx="75" cy="60" r="7"/>
+    </svg>
+  </div>
+
+  <div class="splash-title">
+    <h1>CLOVER KINGDOM<span>REVOLUTION</span></h1>
+  </div>
+
+  <div class="splash-divider"></div>
+
+  <button class="skip-btn" id="skip-intro">Skip intro</button>
+</div>
+
+<nav>
+  <a class="brand" href="#top">CLOVER <b>KINGDOM</b> REVOLUTION</a>
+  <div class="links">
+    <a href="#lore">The Shattering</a>
+    <a href="#lords">Demon Lords</a>
+    <a href="#escanor">Escanor</a>
+    <a href="#abyssm">The Abyssm</a>
+    <a href="#grimoires">Grimoires</a>
+    <a href="#suggestions">Suggestions</a>
+    <a href="#feedback">Feedback</a>
+    <a href="https://discord.gg/VJ6v7FYnRP" target="_blank" rel="noopener">Discord</a>
+  </div>
+</nav>
+
+<div class="hero" id="top">
+  <img src="hero.jpg" alt="A luminary knight wielding a glowing sword before the castle of Clover Kingdom, a fallen phoenix and drifting islands behind him">
+  <div class="hero-content">
+    <h1>CLOVER KINGDOM<span>REVOLUTION</span></h1>
+    <p class="tag">Five hundred years of peace are ending. The seal that bound three demon lords beneath the abyss is cracking &mdash; and only a new Luminary can hold the line.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://discord.gg/VJ6v7FYnRP" target="_blank" rel="noopener">Join the Discord</a>
+      <a class="btn btn-ghost" href="#lore">Read the lore</a>
+    </div>
+  </div>
+  <div class="scroll-cue"></div>
+</div>
+
+<section id="lore">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Eight centuries of silence</span>
+      <h2>The shattering</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="t-row reveal">
+        <div class="t-side">
+          <span class="t-era">800 years ago</span>
+          <h3>The war of the first god's sons</h3>
+          <p>Chronos's twelve princes rose against the demon lords who plagued the young world. One by one the brothers fell, until their line went out of existence &mdash; leaving only three demon lords standing: Asmodeus, Leviathan, and Azazel.</p>
+        </div>
+        <div class="t-mark"></div>
+        <div class="t-empty"></div>
+      </div>
+
+      <div class="t-row reverse reveal">
+        <div class="t-side">
+          <span class="t-era">The first Luminary</span>
+          <h3>Light against the abyss</h3>
+          <p>When humanity inherited the gods' blood, the Luminaries were born &mdash; wielders of unrivaled light. The first of them stood against the demon lords alone. It was not enough. He fell, and the war seemed lost.</p>
+        </div>
+        <div class="t-mark"></div>
+        <div class="t-empty"></div>
+      </div>
+
+      <div class="t-row reveal">
+        <div class="t-side">
+          <span class="t-era">The forging</span>
+          <h3>Escanor, blade of heaven</h3>
+          <p>Every mage in the world set aside their rivalries to forge a single sword. Escanor turned the tide, driving the demon lords' forces back and sealing the abyss from the human realm.</p>
+        </div>
+        <div class="t-mark"></div>
+        <div class="t-empty"></div>
+      </div>
+
+      <div class="t-row reverse reveal">
+        <div class="t-side">
+          <span class="t-era">500 years of peace</span>
+          <h3>A world that forgot to be afraid</h3>
+          <p>Generations lived and died without ever seeing a demon. The seal held. The Luminaries became legend. And in the quiet, something began to stir among those who still hungered for the old, dark power.</p>
+        </div>
+        <div class="t-mark"></div>
+        <div class="t-empty"></div>
+      </div>
+
+      <div class="t-row reveal">
+        <div class="t-side">
+          <span class="t-era">Now</span>
+          <h3>The Abyssm rise</h3>
+          <p>A cult of devil-touched mages works to shatter the seal and return Asmodeus to the throne he lost. The kingdom needs a new Luminary &mdash; before the abyss remembers how to open.</p>
+        </div>
+        <div class="t-mark"></div>
+        <div class="t-empty"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lords">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Three survived the purge</span>
+      <h2>The demon lords</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="lords">
+      <div class="lord-card reveal">
+        <div class="lord-sigil">A</div>
+        <span class="domain">King of hell</span>
+        <h3>Asmodeus</h3>
+        <p>The throne the Abyssm want restored. Eight centuries sealed have not dulled his ambition &mdash; only sharpened it.</p>
+      </div>
+      <div class="lord-card reveal">
+        <div class="lord-sigil">L</div>
+        <span class="domain">King of the sea</span>
+        <h3>Leviathan</h3>
+        <p>Older than the coastlines that fear him. What he claims beneath the waves, the surface world never gets back.</p>
+      </div>
+      <div class="lord-card reveal">
+        <div class="lord-sigil">Z</div>
+        <span class="domain">Leader of the fallen</span>
+        <h3>Azazel</h3>
+        <p>Commander of the host that broke the twelve princes. Wherever the Abyssm gather, his influence is never far behind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="escanor">
+  <div class="wrap">
+    <div class="split">
+      <div class="reveal">
+        <span class="eyebrow">Forged by every mage alive</span>
+        <h2>Escanor, the blade of heaven</h2>
+        <p>No single hero could stop the demon lords. It took the whole world, working as one, to forge the sword that could. Escanor drove the abyss shut and has waited five centuries for a hand worthy of the Luminaries who came before.</p>
+        <p>Now the seal it made is failing &mdash; and the blade is choosing again.</p>
+      </div>
+      <div class="blade-frame reveal">
+        <svg viewBox="0 0 120 300" class="blade-glow">
+          <polygon points="60,4 68,190 60,210 52,190" fill="var(--emerald-bright)" opacity="0.9"/>
+          <rect x="56" y="205" width="8" height="14" fill="var(--gold-bright)"/>
+          <rect x="30" y="219" width="60" height="10" rx="2" fill="var(--gold)"/>
+          <rect x="55" y="229" width="10" height="58" fill="#2b2116"/>
+          <circle cx="60" cy="292" r="10" fill="var(--gold)"/>
+          <line x1="60" y1="20" x2="60" y2="190" stroke="var(--void)" stroke-width="1" opacity="0.5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="abyssm" id="abyssm">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The seal is failing</span>
+      <h2>The Abyssm</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="seal-wrap reveal">
+      <svg viewBox="0 0 200 200" id="seal-svg">
+        <circle cx="100" cy="100" r="86" fill="none" stroke="var(--emerald-dim)" stroke-width="1.5"/>
+        <g fill="none" stroke="var(--emerald-bright)" stroke-width="2.5" opacity="0.85">
+          <circle cx="76" cy="72" r="24"/>
+          <circle cx="124" cy="72" r="24"/>
+          <circle cx="76" cy="120" r="24"/>
+          <circle cx="124" cy="120" r="24"/>
+        </g>
+        <line x1="100" y1="96" x2="100" y2="168" stroke="var(--gold)" stroke-width="3"/>
+        <path id="seal-crack" d="M100,30 L92,70 L108,90 L88,120 L112,150 L96,178" fill="none" stroke="var(--blood-bright)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="260" stroke-dashoffset="260"/>
+      </svg>
+    </div>
+
+    <div class="abyssm-copy reveal">
+      <p>Devil-touched mages who abandoned the old wards for forbidden power, the Abyssm have spent years hunting fragments of the ritual that bound Asmodeus. <strong>Every fragment they recover widens the crack.</strong> Humanity's mages hold the line where the first Luminary once stood alone &mdash; this time, they don't intend to fall the same way.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="grimoires-section" id="grimoires">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">The official grimoire archive</span>
+      <h2>Grimoires</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div id="grimoire-archive" class="grimoire-grid reveal"></div>
+
+    <div class="suggestion-panel reveal">
+      <span class="eyebrow">Submit for review</span>
+      <h3>Suggest a New Grimoire</h3>
+      <p>Have an idea for a grimoire? Send it to the staff team for review. A submission will <strong>not</strong> appear in the official archive unless it is approved.</p>
+
+      <form id="grimoire-form" class="suggestion-form">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="grimoire-name">Grimoire name</label>
+            <input id="grimoire-name" name="grimoireName" type="text" maxlength="80" placeholder="e.g. Verdant Eclipse" required>
+          </div>
+          <div class="form-field">
+            <label for="grimoire-attribute">Attribute</label>
+            <input id="grimoire-attribute" name="attribute" type="text" maxlength="60" placeholder="e.g. Nature / Shadow" required>
+          </div>
+          <div class="form-field">
+            <label for="grimoire-discord">Discord username</label>
+            <input id="grimoire-discord" name="discord" type="text" maxlength="80" placeholder="Optional">
+          </div>
+          <div class="form-field">
+            <label for="grimoire-art">Art URL</label>
+            <input id="grimoire-art" name="artUrl" type="url" maxlength="500" placeholder="Optional https://...">
+          </div>
+          <div class="form-field full">
+            <label for="grimoire-description">Description</label>
+            <textarea id="grimoire-description" name="description" maxlength="1000" placeholder="Describe the grimoire, its appearance, powers, and lore..." required></textarea>
+          </div>
+        </div>
+        <button class="submit-grimoire" type="submit">Send Grimoire for Review</button>
+        <div id="grimoire-status" class="form-status" aria-live="polite"></div>
+      </form>
+
+      <div class="review-note">Submissions are review-only. Staff approval is required before anything can be added to the official Grimoire Archive.</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="grimoires-section community-section" id="suggestions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Help shape the kingdom</span>
+      <h2>Community Suggestions</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="suggestion-panel reveal">
+      <span class="eyebrow">Your idea matters</span>
+      <h3>Suggest an Improvement</h3>
+      <p>Have an idea for a feature, event, mechanic, or website improvement? Send it to the team. Suggestions are reviewed by staff and are not automatically implemented.</p>
+      <form id="idea-form" class="suggestion-form">
+        <div class="form-grid">
+          <div class="form-field"><label for="idea-name">Suggestion title</label><input id="idea-name" name="ideaTitle" maxlength="100" placeholder="e.g. Add a new magic attribute" required></div>
+          <div class="form-field"><label for="idea-category">Category</label><select id="idea-category" name="category" required><option value="">Choose a category</option><option>Gameplay</option><option>Website</option><option>Events</option><option>Balance</option><option>Community</option><option>Other</option></select></div>
+          <div class="form-field"><label for="idea-discord">Discord username</label><input id="idea-discord" name="discord" maxlength="80" placeholder="Optional"></div>
+          <div class="form-field full"><label for="idea-details">Your suggestion</label><textarea id="idea-details" name="details" maxlength="1500" placeholder="Explain your idea and how it could improve the kingdom..." required></textarea></div>
+        </div>
+        <button class="submit-grimoire" type="submit">Send Suggestion</button>
+        <div id="idea-status" class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="grimoires-section community-section" id="feedback">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Tell us what you think</span>
+      <h2>Community Feedback</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="suggestion-panel reveal">
+      <span class="eyebrow">Help us improve</span>
+      <h3>Leave Feedback</h3>
+      <p>Share your experience with the website or project, report an issue, or tell us what you would like to see improved.</p>
+      <form id="feedback-form" class="suggestion-form">
+        <div class="form-grid">
+          <div class="form-field"><label for="feedback-type">Feedback type</label><select id="feedback-type" name="feedbackType" required><option value="">Choose a type</option><option>General feedback</option><option>Bug report</option><option>Website issue</option><option>Gameplay feedback</option><option>Other</option></select></div>
+          <div class="form-field"><label for="feedback-rating">Experience rating</label><select id="feedback-rating" name="rating" required><option value="">Choose a rating</option><option>★★★★★ — Excellent</option><option>★★★★☆ — Great</option><option>★★★☆☆ — Okay</option><option>★★☆☆☆ — Needs work</option><option>★☆☆☆☆ — Poor</option></select></div>
+          <div class="form-field"><label for="feedback-discord">Discord username</label><input id="feedback-discord" name="discord" maxlength="80" placeholder="Optional"></div>
+          <div class="form-field full"><label for="feedback-message">Your feedback</label><textarea id="feedback-message" name="message" maxlength="1500" placeholder="Tell us what worked well or what needs improvement..." required></textarea></div>
+        </div>
+        <button class="submit-grimoire" type="submit">Send Feedback</button>
+        <div id="feedback-status" class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="team">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nova Luminary Studios</span>
+      <h2>Behind the seal</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <span class="role">Game owner</span>
+        <span class="who">Dragon</span>
+        <span class="handle">@beyonder_2243</span>
+      </div>
+      <div class="team-card">
+        <span class="role">Game owner</span>
+        <span class="who">Vangeance</span>
+        <span class="handle">@mt.rams</span>
+      </div>
+      <div class="team-card">
+        <span class="role">Community manager</span>
+        <span class="who">zaza</span>
+        <span class="handle">@rip_beast3609</span>
+      </div>
+      <div class="team-card">
+        <span class="role">Head developer</span>
+        <span class="who">OFFICIAL_BAGUETTE</span>
+        <span class="handle">@the_rinitoshixsae</span>
+      </div>
+      <div class="team-card">
+        <span class="role">Tester</span>
+        <span class="who">Astr4</span>
+        <span class="handle">@astr4games</span>
+      </div>
+      <div class="team-card">
+        <span class="role">Head of Staff</span>
+        <span class="who">⚙️Cruxos</span>
+        <span class="handle">@cruxos20</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="play">
+  <div class="wrap">
+    <span class="eyebrow">The kingdom is calling</span>
+    <h2>Answer before the seal breaks</h2>
+    <div class="divider"></div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://discord.gg/VJ6v7FYnRP" target="_blank" rel="noopener">Join the Discord</a>
+    </div>
+    <p class="fine">CLOVER KINGDOM REVOLUTION &middot; IN DEVELOPMENT &middot; COMING SOON TO ROBLOX</p>
+  </div>
+</footer>
+
+<script>
+
+
+  // ---- Grimoire Archive + Suggestion Review ----
+  (function(){
+    // IMPORTANT: Only place an APPROVED grimoire in this list.
+    // Submitted suggestions are sent to Discord and are never rendered here automatically.
+    const APPROVED_GRIMOIRES = [
+      // Example format for staff after approval:
+      // { name:'Example Grimoire', attribute:'Magic Attribute', description:'Approved lore goes here.', artUrl:'' }
+    ];
+
+    const archive = document.getElementById('grimoire-archive');
+    const form = document.getElementById('grimoire-form');
+    const status = document.getElementById('grimoire-status');
+
+    function escapeHTML(value){
+      return String(value || '').replace(/[&<>'"]/g, function(ch){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch];
+      });
+    }
+
+    function renderArchive(){
+      if(!archive) return;
+      if(!APPROVED_GRIMOIRES.length){
+        archive.innerHTML = '<div class="grimoire-empty"><strong>No approved grimoires yet.</strong>The archive will only display grimoires that have been reviewed and approved by staff.</div>';
+        return;
+      }
+      archive.innerHTML = APPROVED_GRIMOIRES.map(function(g){
+        const art = g.artUrl ? '<div class="book-mark" style="background-image:url(\'' + escapeHTML(g.artUrl) + '\');background-size:cover;background-position:center;"></div>' : '<div class="book-mark"></div>';
+        return '<article class="grimoire-card">' +
+          art +
+          '<span class="attribute">' + escapeHTML(g.attribute) + '</span>' +
+          '<h3>' + escapeHTML(g.name) + '</h3>' +
+          '<p>' + escapeHTML(g.description) + '</p>' +
+          '<span class="approved">Approved Archive Entry</span>' +
+        '</article>';
+      }).join('');
+    }
+
+    renderArchive();
+
+    if(!form) return;
+
+    // A Discord incoming webhook is intentionally NOT embedded here.
+    // GitHub Pages exposes all frontend JavaScript to visitors. Put your rotated
+    // webhook behind a serverless/backend proxy, or replace this with your form service endpoint.
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/1551115689107128351/CLN0a56lT8-RC4iAjoUNXl1KLKgChyRSqHMz_20sQgsJcDl8Z20aoU8yfBN3IzwDIhNl';
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      if(!status) return;
+
+      const button = form.querySelector('button[type="submit"]');
+      const data = new FormData(form);
+      const name = String(data.get('grimoireName') || '').trim();
+      const attribute = String(data.get('attribute') || '').trim();
+      const discord = String(data.get('discord') || '').trim();
+      const artUrl = String(data.get('artUrl') || '').trim();
+      const description = String(data.get('description') || '').trim();
+
+      if(!name || !attribute || !description){
+        status.className='form-status error';
+        status.textContent='Please fill in the required fields.';
+        return;
+      }
+
+      if(artUrl && !/^https?:\/\//i.test(artUrl)){
+        status.className='form-status error';
+        status.textContent='The art URL must begin with http:// or https://.';
+        return;
+      }
+
+      if(WEBHOOK_URL.indexOf('PASTE_ROTATED_') === 0){
+        status.className='form-status error';
+        status.textContent='The submission system still needs its Discord webhook configured by the site owner.';
+        return;
+      }
+
+      button.disabled = true;
+      status.className='form-status';
+      status.textContent='Sending your grimoire for review...';
+
+      const fields = [
+        {name:'Grimoire', value:name.slice(0,1024), inline:true},
+        {name:'Attribute', value:attribute.slice(0,1024), inline:true},
+        {name:'Discord', value:(discord || 'Not provided').slice(0,1024), inline:true},
+        {name:'Description', value:description.slice(0,1024), inline:false}
+      ];
+      if(artUrl) fields.push({name:'Art URL', value:artUrl.slice(0,1024), inline:false});
+
+      try{
+        const response = await fetch(WEBHOOK_URL, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            username:'CKR Grimoire Review',
+            embeds:[{
+              title:'📖 New Grimoire Suggestion',
+              description:'A player submitted a grimoire for staff review. It has NOT been added to the archive.',
+              color:0x4fd88a,
+              fields:fields,
+              footer:{text:'Clover Kingdom Revolution • Pending Staff Review'},
+              timestamp:new Date().toISOString()
+            }]
+          })
+        });
+
+        if(!response.ok) throw new Error('Webhook request failed');
+
+        form.reset();
+        status.className='form-status success';
+        status.textContent='Submitted successfully. Your grimoire is now waiting for staff review.';
+      }catch(err){
+        status.className='form-status error';
+        status.textContent='The submission could not be sent. Please try again later.';
+      }finally{
+        button.disabled = false;
+      }
+    });
+  })();
+
+  // ---- Community suggestions and feedback: use the same Discord webhook ----
+  (function(){
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/1551115689107128351/CLN0a56lT8-RC4iAjoUNXl1KLKgChyRSqHMz_20sQgsJcDl8Z20aoU8yfBN3IzwDIhNl';
+    const forms = [
+      {id:'idea-form', statusId:'idea-status', kind:'💡 New Community Suggestion', fields:[['Suggestion title','ideaTitle'],['Category','category'],['Discord','discord'],['Details','details']], pending:'Your suggestion has been sent to the staff team for review.'},
+      {id:'feedback-form', statusId:'feedback-status', kind:'📝 New Community Feedback', fields:[['Feedback type','feedbackType'],['Rating','rating'],['Discord','discord'],['Feedback','message']], pending:'Thanks! Your feedback has been sent to the staff team.'}
+    ];
+    forms.forEach(function(config){
+      const form=document.getElementById(config.id), status=document.getElementById(config.statusId);
+      if(!form || !status) return;
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        const button=form.querySelector('button[type="submit"]');
+        const data=new FormData(form);
+        const fields=config.fields.map(function(field){return {name:field[0],value:(String(data.get(field[1])||'').trim()||'Not provided').slice(0,1024),inline:field[1]!=='details' && field[1]!=='message'};});
+        button.disabled=true; status.className='form-status'; status.textContent='Sending to the staff team...';
+        try{
+          const response=await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:'CKR Community Inbox',embeds:[{title:config.kind,description:'A community member submitted this through the Clover Kingdom Revolution website.',color:0x4fd88a,fields:fields,footer:{text:'Clover Kingdom Revolution • Community Inbox'},timestamp:new Date().toISOString()}]})});
+          if(!response.ok) throw new Error('Webhook request failed');
+          form.reset(); status.className='form-status success'; status.textContent=config.pending;
+        }catch(err){status.className='form-status error';status.textContent='Could not send this right now. Please try again later or contact staff on Discord.';}
+        finally{button.disabled=false;}
+      });
+    });
+  })();
+
+  // ---- Music: intro -> website ----
+  (function(){
+    const introMusic = document.getElementById('introMusic');
+    const websiteMusic = document.getElementById('websiteMusic');
+    const splash = document.getElementById('splash');
+    if(!introMusic || !websiteMusic) return;
+
+    introMusic.volume = 0.75;
+    websiteMusic.volume = 0.60;
+
+    let websiteStarted = false;
+    let unlocked = false;
+
+    function startIntro(){
+      if (introMusic.paused) {
+        const p = introMusic.play();
+        if (p && p.catch) p.catch(()=>{});
+      }
+    }
+
+    function startWebsite(){
+      if(websiteStarted) return;
+      websiteStarted = true;
+      introMusic.pause();
+      introMusic.currentTime = 0;
+      websiteMusic.currentTime = 0;
+      const p = websiteMusic.play();
+      if (p && p.catch) p.catch(()=>{});
+    }
+
+    // Browser autoplay is attempted immediately.
+    startIntro();
+
+    // If the browser blocks audible autoplay, silently retry on the
+    // first normal interaction. No message or overlay is shown.
+    function unlock(){
+      if(unlocked) return;
+      unlocked = true;
+      if(!websiteStarted) startIntro();
+      document.removeEventListener('pointerdown', unlock, true);
+      document.removeEventListener('keydown', unlock, true);
+      document.removeEventListener('touchstart', unlock, true);
+    }
+    document.addEventListener('pointerdown', unlock, true);
+    document.addEventListener('keydown', unlock, true);
+    document.addEventListener('touchstart', unlock, true);
+
+    introMusic.addEventListener('ended', startWebsite);
+
+    // Keep the music transition synchronized with the intro itself.
+    const skip = document.getElementById('skip-intro');
+    if(skip) skip.addEventListener('click', function(){
+      startWebsite();
+    });
+
+    // Fallback matching the cinematic intro length.
+    setTimeout(function(){
+      if(!websiteStarted) startWebsite();
+    }, 17600);
+  })();
+
+  // ---- Cinematic intro splash ----
+  (function(){
+    const splash = document.getElementById('splash');
+    const emberField = document.getElementById('embers');
+    const creditsStage = document.getElementById('credits-stage');
+    const skipBtn = document.getElementById('skip-intro');
+    document.body.style.overflow = 'hidden';
+
+    const credits = [
+      { role:'Game owner', who:'Dragon', handle:'@beyonder_2243' },
+      { role:'Game owner', who:'Vangeance', handle:'@mt.rams' },
+      { role:'Community manager', who:'zaza', handle:'@rip_beast3609' },
+      { role:'Head developer', who:'OFFICIAL_BAGUETTE', handle:'@the_rinitoshixsae' },
+      { role:'Tester', who:'Astr4', handle:'@astr4games' },
+      { role:'Head of Staff', who:'⚙️Cruxos', handle:'@cruxos20' }
+    ];
+    const SEG = 1.35;
+    const START = 2.6;
+    credits.forEach((c, i)=>{
+      const item = document.createElement('div');
+      item.className = 'credit-item';
+      item.style.animationDuration = SEG + 's';
+      item.style.animationDelay = (START + i*SEG) + 's';
+      item.innerHTML =
+        '<span class="role">' + c.role + '</span>' +
+        '<span class="who">' + c.who + '</span>' +
+        '<span class="handle">' + c.handle + '</span>';
+      creditsStage.appendChild(item);
+    });
+
+    const emberCount = window.innerWidth < 700 ? 16 : 28;
+    for(let i=0;i<emberCount;i++){
+      const em = document.createElement('div');
+      em.className = 'ember';
+      const left = Math.random()*100;
+      const dur = 4 + Math.random()*4;
+      const delay = Math.random()*6;
+      const drift = (Math.random()*40 - 20) + 'px';
+      em.style.left = left + '%';
+      em.style.setProperty('--drift', drift);
+      em.style.animationDuration = dur + 's';
+      em.style.animationDelay = delay + 's';
+      emberField.appendChild(em);
+    }
+
+    let dismissed = false;
+    function dismiss(){
+      if(dismissed) return;
+      dismissed = true;
+      splash.classList.add('hide');
+      document.body.style.overflow = '';
+      setTimeout(()=>{ if(splash.parentNode) splash.parentNode.removeChild(splash); }, 1200);
+    }
+    skipBtn.addEventListener('click', dismiss);
+    const AUTO_DISMISS_MS = 17200;
+    const autoTimer = setTimeout(dismiss, AUTO_DISMISS_MS);
+    skipBtn.addEventListener('click', ()=>clearTimeout(autoTimer));
+  })();
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        if(e.target.classList.contains('abyssm')===false && e.target.querySelector && e.target.querySelector('#seal-crack')){
+          // handled separately below
+        }
+      }
+    });
+  }, {threshold:0.2});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const crackObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const crack = document.getElementById('seal-crack');
+        if(crack){ crack.style.transition='stroke-dashoffset 2.2s ease'; crack.style.strokeDashoffset='0'; }
+        crackObserver.disconnect();
+      }
+    });
+  }, {threshold:0.4});
+  const sealWrap = document.querySelector('.seal-wrap');
+  if(sealWrap) crackObserver.observe(sealWrap);
+</script>
+
+</body>
+</html>
